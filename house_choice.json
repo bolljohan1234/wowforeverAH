@@ -1,0 +1,73 @@
+{
+ "ruleset": "1",
+ "region": "eu",
+ "house_id": null,
+ "note": "ruleset field missing from house responses",
+ "diagnostic": {
+  "113": {
+   "regular_listings": 192289,
+   "commodity_listings": 0,
+   "items": 5699,
+   "last_modified": "Wed, 25 Nov 2026 17:22:16 GMT",
+   "probes": {
+    "Plaguebloom": null,
+    "Stonescale Eel": null,
+    "Pristine Hide": null,
+    "Righteous Orb": null,
+    "Scroll of Liminal Passage": null
+   }
+  },
+  "114": {
+   "regular_listings": 158901,
+   "commodity_listings": 0,
+   "items": 5670,
+   "last_modified": "Wed, 25 Nov 2026 17:22:13 GMT",
+   "probes": {
+    "Plaguebloom": null,
+    "Stonescale Eel": null,
+    "Pristine Hide": null,
+    "Righteous Orb": null,
+    "Scroll of Liminal Passage": null
+   }
+  },
+  "115": {
+   "regular_listings": 0,
+   "commodity_listings": 0,
+   "items": 0,
+   "last_modified": "Wed, 25 Nov 2026 17:21:43 GMT",
+   "probes": {
+    "Plaguebloom": null,
+    "Stonescale Eel": null,
+    "Pristine Hide": null,
+    "Righteous Orb": null,
+    "Scroll of Liminal Passage": null
+   }
+  },
+  "120": {
+   "regular_listings": 15248,
+   "commodity_listings": 0,
+   "items": 3016,
+   "last_modified": "Wed, 25 Nov 2026 17:21:48 GMT",
+   "probes": {
+    "Plaguebloom": null,
+    "Stonescale Eel": null,
+    "Pristine Hide": null,
+    "Righteous Orb": null,
+    "Scroll of Liminal Passage": null
+   }
+  },
+  "124": {
+   "regular_listings": 18053,
+   "commodity_listings": 0,
+   "items": 3357,
+   "last_modified": "Wed, 25 Nov 2026 17:21:49 GMT",
+   "probes": {
+    "Plaguebloom": null,
+    "Stonescale Eel": null,
+    "Pristine Hide": null,
+    "Righteous Orb": null,
+    "Scroll of Liminal Passage": null
+   }
+  }
+ }
+}
