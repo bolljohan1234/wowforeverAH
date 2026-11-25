@@ -17,6 +17,7 @@ import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -28,7 +29,7 @@ STATIC_NS = f"static-forever-{REGION}"
 API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
-MAX_NAME_LOOKUPS = 400  # new item names resolved per run
+MAX_NAME_LOOKUPS = 8000  # new item names resolved per run
 
 
 def fetch(req, retries=3):
@@ -146,25 +147,30 @@ def save_snapshot(rows, now):
     return path
 
 
+def lookup_name(item_id, token):
+    try:
+        data = api(f"/data/wow/item/{item_id}", STATIC_NS, token)
+        name = data.get("name")
+        if isinstance(name, dict):
+            name = name.get("en_GB") or name.get("en_US") or next(iter(name.values()), None)
+        return item_id, name
+    except Exception:
+        return item_id, None  # item not resolvable right now; retried next run
+
+
 def update_item_names(item_ids, token):
     names = {}
     if ITEMS_FILE.exists():
         names = json.loads(ITEMS_FILE.read_text(encoding="utf-8"))
     missing = [i for i in item_ids if str(i) not in names][:MAX_NAME_LOOKUPS]
-    for item_id in missing:
-        try:
-            data = api(f"/data/wow/item/{item_id}", STATIC_NS, token)
-            name = data.get("name")
-            if isinstance(name, dict):
-                name = name.get("en_GB") or name.get("en_US") or next(iter(name.values()), None)
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for item_id, name in pool.map(lambda i: lookup_name(i, token), missing):
             if name:
                 names[str(item_id)] = name
-        except Exception as e:  # skip items that cannot be resolved right now
-            print(f"  name lookup failed for {item_id}: {e}")
     ITEMS_FILE.write_text(
         json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8"
     )
-    print(f"Item names known: {len(names)} (looked up {len(missing)} this run)")
+    print(f"Item names known: {len(names)} (tried {len(missing)} this run)")
 
 
 def main():
