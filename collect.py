@@ -36,6 +36,8 @@ API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
 VENDOR_FILE = Path("vendor.json")
+QUALITY_FILE = Path("quality.json")
+QUALITY_NUM = {"POOR": 0, "COMMON": 1, "UNCOMMON": 2, "RARE": 3, "EPIC": 4, "LEGENDARY": 5, "ARTIFACT": 6, "HEIRLOOM": 7}
 RUNS_FILE = Path("runs.csv")
 HOUSE_FILE = Path("house_choice.json")
 STATE_FILE = Path("state/auctions.json.gz")  # cached between runs, not committed
@@ -280,7 +282,7 @@ def save_snapshot(rows, when):
 
 
 def lookup_item(item_id, token):
-    """Returns (id, name, vendor_sell_price_in_copper). Vendor price 0 = cannot be sold to a vendor."""
+    """Returns (id, name, vendor_sell_price_in_copper, quality 0-5). Vendor price 0 = cannot be sold to a vendor. Quality 0 = grey."""
     try:
         data = api(f"/data/wow/item/{item_id}", STATIC_NS, token)
         name = data.get("name")
@@ -293,9 +295,11 @@ def lookup_item(item_id, token):
             sell = int(sell or 0)
         except (TypeError, ValueError):
             sell = 0
-        return item_id, name, sell
+        q = data.get("quality")
+        q = QUALITY_NUM.get(str(q.get("type") if isinstance(q, dict) else q).upper())
+        return item_id, name, sell, q
     except Exception:
-        return item_id, None, None
+        return item_id, None, None, None
 
 
 def update_item_names(rows, token, budget_seconds=300):
@@ -303,8 +307,9 @@ def update_item_names(rows, token, budget_seconds=300):
     started = time.time()
     names = json.loads(ITEMS_FILE.read_text(encoding="utf-8")) if ITEMS_FILE.exists() else {}
     vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
+    quality = json.loads(QUALITY_FILE.read_text(encoding="utf-8")) if QUALITY_FILE.exists() else {}
     order = sorted(rows, key=lambda r: -r[4])
-    missing = [r[0] for r in order if str(r[0]) not in names or str(r[0]) not in vendor][:MAX_NAME_LOOKUPS]
+    missing = [r[0] for r in order if str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality][:MAX_NAME_LOOKUPS]
     print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
     tried = failed = 0
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -312,15 +317,18 @@ def update_item_names(rows, token, budget_seconds=300):
             if time.time() - started > budget_seconds:
                 print("Time budget reached - the next run continues from here")
                 break
-            for item_id, name, sell in pool.map(lambda x: lookup_item(x, token), missing[i : i + 200]):
+            for item_id, name, sell, q in pool.map(lambda x: lookup_item(x, token), missing[i : i + 200]):
                 tried += 1
                 if name:
                     names[str(item_id)] = name
                     vendor[str(item_id)] = sell or 0
+                    if q is not None:
+                        quality[str(item_id)] = q
                 else:
                     failed += 1
             ITEMS_FILE.write_text(json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8")
             VENDOR_FILE.write_text(json.dumps(vendor, sort_keys=True, indent=0), encoding="utf-8")
+            QUALITY_FILE.write_text(json.dumps(quality, sort_keys=True, indent=0), encoding="utf-8")
             print(f"  progress: {tried} tried, {failed} failed, {len(names)} names, {len(vendor)} vendor prices, {time.time()-started:.0f}s")
     return len(names)
 
