@@ -191,6 +191,16 @@ def pick_house(houses, token):
     sys.exit(f"No '{HOUSE_NAME}' belongs to ruleset {RULESET_ID}. Seen (house, ruleset): {seen}")
 
 
+LADDER = {}  # filled by aggregate(): item -> cheapest price levels
+LADDER_FILE = Path("ladder.json.gz")
+
+
+def save_ladder(when):
+    with gzip.open(LADDER_FILE, "wt", encoding="utf-8") as f:
+        json.dump({"t": when.strftime("%Y-%m-%dT%H:%M:%SZ"), "l": {str(k): v for k, v in LADDER.items()}}, f, separators=(",", ":"))
+    print(f"Saved price ladders for {len(LADDER)} items")
+
+
 def aggregate(listings):
     """-> (rows per item, {auction_id: [item_id, qty, short]})."""
     by_item = defaultdict(list)
@@ -208,8 +218,14 @@ def aggregate(listings):
             continue
         by_item[item_id].append((price, qty))
     rows = {}
+    LADDER.clear()
     for item_id, pairs in by_item.items():
         rows[item_id] = [item_id, min(p for p, _ in pairs), weighted_median(pairs), sum(q for _, q in pairs), len(pairs)]
+        if len(pairs) >= 3:  # price ladder: the cheapest price levels with the units offered at each
+            levels = {}
+            for p, q in pairs:
+                levels[p] = levels.get(p, 0) + q
+            LADDER[item_id] = [[p, levels[p]] for p in sorted(levels)[:10]]
     return rows, cur
 
 
@@ -657,6 +673,10 @@ def main():
         if path:
             print(f"Saved {len(rows)} items to {path}")
             info["result"] = "new_snapshot"
+            try:
+                save_ladder(when)
+            except Exception as e:
+                print("Could not save ladders:", e)
             info["snapshot_utc"] = when.strftime("%Y-%m-%dT%H:%M:00Z")
             try:
                 save_state(when.strftime("%Y-%m-%dT%H:%M:%SZ"), cur)
