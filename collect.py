@@ -132,11 +132,32 @@ def ruleset_of(house):
     return rs, None
 
 
+PROBE_ITEMS = {13466: "Plaguebloom", 13422: "Stonescale Eel", 249428: "Pristine Hide", 12811: "Righteous Orb", 213548: "Scroll of Liminal Passage"}
+DIAG = {}
+
+
+def diag_house(hid, house, lm):
+    """Prints and remembers how each candidate house looks, so the right one can be told apart by its prices."""
+    regular, comm = as_list(house.get("auctions")), as_list(house.get("commodities"))
+    rows, _ = aggregate(regular + comm)
+    probes = {}
+    for iid, nm in PROBE_ITEMS.items():
+        r = rows.get(iid)
+        probes[nm] = {"min": r[1], "median": r[2], "units": r[3], "listings": r[4]} if r else None
+    DIAG[str(hid)] = {"regular_listings": len(regular), "commodity_listings": len(comm), "items": len(rows), "last_modified": lm, "probes": probes}
+    print(f"    listings={len(regular)} commodities={len(comm)} items={len(rows)}")
+    for nm, p in probes.items():
+        print(f"    probe {nm}: {p}")
+
+
 def pick_house(houses, token):
     """Several Horde houses can be listed. Pick the one that belongs to RULESET_ID and remember it."""
     ids = [h["id"] for h in houses if h.get("name") == HOUSE_NAME]
-    if FORCE_HOUSE_ID:
-        ids = [int(FORCE_HOUSE_ID)]
+    override = Path("house_override.txt")
+    forced = FORCE_HOUSE_ID or (override.read_text().strip() if override.exists() else "")
+    if forced:
+        print(f"House forced to {forced} (env WOW_HOUSE_ID or house_override.txt)")
+        ids = [int(forced)]
     elif HOUSE_FILE.exists():
         cached = json.loads(HOUSE_FILE.read_text()).get("house_id")
         if cached in ids:
@@ -151,11 +172,17 @@ def pick_house(houses, token):
         rid, rname = ruleset_of(house)
         print(f"  house {hid}: ruleset={rid} ({rname}), keys={list(house.keys())}, last-modified={lm}")
         seen.append((hid, rid))
-        if FORCE_HOUSE_ID or (rid is not None and str(rid) == str(RULESET_ID)):
+        try:
+            diag_house(hid, house, lm)
+        except Exception as e:  # diagnostics must never break a run
+            print(f"    (diagnostic failed: {e})")
+        if forced or (rid is not None and str(rid) == str(RULESET_ID)):
             HOUSE_FILE.write_text(json.dumps({"ruleset": RULESET_ID, "region": REGION, "house_id": hid}))
             return hid, house, lm
         if rid is None and unverified is None:
             unverified = (hid, house, lm)
+    if DIAG:
+        HOUSE_FILE.write_text(json.dumps({"ruleset": RULESET_ID, "region": REGION, "house_id": None, "note": "ruleset field missing from house responses", "diagnostic": DIAG}, indent=1))
     if unverified:
         print("WARNING: the response has no ruleset field, so the house could not be verified; using the first candidate")
         return unverified
