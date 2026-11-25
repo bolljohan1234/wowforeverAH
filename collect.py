@@ -136,7 +136,20 @@ def aggregate(listings):
     return rows
 
 
+def same_as_latest(rows):
+    """True if the newest saved snapshot has exactly these rows (Blizzard had not updated yet)."""
+    files = sorted(DATA_DIR.glob("*/*/*/*.csv.gz"))
+    if not files:
+        return False
+    with gzip.open(files[-1], "rt", newline="", encoding="utf-8") as f:
+        old = list(csv.reader(f))[1:]
+    return old == [[str(v) for v in r] for r in rows]
+
+
 def save_snapshot(rows, now):
+    if same_as_latest(rows):
+        print("Prices are identical to the latest snapshot - nothing new to save")
+        return None
     folder = DATA_DIR / f"{now:%Y}" / f"{now:%m}" / f"{now:%d}"
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f"{now:%H%M}.csv.gz"
@@ -226,7 +239,8 @@ def main():
 
     rows = aggregate(all_listings)
     path = save_snapshot(rows, now)
-    print(f"Saved {len(rows)} items to {path}")
+    if path:
+        print(f"Saved {len(rows)} items to {path}")
     update_item_names(rows, token)
 
 
