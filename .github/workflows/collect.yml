@@ -2,7 +2,7 @@ name: Collect auction prices
 
 on:
   schedule:
-    - cron: "17 * * * *"   # every 3 hours (UTC)
+    - cron: "17 */3 * * *"   # every 3 hours (UTC). For hourly use: "17 * * * *"
   workflow_dispatch:          # lets you run it by hand
 
 permissions:
@@ -23,21 +23,37 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Remembers which auctions existed last run, to estimate how much sold. Not stored in the repo.
+      - name: Restore auction state
+        uses: actions/cache/restore@v4
+        with:
+          path: state
+          key: auctions-none
+          restore-keys: auctions-
+
       - name: Collect prices
         env:
           BNET_CLIENT_ID: ${{ secrets.BNET_CLIENT_ID }}
           BNET_CLIENT_SECRET: ${{ secrets.BNET_CLIENT_SECRET }}
         run: python collect.py
 
-      - name: Save snapshot to repo
+      - name: Save auction state
+        if: always() && hashFiles('state/auctions.json.gz') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: state
+          key: auctions-${{ github.run_id }}
+
+      - name: Save results to repo
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data items.json
+          for f in data items.json runs.csv house_choice.json; do [ -e "$f" ] && git add "$f"; done; true
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Snapshot $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git commit -m "Run $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git pull --rebase --autostash || true
             git push
           fi
