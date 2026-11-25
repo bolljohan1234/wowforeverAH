@@ -158,19 +158,35 @@ def lookup_name(item_id, token):
         return item_id, None  # item not resolvable right now; retried next run
 
 
-def update_item_names(item_ids, token):
+def update_item_names(rows, token, budget_seconds=420):
+    """Resolve names for items we do not know yet, most-listed items first.
+    Saves progress after every chunk and stops when the time budget is used up,
+    so a slow run still keeps its work and the next run continues."""
+    started = time.time()
     names = {}
     if ITEMS_FILE.exists():
         names = json.loads(ITEMS_FILE.read_text(encoding="utf-8"))
-    missing = [i for i in item_ids if str(i) not in names][:MAX_NAME_LOOKUPS]
+    order = sorted(rows, key=lambda r: -r[4])  # r[4] = num_listings
+    missing = [r[0] for r in order if str(r[0]) not in names][:MAX_NAME_LOOKUPS]
+    print(f"Names known: {len(names)}, missing: {len(missing)}")
+    tried = failed = 0
+    CHUNK = 200
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for item_id, name in pool.map(lambda i: lookup_name(i, token), missing):
-            if name:
-                names[str(item_id)] = name
-    ITEMS_FILE.write_text(
-        json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8"
-    )
-    print(f"Item names known: {len(names)} (tried {len(missing)} this run)")
+        for i in range(0, len(missing), CHUNK):
+            if time.time() - started > budget_seconds:
+                print("Time budget reached - the next run continues from here")
+                break
+            chunk = missing[i : i + CHUNK]
+            for item_id, name in pool.map(lambda x: lookup_name(x, token), chunk):
+                tried += 1
+                if name:
+                    names[str(item_id)] = name
+                else:
+                    failed += 1
+            ITEMS_FILE.write_text(
+                json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8"
+            )
+            print(f"  progress: {tried} tried, {failed} failed, {len(names)} names known, {time.time()-started:.0f}s")
 
 
 def main():
@@ -211,7 +227,7 @@ def main():
     rows = aggregate(all_listings)
     path = save_snapshot(rows, now)
     print(f"Saved {len(rows)} items to {path}")
-    update_item_names([r[0] for r in rows], token)
+    update_item_names(rows, token)
 
 
 if __name__ == "__main__":
