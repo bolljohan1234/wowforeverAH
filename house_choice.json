@@ -5,68 +5,193 @@
  "note": "ruleset field missing from house responses",
  "diagnostic": {
   "113": {
-   "regular_listings": 192289,
+   "regular_listings": 199858,
    "commodity_listings": 0,
-   "items": 5699,
-   "last_modified": "Wed, 25 Nov 2026 17:22:16 GMT",
+   "items": 5708,
+   "last_modified": "Wed, 25 Nov 2026 18:22:15 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
     "Pristine Hide": null,
     "Righteous Orb": null,
-    "Scroll of Liminal Passage": null
+    "Scroll of Liminal Passage": null,
+    "Orange Mageweave Shirt": {
+     "min": 1495,
+     "median": 1495,
+     "units": 52,
+     "listings": 52
+    },
+    "Knightly Longsword": {
+     "min": 9700,
+     "median": 14900,
+     "units": 102,
+     "listings": 102
+    },
+    "Barbaric Shoulders": {
+     "min": 2602,
+     "median": 2602,
+     "units": 411,
+     "listings": 411
+    },
+    "Azure Silk Vest": {
+     "min": 1869,
+     "median": 1869,
+     "units": 109,
+     "listings": 109
+    },
+    "Large Blue Sack": {
+     "min": 2499,
+     "median": 2499,
+     "units": 37,
+     "listings": 37
+    }
    }
   },
   "114": {
-   "regular_listings": 158901,
+   "regular_listings": 169740,
    "commodity_listings": 0,
-   "items": 5670,
-   "last_modified": "Wed, 25 Nov 2026 17:22:13 GMT",
+   "items": 5676,
+   "last_modified": "Wed, 25 Nov 2026 18:22:12 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
     "Pristine Hide": null,
     "Righteous Orb": null,
-    "Scroll of Liminal Passage": null
+    "Scroll of Liminal Passage": null,
+    "Orange Mageweave Shirt": {
+     "min": 1588,
+     "median": 1589,
+     "units": 95,
+     "listings": 95
+    },
+    "Knightly Longsword": {
+     "min": 9716,
+     "median": 12499,
+     "units": 82,
+     "listings": 82
+    },
+    "Barbaric Shoulders": {
+     "min": 2607,
+     "median": 2610,
+     "units": 518,
+     "listings": 518
+    },
+    "Azure Silk Vest": {
+     "min": 1872,
+     "median": 1874,
+     "units": 87,
+     "listings": 87
+    },
+    "Large Blue Sack": {
+     "min": 2544,
+     "median": 2545,
+     "units": 16,
+     "listings": 16
+    }
    }
   },
   "115": {
    "regular_listings": 0,
    "commodity_listings": 0,
    "items": 0,
-   "last_modified": "Wed, 25 Nov 2026 17:21:43 GMT",
+   "last_modified": "Wed, 25 Nov 2026 18:21:43 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
     "Pristine Hide": null,
     "Righteous Orb": null,
-    "Scroll of Liminal Passage": null
+    "Scroll of Liminal Passage": null,
+    "Orange Mageweave Shirt": null,
+    "Knightly Longsword": null,
+    "Barbaric Shoulders": null,
+    "Azure Silk Vest": null,
+    "Large Blue Sack": null
    }
   },
   "120": {
-   "regular_listings": 15248,
+   "regular_listings": 15696,
    "commodity_listings": 0,
-   "items": 3016,
-   "last_modified": "Wed, 25 Nov 2026 17:21:48 GMT",
+   "items": 3039,
+   "last_modified": "Wed, 25 Nov 2026 18:21:47 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
     "Pristine Hide": null,
     "Righteous Orb": null,
-    "Scroll of Liminal Passage": null
+    "Scroll of Liminal Passage": null,
+    "Orange Mageweave Shirt": {
+     "min": 3500,
+     "median": 3500,
+     "units": 14,
+     "listings": 14
+    },
+    "Knightly Longsword": {
+     "min": 9800,
+     "median": 9800,
+     "units": 9,
+     "listings": 9
+    },
+    "Barbaric Shoulders": {
+     "min": 2660,
+     "median": 2660,
+     "units": 13,
+     "listings": 13
+    },
+    "Azure Silk Vest": {
+     "min": 1975,
+     "median": 2500,
+     "units": 8,
+     "listings": 8
+    },
+    "Large Blue Sack": {
+     "min": 2500,
+     "median": 2500,
+     "units": 2,
+     "listings": 2
+    }
    }
   },
   "124": {
-   "regular_listings": 18053,
+   "regular_listings": 18512,
    "commodity_listings": 0,
-   "items": 3357,
-   "last_modified": "Wed, 25 Nov 2026 17:21:49 GMT",
+   "items": 3372,
+   "last_modified": "Wed, 25 Nov 2026 18:21:48 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
     "Pristine Hide": null,
     "Righteous Orb": null,
-    "Scroll of Liminal Passage": null
+    "Scroll of Liminal Passage": null,
+    "Orange Mageweave Shirt": {
+     "min": 5942,
+     "median": 5942,
+     "units": 6,
+     "listings": 6
+    },
+    "Knightly Longsword": {
+     "min": 10000,
+     "median": 11100,
+     "units": 13,
+     "listings": 13
+    },
+    "Barbaric Shoulders": {
+     "min": 3898,
+     "median": 4497,
+     "units": 84,
+     "listings": 84
+    },
+    "Azure Silk Vest": {
+     "min": 2000,
+     "median": 2000,
+     "units": 3,
+     "listings": 3
+    },
+    "Large Blue Sack": {
+     "min": 7500,
+     "median": 10000,
+     "units": 5,
+     "listings": 5
+    }
    }
   }
  }
