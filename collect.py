@@ -132,7 +132,8 @@ def ruleset_of(house):
     return rs, None
 
 
-PROBE_ITEMS = {13466: "Plaguebloom", 13422: "Stonescale Eel", 249428: "Pristine Hide", 12811: "Righteous Orb", 213548: "Scroll of Liminal Passage"}
+PROBE_ITEMS = {13466: "Plaguebloom", 13422: "Stonescale Eel", 249428: "Pristine Hide", 12811: "Righteous Orb", 213548: "Scroll of Liminal Passage",
+               10056: "Orange Mageweave Shirt", 864: "Knightly Longsword", 5964: "Barbaric Shoulders", 4324: "Azure Silk Vest", 804: "Large Blue Sack"}
 DIAG = {}
 
 
@@ -280,7 +281,7 @@ def lookup_item(item_id, token):
         return item_id, None, None
 
 
-def update_item_names(rows, token, budget_seconds=420):
+def update_item_names(rows, token, budget_seconds=300):
     """Keeps items.json (id -> name) and vendor.json (id -> vendor sell price in copper) up to date."""
     started = time.time()
     names = json.loads(ITEMS_FILE.read_text(encoding="utf-8")) if ITEMS_FILE.exists() else {}
@@ -316,14 +317,14 @@ def _name(x):
     return x
 
 
-def build_professions(token, budget_seconds=240):
+def build_professions(token, budget_seconds=180):
     """Which professions use or make which items, from the Blizzard recipe data. Best effort: any failure is
     written to professions.json under 'status' so it can be diagnosed, and never stops a run."""
     started = time.time()
     data = json.loads(PROF_FILE.read_text(encoding="utf-8")) if PROF_FILE.exists() else {}
     recipes = data.get("recipes", {})
     status = {"errors": [], "professions": 0, "recipe_ids": 0, "fetched": len(recipes)}
-    if data.get("complete") and data.get("built_at", "") > (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d"):
+    if data.get("complete") and data.get("v") == 2 and data.get("built_at", "") > (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d"):
         print(f"Profession data is current ({len(recipes)} recipes)")
         return
     def note(msg):
@@ -336,6 +337,7 @@ def build_professions(token, budget_seconds=240):
         status["professions"] = len(profs)
         print(f"Professions listed: {[n for _, n in profs]}")
         todo = {}
+        cats = {}
         for pid, pname in profs:
             try:
                 detail = api(f"/data/wow/profession/{pid}", STATIC_NS, token)
@@ -348,11 +350,15 @@ def build_professions(token, budget_seconds=240):
                 except Exception as e:
                     note(f"skill tier {tier.get('id')} of {pname}: {e}")
                     continue
-                found = list(t.get("recipes", []) or [])
-                for cat in t.get("categories", []) or []:
-                    found += cat.get("recipes", []) or []
-                for r in found:
+                tname = _name(t.get("name")) or _name(tier.get("name")) or ""
+                for r in t.get("recipes", []) or []:
                     todo[str(r.get("id"))] = pname
+                    cats[str(r.get("id"))] = [tname, ""]
+                for cat in t.get("categories", []) or []:
+                    cname = _name(cat.get("name")) or ""
+                    for r in cat.get("recipes", []) or []:
+                        todo[str(r.get("id"))] = pname
+                        cats[str(r.get("id"))] = [tname, cname]
         status["recipe_ids"] = len(todo)
         print(f"Recipes listed: {len(todo)}")
         missing = [rid for rid in todo if rid not in recipes]
@@ -383,7 +389,8 @@ def build_professions(token, budget_seconds=240):
                     else:
                         note(f"recipe {rid}: {err}")
         status["fetched"] = len(recipes)
-        data["complete"] = len(recipes) >= len(todo) > 0
+        data["cats"] = cats
+        data["complete"] = all(r in recipes for r in todo) and len(todo) > 0
     except Exception as e:
         note(f"index: {e}")
         data["complete"] = False
@@ -393,10 +400,72 @@ def build_professions(token, budget_seconds=240):
             uses[str(item_id)].add(rec["p"])
         if rec.get("o") is not None:
             makes[str(rec["o"])].add(rec["p"])
-    data.update({"built_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "status": status, "recipes": recipes,
+    data.update({"v": 2, "built_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "status": status, "recipes": recipes,
                  "uses": {k: sorted(v) for k, v in uses.items()}, "makes": {k: sorted(v) for k, v in makes.items()}})
     PROF_FILE.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"Profession data: {len(recipes)} recipes, {len(uses)} items used as reagents, {len(makes)} items made. Errors: {len(status['errors'])}")
+
+
+ICON_FILE = Path("icons.json")
+
+
+def fetch_bytes(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "wowforeverAH-collector"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read()
+
+
+def lookup_icon(item_id, token):
+    try:
+        media = api(f"/data/wow/media/item/{item_id}", STATIC_NS, token)
+        for a in media.get("assets", []) or []:
+            if a.get("key") == "icon" and a.get("value"):
+                return item_id, a["value"].rsplit("/", 1)[-1].rsplit(".", 1)[0].lower(), None
+        return item_id, None, "no icon asset"
+    except Exception as e:
+        return item_id, None, str(e)
+
+
+def update_icons(rows, token, budget_seconds=240):
+    """icons.json: {"items": {item_id: icon_name}, "data": {icon_name: data URL}} so the page can show item icons."""
+    started = time.time()
+    d = json.loads(ICON_FILE.read_text(encoding="utf-8")) if ICON_FILE.exists() else {}
+    items, data, bad = d.get("items", {}), d.get("data", {}), d.get("bad", {})
+    order = sorted(rows, key=lambda r: -r[4])
+    todo = [r[0] for r in order if str(r[0]) not in items and str(r[0]) not in bad]
+    print(f"Icons known for {len(items)} items ({len(data)} images); {len(todo)} items to look up")
+    errs = []
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for i in range(0, len(todo), 200):
+            if time.time() - started > budget_seconds:
+                print("Icon time budget reached - the next run continues")
+                break
+            for item_id, name, err in pool.map(lambda x: lookup_icon(x, token), todo[i:i + 200]):
+                if name:
+                    items[str(item_id)] = name
+                elif err and "404" in err:
+                    bad[str(item_id)] = 1
+                elif err and len(errs) < 5:
+                    errs.append(f"{item_id}: {err}")
+            need = sorted({n for n in items.values() if n not in data})
+
+            def grab(n):
+                for url in (f"https://wow.zamimg.com/images/wow/icons/small/{n}.jpg", f"https://render.worldofwarcraft.com/us/icons/56/{n}.jpg"):
+                    try:
+                        return n, "data:image/jpeg;base64," + base64.b64encode(fetch_bytes(url)).decode(), None
+                    except Exception as e:
+                        last = str(e)
+                return n, None, last
+
+            for n, url, err in pool.map(grab, need):
+                if url:
+                    data[n] = url
+                elif len(errs) < 5:
+                    errs.append(f"image {n}: {err}")
+            ICON_FILE.write_text(json.dumps({"items": items, "data": data, "bad": bad}, separators=(",", ":")), encoding="utf-8")
+            print(f"  icons: {len(items)} items, {len(data)} images, {time.time()-started:.0f}s")
+    if errs:
+        print("  icon problems (first few):", errs)
 
 
 def ensure_runs_log():
@@ -500,6 +569,10 @@ def main():
             build_professions(token)
         except Exception as e:
             print(f"Profession step failed: {e}")
+        try:
+            update_icons(list(rows_by_item.values()), token)
+        except Exception as e:
+            print(f"Icon step failed: {e}")
     except SystemExit as e:
         info["note"] = str(e.code)[:200]
         raise
