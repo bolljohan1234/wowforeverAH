@@ -34,6 +34,7 @@ STATIC_NS = f"static-forever-{REGION}"
 API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
+VENDOR_FILE = Path("vendor.json")
 RUNS_FILE = Path("runs.csv")
 HOUSE_FILE = Path("house_choice.json")
 STATE_FILE = Path("state/auctions.json.gz")  # cached between runs, not committed
@@ -233,37 +234,49 @@ def save_snapshot(rows, when):
     return path
 
 
-def lookup_name(item_id, token):
+def lookup_item(item_id, token):
+    """Returns (id, name, vendor_sell_price_in_copper). Vendor price 0 = cannot be sold to a vendor."""
     try:
         data = api(f"/data/wow/item/{item_id}", STATIC_NS, token)
         name = data.get("name")
         if isinstance(name, dict):
             name = name.get("en_GB") or name.get("en_US") or next(iter(name.values()), None)
-        return item_id, name
+        sell = data.get("sell_price")
+        if isinstance(sell, dict):
+            sell = sell.get("value")
+        try:
+            sell = int(sell or 0)
+        except (TypeError, ValueError):
+            sell = 0
+        return item_id, name, sell
     except Exception:
-        return item_id, None
+        return item_id, None, None
 
 
 def update_item_names(rows, token, budget_seconds=420):
+    """Keeps items.json (id -> name) and vendor.json (id -> vendor sell price in copper) up to date."""
     started = time.time()
     names = json.loads(ITEMS_FILE.read_text(encoding="utf-8")) if ITEMS_FILE.exists() else {}
+    vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
     order = sorted(rows, key=lambda r: -r[4])
-    missing = [r[0] for r in order if str(r[0]) not in names][:MAX_NAME_LOOKUPS]
-    print(f"Names known: {len(names)}, missing: {len(missing)}")
+    missing = [r[0] for r in order if str(r[0]) not in names or str(r[0]) not in vendor][:MAX_NAME_LOOKUPS]
+    print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
     tried = failed = 0
     with ThreadPoolExecutor(max_workers=8) as pool:
         for i in range(0, len(missing), 200):
             if time.time() - started > budget_seconds:
                 print("Time budget reached - the next run continues from here")
                 break
-            for item_id, name in pool.map(lambda x: lookup_name(x, token), missing[i : i + 200]):
+            for item_id, name, sell in pool.map(lambda x: lookup_item(x, token), missing[i : i + 200]):
                 tried += 1
                 if name:
                     names[str(item_id)] = name
+                    vendor[str(item_id)] = sell or 0
                 else:
                     failed += 1
             ITEMS_FILE.write_text(json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8")
-            print(f"  progress: {tried} tried, {failed} failed, {len(names)} names known, {time.time()-started:.0f}s")
+            VENDOR_FILE.write_text(json.dumps(vendor, sort_keys=True, indent=0), encoding="utf-8")
+            print(f"  progress: {tried} tried, {failed} failed, {len(names)} names, {len(vendor)} vendor prices, {time.time()-started:.0f}s")
     return len(names)
 
 
