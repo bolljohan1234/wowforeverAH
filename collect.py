@@ -16,6 +16,7 @@ import email.utils
 import gzip
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -468,6 +469,110 @@ def update_icons(rows, token, budget_seconds=240):
         print("  icon problems (first few):", errs)
 
 
+ADDON_DIR = Path("addon/AHTracker")
+
+
+def make_addon_data():
+    """Writes addon/AHTracker/Data.lua: latest lowest price, 7-day average of the lowest price, vendor price and listing count per item."""
+    files = sorted(DATA_DIR.glob("*/*/*/*.csv.gz"))
+    if not files:
+        return
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    total, count, latest, latest_t = defaultdict(int), defaultdict(int), {}, None
+    for p in files:
+        try:
+            t = datetime.strptime("".join(p.parts[-4:-1]) + p.name[:4], "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if t < cutoff:
+            continue
+        cur = {}
+        with gzip.open(p, "rt", encoding="utf-8") as fh:
+            for row in csv.reader(fh):
+                if len(row) < 5 or not row[0].isdigit() or not row[1]:
+                    continue
+                item, mn = int(row[0]), int(float(row[1]))
+                total[item] += mn
+                count[item] += 1
+                cur[item] = (mn, int(float(row[4] or 0)))
+        if latest_t is None or t >= latest_t:
+            latest_t, latest = t, cur
+    vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
+    ADDON_DIR.mkdir(parents=True, exist_ok=True)
+    lines = [f"AHTrackerData = {{ t = {int(latest_t.timestamp())}, items = {{}} }}", "local I = AHTrackerData.items"]
+    for item in sorted(latest):
+        mn, n = latest[item]
+        avg = round(total[item] / count[item]) if count[item] >= 3 else 0
+        lines.append(f"I[{item}]={{{mn},{avg},{int(vendor.get(str(item), 0) or 0)},{n}}}")
+    (ADDON_DIR / "Data.lua").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Addon data: {len(latest)} items")
+
+
+SKILL_FILE = Path("skills.json")
+PATTERN_PREFIXES = ("Pattern: ", "Recipe: ", "Plans: ", "Formula: ", "Schematic: ", "Manual: ", "Design: ", "Technique: ", "Book of ")
+
+
+def skill_level_of(item):
+    """The profession level a recipe item requires ('Requires Tailoring (150)'), or None."""
+    try:
+        s = ((item.get("preview_item") or {}).get("requirements") or {}).get("skill") or {}
+        if s.get("level") is not None:
+            return int(s["level"])
+        m = re.search(r"Requires ([A-Za-z ]+) \((\d+)\)", json.dumps(item))
+        return int(m.group(2)) if m else None
+    except Exception:
+        return None
+
+
+def build_skills(token, budget_seconds=150):
+    """skills.json: {"recipes": {recipe_id: [required_level_or_null, recipe_item_id]}}. The level comes from the recipe item
+    (Pattern: X, Plans: X ...) when that item has been seen on the auction house. Trainer recipes have no such item."""
+    started = time.time()
+    if not PROF_FILE.exists() or not ITEMS_FILE.exists():
+        return
+    recipes = json.loads(PROF_FILE.read_text(encoding="utf-8")).get("recipes", {})
+    names = json.loads(ITEMS_FILE.read_text(encoding="utf-8"))
+    by_name = {}
+    for iid, n in names.items():
+        if n and n not in by_name:
+            by_name[n] = int(iid)
+    d = json.loads(SKILL_FILE.read_text(encoding="utf-8")) if SKILL_FILE.exists() else {}
+    got = d.get("recipes", {})
+    todo = []
+    for rid, r in recipes.items():
+        if rid in got:
+            continue
+        for pre in PATTERN_PREFIXES:
+            iid = by_name.get(pre + (r.get("n") or ""))
+            if iid:
+                todo.append((rid, iid))
+                break
+    print(f"Skill levels known for {len(got)} recipes; {len(todo)} recipe items to look up")
+
+    def look(x):
+        rid, iid = x
+        try:
+            return rid, iid, skill_level_of(api(f"/data/wow/item/{iid}", STATIC_NS, token)), None
+        except Exception as e:
+            return rid, iid, None, str(e)
+    errs = []
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for i in range(0, len(todo), 200):
+            if time.time() - started > budget_seconds:
+                print("Skill time budget reached - the next run continues")
+                break
+            for rid, iid, lvl, err in pool.map(look, todo[i:i + 200]):
+                if err:
+                    if len(errs) < 5:
+                        errs.append(f"{iid}: {err}")
+                    continue
+                got[rid] = [lvl, iid]
+    SKILL_FILE.write_text(json.dumps({"v": 1, "built_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "recipes": got}, separators=(",", ":")), encoding="utf-8")
+    print(f"  skills: {len(got)} recipes, {sum(1 for v in got.values() if v[0] is not None)} with a level, {time.time()-started:.0f}s")
+    if errs:
+        print("  skill problems (first few):", errs)
+
+
 def ensure_runs_log():
     """First time only: list the snapshot files that exist from before this log, so history is not lost."""
     if RUNS_FILE.exists():
@@ -573,6 +678,10 @@ def main():
             update_icons(list(rows_by_item.values()), token)
         except Exception as e:
             print(f"Icon step failed: {e}")
+        try:
+            build_skills(token)
+        except Exception as e:
+            print(f"Skill step failed: {e}")
     except SystemExit as e:
         info["note"] = str(e.code)[:200]
         raise
