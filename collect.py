@@ -22,7 +22,7 @@ import urllib.error
 import urllib.request
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import timedelta, datetime, timezone
 from pathlib import Path
 
 REGION = os.environ.get("WOW_REGION", "eu")
@@ -307,6 +307,98 @@ def update_item_names(rows, token, budget_seconds=420):
     return len(names)
 
 
+PROF_FILE = Path("professions.json")
+
+
+def _name(x):
+    if isinstance(x, dict):
+        return x.get("en_GB") or x.get("en_US") or next(iter(x.values()), None)
+    return x
+
+
+def build_professions(token, budget_seconds=240):
+    """Which professions use or make which items, from the Blizzard recipe data. Best effort: any failure is
+    written to professions.json under 'status' so it can be diagnosed, and never stops a run."""
+    started = time.time()
+    data = json.loads(PROF_FILE.read_text(encoding="utf-8")) if PROF_FILE.exists() else {}
+    recipes = data.get("recipes", {})
+    status = {"errors": [], "professions": 0, "recipe_ids": 0, "fetched": len(recipes)}
+    if data.get("complete") and data.get("built_at", "") > (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d"):
+        print(f"Profession data is current ({len(recipes)} recipes)")
+        return
+    def note(msg):
+        print("  professions:", msg)
+        if len(status["errors"]) < 12:
+            status["errors"].append(str(msg)[:300])
+    try:
+        index = api("/data/wow/profession/index", STATIC_NS, token)
+        profs = [(p.get("id"), _name(p.get("name"))) for p in index.get("professions", [])]
+        status["professions"] = len(profs)
+        print(f"Professions listed: {[n for _, n in profs]}")
+        todo = {}
+        for pid, pname in profs:
+            try:
+                detail = api(f"/data/wow/profession/{pid}", STATIC_NS, token)
+            except Exception as e:
+                note(f"profession {pid} {pname}: {e}")
+                continue
+            for tier in detail.get("skill_tiers", []) or []:
+                try:
+                    t = api(f"/data/wow/profession/{pid}/skill-tier/{tier.get('id')}", STATIC_NS, token)
+                except Exception as e:
+                    note(f"skill tier {tier.get('id')} of {pname}: {e}")
+                    continue
+                found = list(t.get("recipes", []) or [])
+                for cat in t.get("categories", []) or []:
+                    found += cat.get("recipes", []) or []
+                for r in found:
+                    todo[str(r.get("id"))] = pname
+        status["recipe_ids"] = len(todo)
+        print(f"Recipes listed: {len(todo)}")
+        missing = [rid for rid in todo if rid not in recipes]
+
+        def fetch(rid):
+            try:
+                r = api(f"/data/wow/recipe/{rid}", STATIC_NS, token)
+            except Exception as e:
+                return rid, None, str(e)
+            out = r.get("crafted_item") or {}
+            if not out:
+                out = (r.get("alliance_crafted_item") or r.get("horde_crafted_item") or {})
+            reag = []
+            for g in r.get("reagents", []) or []:
+                rid2 = (g.get("reagent") or {}).get("id")
+                if rid2 is not None:
+                    reag.append([rid2, g.get("quantity", 1)])
+            return rid, {"p": todo[rid], "n": _name(r.get("name")), "o": out.get("id"), "q": r.get("crafted_quantity", {}).get("value", 1) if isinstance(r.get("crafted_quantity"), dict) else 1, "r": reag}, None
+
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            for i in range(0, len(missing), 200):
+                if time.time() - started > budget_seconds:
+                    print("Profession time budget reached - the next run continues")
+                    break
+                for rid, rec, err in pool.map(fetch, missing[i:i + 200]):
+                    if rec is not None:
+                        recipes[rid] = rec
+                    else:
+                        note(f"recipe {rid}: {err}")
+        status["fetched"] = len(recipes)
+        data["complete"] = len(recipes) >= len(todo) > 0
+    except Exception as e:
+        note(f"index: {e}")
+        data["complete"] = False
+    uses, makes = defaultdict(set), defaultdict(set)
+    for rec in recipes.values():
+        for item_id, _ in rec.get("r", []):
+            uses[str(item_id)].add(rec["p"])
+        if rec.get("o") is not None:
+            makes[str(rec["o"])].add(rec["p"])
+    data.update({"built_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "status": status, "recipes": recipes,
+                 "uses": {k: sorted(v) for k, v in uses.items()}, "makes": {k: sorted(v) for k, v in makes.items()}})
+    PROF_FILE.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"Profession data: {len(recipes)} recipes, {len(uses)} items used as reagents, {len(makes)} items made. Errors: {len(status['errors'])}")
+
+
 def ensure_runs_log():
     """First time only: list the snapshot files that exist from before this log, so history is not lost."""
     if RUNS_FILE.exists():
@@ -404,6 +496,10 @@ def main():
                 except Exception as e:
                     print("Could not save state:", e)
         info["names_known"] = update_item_names(list(rows_by_item.values()), token)
+        try:
+            build_professions(token)
+        except Exception as e:
+            print(f"Profession step failed: {e}")
     except SystemExit as e:
         info["note"] = str(e.code)[:200]
         raise
