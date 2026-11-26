@@ -32,7 +32,7 @@ HOUSE_NAME = os.environ.get("WOW_HOUSE_NAME", "Horde Auction House")
 FORCE_HOUSE_ID = os.environ.get("WOW_HOUSE_ID", "")  # optional manual override
 DYNAMIC_NS = f"dynamic-forever-{REGION}"
 STATIC_NS = f"static-forever-{REGION}"
-FALLBACK_NS = [f"static-classic1x-{REGION}", f"static-classic-{REGION}", f"static-{REGION}"]
+FALLBACK_NS = []  # other game databases are not used, only the Forever one (plus its search endpoint)
 API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
@@ -348,6 +348,20 @@ def save_snapshot(rows, when):
     return path
 
 
+def search_item(item_id, token):
+    """Looks an item up through Blizzard's search API (Forever database). Returns the item's data dict or None."""
+    for ns in [STATIC_NS] + FALLBACK_NS:
+        try:
+            res = api(f"/data/wow/search/item?id={item_id}&orderby=id", ns, token).get("results") or []
+            for r in res:
+                d = r.get("data") or {}
+                if str(d.get("id")) == str(item_id) and d.get("name"):
+                    return d
+        except Exception:
+            continue
+    return None
+
+
 def lookup_item(item_id, token):
     """Returns (id, name, vendor_sell_price_in_copper, quality 0-5). Vendor price 0 = cannot be sold to a vendor. Quality 0 = grey."""
     try:
@@ -357,8 +371,12 @@ def lookup_item(item_id, token):
                 data = api(f"/data/wow/item/{item_id}", ns, token)
                 break
             except urllib.error.HTTPError as e:
-                if e.code != 404 or ns == (FALLBACK_NS[-1] if FALLBACK_NS else STATIC_NS):
+                if e.code != 404:
                     raise
+                if ns == (FALLBACK_NS[-1] if FALLBACK_NS else STATIC_NS):
+                    data = search_item(item_id, token)  # last resort: the search endpoint sometimes knows items the item endpoint does not
+                    if not data:
+                        raise
         name = data.get("name")
         if isinstance(name, dict):
             name = name.get("en_GB") or name.get("en_US") or next(iter(name.values()), None)
@@ -392,8 +410,7 @@ def update_item_names(rows, token, budget_seconds=300):
         FAILS.update(json.loads(Path("item_failures.json").read_text(encoding="utf-8")))
     except Exception:
         pass
-    # ids that already failed in every database are skipped (delete item_failures.json to try them all again)
-    given_up = {k for k, v in FAILS.items() if v.startswith("404:all")}
+    given_up = set()  # nothing is given up: items without a name are tried again on every run
     missing = [r[0] for r in order if (str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality) and str(r[0]) not in given_up][:MAX_NAME_LOOKUPS]
     print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
     tried = failed = 0
