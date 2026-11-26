@@ -364,8 +364,12 @@ def lookup_item(item_id, token):
         q = data.get("quality")
         q = QUALITY_NUM.get(str(q.get("type") if isinstance(q, dict) else q).upper())
         return item_id, name, sell, q
-    except Exception:
+    except Exception as e:
+        FAILS[str(item_id)] = str(getattr(e, "code", None) or type(e).__name__)
         return item_id, None, None, None
+
+
+FAILS = {}  # item id -> why the lookup failed (HTTP code or error type), saved to item_failures.json
 
 
 def update_item_names(rows, token, budget_seconds=300):
@@ -396,6 +400,12 @@ def update_item_names(rows, token, budget_seconds=300):
             VENDOR_FILE.write_text(json.dumps(vendor, sort_keys=True, indent=0), encoding="utf-8")
             QUALITY_FILE.write_text(json.dumps(quality, sort_keys=True, indent=0), encoding="utf-8")
             print(f"  progress: {tried} tried, {failed} failed, {len(names)} names, {len(vendor)} vendor prices, {time.time()-started:.0f}s")
+    try:
+        from collections import Counter
+        print("Lookup failures by reason:", dict(Counter(FAILS.values())))
+        Path("item_failures.json").write_text(json.dumps(FAILS, sort_keys=True), encoding="utf-8")
+    except Exception as e:
+        print("Could not save item failures:", e)
     return len(names)
 
 
