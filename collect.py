@@ -213,9 +213,9 @@ def aggregate(listings):
         if item_id is None:
             continue
         qty = int(a.get("quantity") or 1)
-        if a.get("id") is not None:
-            cur[str(a["id"])] = [int(item_id), qty, 1 if is_short(a) else 0]
         price = unit_price(a)
+        if a.get("id") is not None:
+            cur[str(a["id"])] = [int(item_id), qty, 1 if is_short(a) else 0, price if price is not None else 0]
         if price is None:
             continue
         by_item[item_id].append((price, qty))
@@ -235,10 +235,50 @@ def removed_estimates(prev, cur):
     """Units whose auction vanished since the previous snapshot. A vanished auction that was in the SHORT
     time bucket before is counted as expired, any other as sold (cancellations are indistinguishable)."""
     sold, expired = defaultdict(int), defaultdict(int)
-    for aid, (item, qty, short) in prev.items():
+    for aid, v in prev.items():
+        item, qty, short = v[0], v[1], v[2]
         if aid not in cur:
             (expired if short else sold)[item] += qty
     return sold, expired
+
+
+SALES_DIR = Path("sales")  # one small gz file per day: what vanished (probably sold) auctions were priced at
+
+
+def removed_sales(prev, cur):
+    """{item: [units, min_price, avg_price, max_price]} for vanished auctions that were not about to expire.
+    Prices are per unit (copper) as listed. Cancellations cannot be told apart from sales."""
+    acc = {}
+    for aid, v in prev.items():
+        if aid in cur or len(v) < 4 or v[2] or not v[3]:
+            continue
+        item, qty, _, price = v[0], v[1], v[2], v[3]
+        a = acc.setdefault(item, [0, price, 0, price])
+        a[0] += qty
+        a[2] += price * qty
+        a[1] = min(a[1], price)
+        a[3] = max(a[3], price)
+    return {i: [a[0], a[1], round(a[2] / a[0]), a[3]] for i, a in acc.items() if a[0]}
+
+
+def save_sales(when, sales):
+    if not sales:
+        return
+    folder = SALES_DIR / f"{when:%Y}" / f"{when:%m}"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{when:%d}.csv.gz"
+    lines = []
+    if path.exists():
+        with gzip.open(path, "rt", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+    else:
+        lines = ["time,item_id,units,min_price,avg_price,max_price"]
+    stamp = when.strftime("%Y-%m-%dT%H:%MZ")
+    lines = [l for l in lines if not l.startswith(stamp + ",")]
+    lines += [f"{stamp},{i},{v[0]},{v[1]},{v[2]},{v[3]}" for i, v in sorted(sales.items())]
+    with gzip.open(path, "wt", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"Saved sale prices for {len(sales)} items")
 
 
 def load_state():
@@ -660,10 +700,15 @@ def main():
         rows_by_item, cur = aggregate(all_listings)
 
         sold = expired = None
+        sale_prices = None
         try:  # estimates are optional: they must never stop the price snapshot from being saved
             prev = load_state()
             if prev and prev.get("a"):
                 sold, expired = removed_estimates(prev["a"], cur)
+                try:
+                    sale_prices = removed_sales(prev["a"], cur)
+                except Exception as e:
+                    print("Sale prices skipped:", e)
                 print(f"Removed since previous state ({prev.get('ts')}): {sum(sold.values())} units sold/cancelled, {sum(expired.values())} expired")
         except Exception as e:
             print("Sell-through estimate skipped:", e)
@@ -681,6 +726,10 @@ def main():
         if path:
             print(f"Saved {len(rows)} items to {path}")
             info["result"] = "new_snapshot"
+            try:
+                save_sales(when, sale_prices)
+            except Exception as e:
+                print("Could not save sale prices:", e)
             try:
                 save_ladder(when)
             except Exception as e:
