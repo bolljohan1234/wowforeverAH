@@ -32,7 +32,7 @@ HOUSE_NAME = os.environ.get("WOW_HOUSE_NAME", "Horde Auction House")
 FORCE_HOUSE_ID = os.environ.get("WOW_HOUSE_ID", "")  # optional manual override
 DYNAMIC_NS = f"dynamic-forever-{REGION}"
 STATIC_NS = f"static-forever-{REGION}"
-FALLBACK_NS = []  # other game databases are not used, only the Forever one (plus its search endpoint)
+FALLBACK_NS = [f"static-classic1x-{REGION}", f"static-classic-{REGION}", f"static-{REGION}"]  # official Blizzard game databases, tried only when the Forever one does not know an item id
 API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
@@ -489,11 +489,12 @@ def update_item_names(rows, token, budget_seconds=300):
     vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
     quality = json.loads(QUALITY_FILE.read_text(encoding="utf-8")) if QUALITY_FILE.exists() else {}
     cats = json.loads(CATEGORY_FILE.read_text(encoding="utf-8")) if CATEGORY_FILE.exists() else {}
-    order = sorted(rows, key=lambda r: -r[4])
     try:
         FAILS.update(json.loads(Path("item_failures.json").read_text(encoding="utf-8")))
     except Exception:
         pass
+    # items that failed before are still retried on every run, but after the ones that have never failed, so they cannot use up the time budget
+    order = sorted(rows, key=lambda r: (str(r[0]) in FAILS, -r[4]))
     given_up = set()  # nothing is given up: items without a name are tried again on every run
     missing = [r[0] for r in order if (str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality or str(r[0]) not in cats) and str(r[0]) not in given_up][:MAX_NAME_LOOKUPS]
     print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
