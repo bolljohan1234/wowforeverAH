@@ -252,6 +252,56 @@ def aggregate(listings):
     return rows, cur
 
 
+VARIANT_FILE = Path("variants.csv.gz")  # the newest snapshot: one row per item version (random-suffix gear and so on)
+VARIANT_HIST_DIR = Path("varhist")  # the same, kept every ~4 hours
+
+
+def aggregate_variants(listings):
+    """Gear and other items come in versions, told apart by their bonus list. Prices per (item, version) for every item that has more than one version.
+    -> {(item_id, 'b1-b2' or ''): [min, median, units, listings]}"""
+    groups = defaultdict(lambda: defaultdict(list))
+    for a in listings:
+        it = a.get("item") or {}
+        p = unit_price(a)
+        if p is None or it.get("id") is None:
+            continue
+        key = "-".join(str(b) for b in sorted(it.get("bonus_lists") or []))
+        groups[it["id"]][key].append((p, int(a.get("quantity") or 1)))
+    out = {}
+    for item_id, vs in groups.items():
+        if len(vs) < 2:
+            continue
+        for key, pairs in vs.items():
+            out[(item_id, key)] = [min(p for p, _ in pairs), weighted_median(pairs), sum(q for _, q in pairs), len(pairs)]
+    return out
+
+
+def save_variants(when, variants, min_hours=3.8):
+    if not variants:
+        return
+    stamp = when.strftime("%Y-%m-%dT%H:%MZ")
+    lines = ["item_id,bonus,min_price,median_price,qty,listings"] + [f"{i},{b},{v[0]},{v[1]},{v[2]},{v[3]}" for (i, b), v in sorted(variants.items())]
+    with gzip.open(VARIANT_FILE, "wt", encoding="utf-8") as f:
+        f.write(f"# {stamp}\n" + "\n".join(lines) + "\n")
+    folder = VARIANT_HIST_DIR / f"{when:%Y}" / f"{when:%m}"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{when:%d}.csv.gz"
+    hist = ["time,item_id,bonus,min_price,median_price,qty,listings"]
+    if path.exists():
+        with gzip.open(path, "rt", encoding="utf-8") as f:
+            hist = f.read().splitlines()
+        if len(hist) > 1:
+            lt = datetime.strptime(hist[-1].split(",")[0], "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc)
+            if (when - lt).total_seconds() < min_hours * 3600:
+                print(f"Saved newest versions of {len(variants)} item versions")
+                return
+    hist += [f"{stamp},{i},{b},{v[0]},{v[1]},{v[2]},{v[3]}" for (i, b), v in sorted(variants.items())]
+    with gzip.open(path, "wt", encoding="utf-8") as f:
+        f.write("\n".join(hist) + "\n")
+    print(f"Saved {len(variants)} item versions (newest + history)")
+
+
+
 def removed_estimates(prev, cur):
     """Units whose auction vanished since the previous snapshot. A vanished auction that was in the SHORT
     time bucket before is counted as expired, any other as sold (cancellations are indistinguishable)."""
@@ -832,6 +882,10 @@ def main():
         if path:
             print(f"Saved {len(rows)} items to {path}")
             info["result"] = "new_snapshot"
+            try:
+                save_variants(when, aggregate_variants(all_listings))
+            except Exception as e:
+                print("Could not save item versions:", e)
             try:
                 save_ladder_history(when)
             except Exception as e:
