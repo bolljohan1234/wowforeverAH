@@ -5,10 +5,10 @@
  "note": "ruleset field missing from house responses",
  "diagnostic": {
   "113": {
-   "regular_listings": 161678,
+   "regular_listings": 144373,
    "commodity_listings": 0,
-   "items": 5702,
-   "last_modified": "Thu, 26 Nov 2026 04:21:52 GMT",
+   "items": 5668,
+   "last_modified": "Thu, 26 Nov 2026 05:21:51 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -18,40 +18,40 @@
     "Orange Mageweave Shirt": {
      "min": 1498,
      "median": 1498,
-     "units": 40,
-     "listings": 40
+     "units": 39,
+     "listings": 39
     },
     "Knightly Longsword": {
      "min": 9700,
-     "median": 11000,
-     "units": 90,
-     "listings": 90
+     "median": 10500,
+     "units": 76,
+     "listings": 76
     },
     "Barbaric Shoulders": {
-     "min": 2597,
+     "min": 2650,
      "median": 2678,
-     "units": 235,
-     "listings": 235
+     "units": 196,
+     "listings": 196
     },
     "Azure Silk Vest": {
-     "min": 2066,
+     "min": 2000,
      "median": 2066,
-     "units": 15,
-     "listings": 15
+     "units": 16,
+     "listings": 16
     },
     "Large Blue Sack": {
-     "min": 2498,
+     "min": 2497,
      "median": 2498,
-     "units": 48,
-     "listings": 48
+     "units": 41,
+     "listings": 41
     }
    }
   },
   "114": {
-   "regular_listings": 145176,
+   "regular_listings": 127100,
    "commodity_listings": 0,
-   "items": 5655,
-   "last_modified": "Thu, 26 Nov 2026 04:21:51 GMT",
+   "items": 5632,
+   "last_modified": "Thu, 26 Nov 2026 05:21:49 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -66,27 +66,27 @@
     },
     "Knightly Longsword": {
      "min": 9712,
-     "median": 9718,
-     "units": 88,
-     "listings": 88
+     "median": 9720,
+     "units": 76,
+     "listings": 76
     },
     "Barbaric Shoulders": {
      "min": 2609,
      "median": 2613,
-     "units": 154,
-     "listings": 154
+     "units": 160,
+     "listings": 160
     },
     "Azure Silk Vest": {
      "min": 1870,
      "median": 1872,
-     "units": 89,
-     "listings": 89
+     "units": 91,
+     "listings": 91
     },
     "Large Blue Sack": {
      "min": 2500,
      "median": 2500,
-     "units": 23,
-     "listings": 23
+     "units": 15,
+     "listings": 15
     }
    }
   },
@@ -94,7 +94,7 @@
    "regular_listings": 0,
    "commodity_listings": 0,
    "items": 0,
-   "last_modified": "Thu, 26 Nov 2026 04:21:43 GMT",
+   "last_modified": "Thu, 26 Nov 2026 05:21:43 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -109,10 +109,10 @@
    }
   },
   "120": {
-   "regular_listings": 13024,
+   "regular_listings": 12129,
    "commodity_listings": 0,
-   "items": 2790,
-   "last_modified": "Thu, 26 Nov 2026 04:21:44 GMT",
+   "items": 2716,
+   "last_modified": "Thu, 26 Nov 2026 05:21:44 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -122,8 +122,8 @@
     "Orange Mageweave Shirt": {
      "min": 3500,
      "median": 3500,
-     "units": 7,
-     "listings": 7
+     "units": 6,
+     "listings": 6
     },
     "Knightly Longsword": {
      "min": 9800,
@@ -140,8 +140,8 @@
     "Azure Silk Vest": {
      "min": 1975,
      "median": 1975,
-     "units": 22,
-     "listings": 22
+     "units": 21,
+     "listings": 21
     },
     "Large Blue Sack": {
      "min": 3699,
@@ -152,10 +152,10 @@
    }
   },
   "124": {
-   "regular_listings": 16533,
+   "regular_listings": 15073,
    "commodity_listings": 0,
-   "items": 3247,
-   "last_modified": "Thu, 26 Nov 2026 04:21:45 GMT",
+   "items": 3144,
+   "last_modified": "Thu, 26 Nov 2026 05:21:44 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -177,8 +177,8 @@
     "Barbaric Shoulders": {
      "min": 3898,
      "median": 3898,
-     "units": 88,
-     "listings": 88
+     "units": 82,
+     "listings": 82
     },
     "Azure Silk Vest": {
      "min": 1800,
@@ -189,8 +189,8 @@
     "Large Blue Sack": {
      "min": 3000,
      "median": 5000,
-     "units": 7,
-     "listings": 7
+     "units": 6,
+     "listings": 6
     }
    }
   }
