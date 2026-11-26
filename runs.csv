@@ -21,3 +21,4 @@ run_utc,result,snapshot_utc,items,listings,names_known,house_id,seconds,note
 2026-11-26T11:06:13Z,no_change,,7025,219452,6918,113,321,
 2026-11-26T11:13:54Z,no_change,,7025,219452,7007,113,37,
 2026-11-26T12:20:26Z,new_snapshot,2026-11-26T11:21:00Z,7038,235237,7009,113,33,
+2026-11-26T12:53:16Z,new_snapshot,2026-11-26T12:21:00Z,7035,250935,7009,113,314,

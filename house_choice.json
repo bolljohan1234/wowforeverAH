@@ -5,10 +5,10 @@
  "note": "ruleset field missing from house responses",
  "diagnostic": {
   "113": {
-   "regular_listings": 138972,
+   "regular_listings": 147018,
    "commodity_listings": 0,
-   "items": 5687,
-   "last_modified": "Thu, 26 Nov 2026 11:21:55 GMT",
+   "items": 5690,
+   "last_modified": "Thu, 26 Nov 2026 12:21:56 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -16,42 +16,126 @@
     "Righteous Orb": null,
     "Scroll of Liminal Passage": null,
     "Orange Mageweave Shirt": {
-     "min": 4800,
-     "median": 4800,
-     "units": 7,
-     "listings": 7
+     "min": 3700,
+     "median": 4000,
+     "units": 45,
+     "listings": 45
     },
     "Knightly Longsword": {
-     "min": 9708,
-     "median": 18008,
-     "units": 61,
-     "listings": 61
+     "min": 9705,
+     "median": 15898,
+     "units": 70,
+     "listings": 70
     },
     "Barbaric Shoulders": {
      "min": 2625,
      "median": 2645,
-     "units": 287,
-     "listings": 287
+     "units": 321,
+     "listings": 321
     },
     "Azure Silk Vest": {
-     "min": 1900,
+     "min": 1899,
      "median": 1959,
-     "units": 66,
-     "listings": 66
+     "units": 77,
+     "listings": 77
     },
     "Large Blue Sack": {
      "min": 2497,
      "median": 2498,
-     "units": 34,
-     "listings": 34
+     "units": 31,
+     "listings": 31
     }
-   }
+   },
+   "item_fields": {
+    "id": 20000,
+    "context": 4908,
+    "bonus_lists": 4142,
+    "modifiers": 3775
+   },
+   "item_examples": [
+    {
+     "item": {
+      "id": 6476,
+      "context": 11
+     },
+     "quantity": 1,
+     "buyout": 528,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 2080,
+      "context": 1,
+      "bonus_lists": [
+       12721
+      ],
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5245
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 12083,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 3782,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5245
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 8000,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 16685,
+      "context": 1,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5251
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 343600,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 7431,
+      "bonus_lists": [
+       12720
+      ]
+     },
+     "quantity": 1,
+     "buyout": 6595,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 275682,
+      "context": 11
+     },
+     "quantity": 1,
+     "buyout": 6000,
+     "unit_price": null
+    }
+   ]
   },
   "114": {
-   "regular_listings": 122965,
+   "regular_listings": 131555,
    "commodity_listings": 0,
-   "items": 5592,
-   "last_modified": "Thu, 26 Nov 2026 11:21:54 GMT",
+   "items": 5598,
+   "last_modified": "Thu, 26 Nov 2026 12:21:55 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -61,40 +145,128 @@
     "Orange Mageweave Shirt": {
      "min": 1587,
      "median": 1588,
-     "units": 47,
-     "listings": 47
+     "units": 44,
+     "listings": 44
     },
     "Knightly Longsword": {
      "min": 9710,
      "median": 13000,
-     "units": 67,
-     "listings": 67
+     "units": 74,
+     "listings": 74
     },
     "Barbaric Shoulders": {
-     "min": 2606,
-     "median": 2609,
-     "units": 338,
-     "listings": 338
+     "min": 2600,
+     "median": 2608,
+     "units": 363,
+     "listings": 363
     },
     "Azure Silk Vest": {
      "min": 1872,
      "median": 1872,
-     "units": 60,
-     "listings": 60
+     "units": 76,
+     "listings": 76
     },
     "Large Blue Sack": {
-     "min": 3000,
-     "median": 3700,
-     "units": 49,
-     "listings": 49
+     "min": 3500,
+     "median": 3663,
+     "units": 53,
+     "listings": 53
     }
-   }
+   },
+   "item_fields": {
+    "id": 20000,
+    "modifiers": 3210,
+    "context": 4315,
+    "bonus_lists": 4221
+   },
+   "item_examples": [
+    {
+     "item": {
+      "id": 14588,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5245
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 11100,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 8254,
+      "context": 1,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5238
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 10000,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 1994,
+      "bonus_lists": [
+       12720
+      ]
+     },
+     "quantity": 1,
+     "buyout": 19000,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 15629,
+      "bonus_lists": [
+       12731
+      ]
+     },
+     "quantity": 1,
+     "buyout": 18999,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 15557,
+      "context": 1,
+      "bonus_lists": [
+       12732
+      ],
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5245
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 36099,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 9897,
+      "bonus_lists": [
+       12751
+      ]
+     },
+     "quantity": 1,
+     "buyout": 27700,
+     "unit_price": null
+    }
+   ]
   },
   "115": {
    "regular_listings": 0,
    "commodity_listings": 0,
    "items": 0,
-   "last_modified": "Thu, 26 Nov 2026 11:21:43 GMT",
+   "last_modified": "Thu, 26 Nov 2026 12:21:43 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -106,13 +278,15 @@
     "Barbaric Shoulders": null,
     "Azure Silk Vest": null,
     "Large Blue Sack": null
-   }
+   },
+   "item_fields": {},
+   "item_examples": []
   },
   "120": {
-   "regular_listings": 12221,
+   "regular_listings": 12554,
    "commodity_listings": 0,
-   "items": 2710,
-   "last_modified": "Thu, 26 Nov 2026 11:21:44 GMT",
+   "items": 2780,
+   "last_modified": "Thu, 26 Nov 2026 12:21:45 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -122,20 +296,20 @@
     "Orange Mageweave Shirt": {
      "min": 3500,
      "median": 3500,
-     "units": 10,
-     "listings": 10
+     "units": 12,
+     "listings": 12
     },
     "Knightly Longsword": {
      "min": 9800,
      "median": 9800,
-     "units": 6,
-     "listings": 6
+     "units": 7,
+     "listings": 7
     },
     "Barbaric Shoulders": {
      "min": 2659,
      "median": 2659,
-     "units": 5,
-     "listings": 5
+     "units": 3,
+     "listings": 3
     },
     "Azure Silk Vest": {
      "min": 1975,
@@ -149,13 +323,80 @@
      "units": 1,
      "listings": 1
     }
-   }
+   },
+   "item_fields": {
+    "id": 12554,
+    "context": 2393,
+    "bonus_lists": 2373,
+    "modifiers": 1758
+   },
+   "item_examples": [
+    {
+     "item": {
+      "id": 9922,
+      "context": 11,
+      "bonus_lists": [
+       12751
+      ]
+     },
+     "quantity": 1,
+     "buyout": 24940,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 16215,
+      "context": 11
+     },
+     "quantity": 1,
+     "buyout": 24998,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 9789,
+      "bonus_lists": [
+       12743
+      ]
+     },
+     "quantity": 1,
+     "buyout": 1500,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 728,
+      "context": 14
+     },
+     "quantity": 1,
+     "buyout": 17700,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 728,
+      "context": 11
+     },
+     "quantity": 1,
+     "buyout": 17700,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 728,
+      "context": 14
+     },
+     "quantity": 1,
+     "buyout": 17700,
+     "unit_price": null
+    }
+   ]
   },
   "124": {
-   "regular_listings": 15620,
+   "regular_listings": 16034,
    "commodity_listings": 0,
-   "items": 3221,
-   "last_modified": "Thu, 26 Nov 2026 11:21:45 GMT",
+   "items": 3235,
+   "last_modified": "Thu, 26 Nov 2026 12:21:45 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -165,8 +406,8 @@
     "Orange Mageweave Shirt": {
      "min": 4500,
      "median": 4500,
-     "units": 1,
-     "listings": 1
+     "units": 2,
+     "listings": 2
     },
     "Knightly Longsword": {
      "min": 9800,
@@ -176,15 +417,15 @@
     },
     "Barbaric Shoulders": {
      "min": 3075,
-     "median": 3898,
-     "units": 89,
-     "listings": 89
+     "median": 3098,
+     "units": 76,
+     "listings": 76
     },
     "Azure Silk Vest": {
      "min": 4900,
      "median": 4900,
-     "units": 5,
-     "listings": 5
+     "units": 4,
+     "listings": 4
     },
     "Large Blue Sack": {
      "min": 3000,
@@ -192,7 +433,107 @@
      "units": 5,
      "listings": 5
     }
-   }
+   },
+   "item_fields": {
+    "id": 16034,
+    "bonus_lists": 2763,
+    "context": 3493,
+    "modifiers": 2471
+   },
+   "item_examples": [
+    {
+     "item": {
+      "id": 7481,
+      "bonus_lists": [
+       12732
+      ]
+     },
+     "quantity": 1,
+     "buyout": 9096,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 22393,
+      "context": 1,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 7033
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 30000,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 16683,
+      "context": 1,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5239
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 99999,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 252918,
+      "context": 1,
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5238
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 39999,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 10159,
+      "context": 1,
+      "bonus_lists": [
+       12761
+      ],
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 7566
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 200000,
+     "unit_price": null
+    },
+    {
+     "item": {
+      "id": 9912,
+      "context": 1,
+      "bonus_lists": [
+       12745
+      ],
+      "modifiers": [
+       {
+        "type": 28,
+        "value": 5253
+       }
+      ]
+     },
+     "quantity": 1,
+     "buyout": 38000,
+     "unit_price": null
+    }
+   ]
   }
  }
 }
