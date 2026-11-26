@@ -5,10 +5,10 @@
  "note": "ruleset field missing from house responses",
  "diagnostic": {
   "113": {
-   "regular_listings": 195610,
+   "regular_listings": 161678,
    "commodity_listings": 0,
-   "items": 5734,
-   "last_modified": "Thu, 26 Nov 2026 02:21:56 GMT",
+   "items": 5702,
+   "last_modified": "Thu, 26 Nov 2026 04:21:52 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -18,40 +18,40 @@
     "Orange Mageweave Shirt": {
      "min": 1498,
      "median": 1498,
-     "units": 60,
-     "listings": 60
+     "units": 40,
+     "listings": 40
     },
     "Knightly Longsword": {
      "min": 9700,
-     "median": 11509,
-     "units": 120,
-     "listings": 120
+     "median": 11000,
+     "units": 90,
+     "listings": 90
     },
     "Barbaric Shoulders": {
-     "min": 2650,
+     "min": 2597,
      "median": 2678,
-     "units": 194,
-     "listings": 194
+     "units": 235,
+     "listings": 235
     },
     "Azure Silk Vest": {
-     "min": 1966,
+     "min": 2066,
      "median": 2066,
-     "units": 25,
-     "listings": 25
+     "units": 15,
+     "listings": 15
     },
     "Large Blue Sack": {
      "min": 2498,
      "median": 2498,
-     "units": 53,
-     "listings": 53
+     "units": 48,
+     "listings": 48
     }
    }
   },
   "114": {
-   "regular_listings": 181751,
+   "regular_listings": 145176,
    "commodity_listings": 0,
-   "items": 5686,
-   "last_modified": "Thu, 26 Nov 2026 02:21:54 GMT",
+   "items": 5655,
+   "last_modified": "Thu, 26 Nov 2026 04:21:51 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -61,32 +61,32 @@
     "Orange Mageweave Shirt": {
      "min": 1588,
      "median": 1588,
-     "units": 43,
-     "listings": 43
+     "units": 52,
+     "listings": 52
     },
     "Knightly Longsword": {
-     "min": 9700,
-     "median": 9717,
-     "units": 110,
-     "listings": 110
+     "min": 9712,
+     "median": 9718,
+     "units": 88,
+     "listings": 88
     },
     "Barbaric Shoulders": {
      "min": 2609,
      "median": 2613,
-     "units": 166,
-     "listings": 166
+     "units": 154,
+     "listings": 154
     },
     "Azure Silk Vest": {
      "min": 1870,
      "median": 1872,
-     "units": 141,
-     "listings": 141
+     "units": 89,
+     "listings": 89
     },
     "Large Blue Sack": {
      "min": 2500,
      "median": 2500,
-     "units": 24,
-     "listings": 24
+     "units": 23,
+     "listings": 23
     }
    }
   },
@@ -94,7 +94,7 @@
    "regular_listings": 0,
    "commodity_listings": 0,
    "items": 0,
-   "last_modified": "Thu, 26 Nov 2026 02:21:43 GMT",
+   "last_modified": "Thu, 26 Nov 2026 04:21:43 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -109,10 +109,10 @@
    }
   },
   "120": {
-   "regular_listings": 14882,
+   "regular_listings": 13024,
    "commodity_listings": 0,
-   "items": 2916,
-   "last_modified": "Thu, 26 Nov 2026 02:21:44 GMT",
+   "items": 2790,
+   "last_modified": "Thu, 26 Nov 2026 04:21:44 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -128,20 +128,20 @@
     "Knightly Longsword": {
      "min": 9800,
      "median": 9800,
-     "units": 5,
-     "listings": 5
-    },
-    "Barbaric Shoulders": {
-     "min": 2650,
-     "median": 2660,
      "units": 6,
      "listings": 6
+    },
+    "Barbaric Shoulders": {
+     "min": 2660,
+     "median": 2660,
+     "units": 3,
+     "listings": 3
     },
     "Azure Silk Vest": {
      "min": 1975,
      "median": 1975,
-     "units": 26,
-     "listings": 26
+     "units": 22,
+     "listings": 22
     },
     "Large Blue Sack": {
      "min": 3699,
@@ -152,10 +152,10 @@
    }
   },
   "124": {
-   "regular_listings": 18991,
+   "regular_listings": 16533,
    "commodity_listings": 0,
-   "items": 3433,
-   "last_modified": "Thu, 26 Nov 2026 02:21:45 GMT",
+   "items": 3247,
+   "last_modified": "Thu, 26 Nov 2026 04:21:45 GMT",
    "probes": {
     "Plaguebloom": null,
     "Stonescale Eel": null,
@@ -165,32 +165,32 @@
     "Orange Mageweave Shirt": {
      "min": 3000,
      "median": 6900,
-     "units": 19,
-     "listings": 19
+     "units": 11,
+     "listings": 11
     },
     "Knightly Longsword": {
      "min": 9800,
-     "median": 10000,
-     "units": 9,
-     "listings": 9
+     "median": 9800,
+     "units": 6,
+     "listings": 6
     },
     "Barbaric Shoulders": {
      "min": 3898,
      "median": 3898,
-     "units": 93,
-     "listings": 93
+     "units": 88,
+     "listings": 88
     },
     "Azure Silk Vest": {
      "min": 1800,
      "median": 1800,
-     "units": 20,
-     "listings": 20
+     "units": 15,
+     "listings": 15
     },
     "Large Blue Sack": {
      "min": 3000,
      "median": 5000,
-     "units": 9,
-     "listings": 9
+     "units": 7,
+     "listings": 7
     }
    }
   }
