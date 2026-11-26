@@ -246,19 +246,20 @@ SALES_DIR = Path("sales")  # one small gz file per day: what vanished (probably 
 
 
 def removed_sales(prev, cur):
-    """{item: [units, min_price, avg_price, max_price]} for vanished auctions that were not about to expire.
-    Prices are per unit (copper) as listed. Cancellations cannot be told apart from sales."""
+    """{(item, kind): [units, min_price, avg_price, max_price]} for vanished auctions, per unit in copper.
+    kind 's' = was not about to expire (probably sold, cancellations look the same),
+    kind 'e' = was in the SHORT bucket (probably expired unsold at that price)."""
     acc = {}
     for aid, v in prev.items():
-        if aid in cur or len(v) < 4 or v[2] or not v[3]:
+        if aid in cur or len(v) < 4 or not v[3]:
             continue
-        item, qty, _, price = v[0], v[1], v[2], v[3]
-        a = acc.setdefault(item, [0, price, 0, price])
+        item, qty, short, price = v[0], v[1], v[2], v[3]
+        a = acc.setdefault((item, "e" if short else "s"), [0, price, 0, price])
         a[0] += qty
         a[2] += price * qty
         a[1] = min(a[1], price)
         a[3] = max(a[3], price)
-    return {i: [a[0], a[1], round(a[2] / a[0]), a[3]] for i, a in acc.items() if a[0]}
+    return {k: [a[0], a[1], round(a[2] / a[0]), a[3]] for k, a in acc.items() if a[0]}
 
 
 def save_sales(when, sales):
@@ -267,18 +268,43 @@ def save_sales(when, sales):
     folder = SALES_DIR / f"{when:%Y}" / f"{when:%m}"
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f"{when:%d}.csv.gz"
-    lines = []
+    header = "time,item_id,kind,units,min_price,avg_price,max_price"
+    lines = [header]
     if path.exists():
         with gzip.open(path, "rt", encoding="utf-8") as f:
             lines = f.read().splitlines()
-    else:
-        lines = ["time,item_id,units,min_price,avg_price,max_price"]
     stamp = when.strftime("%Y-%m-%dT%H:%MZ")
     lines = [l for l in lines if not l.startswith(stamp + ",")]
-    lines += [f"{stamp},{i},{v[0]},{v[1]},{v[2]},{v[3]}" for i, v in sorted(sales.items())]
+    lines += [f"{stamp},{i},{k},{v[0]},{v[1]},{v[2]},{v[3]}" for (i, k), v in sorted(sales.items())]
     with gzip.open(path, "wt", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
-    print(f"Saved sale prices for {len(sales)} items")
+    print(f"Saved sold/expired prices for {len(sales)} item groups")
+
+
+LADDER_HIST_DIR = Path("ladderhist")  # price ladder history: every ~4 hours, cheapest 5 price levels per item
+
+
+def save_ladder_history(when, min_hours=3.8):
+    if not LADDER:
+        return
+    folder = LADDER_HIST_DIR / f"{when:%Y}" / f"{when:%m}"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{when:%d}.csv.gz"
+    lines = ["time,item_id,levels"]
+    if path.exists():
+        with gzip.open(path, "rt", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+        last = lines[-1].split(",")[0] if len(lines) > 1 else None
+        if last:
+            lt = datetime.strptime(last, "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc)
+            if (when - lt).total_seconds() < min_hours * 3600:
+                return
+    stamp = when.strftime("%Y-%m-%dT%H:%MZ")
+    for item_id, lv in sorted(LADDER.items()):
+        lines.append(f"{stamp},{item_id}," + ";".join(f"{p}x{q}" for p, q in lv[:5]))
+    with gzip.open(path, "wt", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"Saved ladder history for {len(LADDER)} items")
 
 
 def load_state():
@@ -726,6 +752,10 @@ def main():
         if path:
             print(f"Saved {len(rows)} items to {path}")
             info["result"] = "new_snapshot"
+            try:
+                save_ladder_history(when)
+            except Exception as e:
+                print("Could not save ladder history:", e)
             try:
                 save_sales(when, sale_prices)
             except Exception as e:
