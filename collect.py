@@ -32,6 +32,7 @@ HOUSE_NAME = os.environ.get("WOW_HOUSE_NAME", "Horde Auction House")
 FORCE_HOUSE_ID = os.environ.get("WOW_HOUSE_ID", "")  # optional manual override
 DYNAMIC_NS = f"dynamic-forever-{REGION}"
 STATIC_NS = f"static-forever-{REGION}"
+FALLBACK_NS = [f"static-classic1x-{REGION}", f"static-classic-{REGION}", f"static-{REGION}"]
 API = f"https://{REGION}.api.blizzard.com"
 DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
@@ -350,7 +351,14 @@ def save_snapshot(rows, when):
 def lookup_item(item_id, token):
     """Returns (id, name, vendor_sell_price_in_copper, quality 0-5). Vendor price 0 = cannot be sold to a vendor. Quality 0 = grey."""
     try:
-        data = api(f"/data/wow/item/{item_id}", STATIC_NS, token)
+        data = None
+        for ns in [STATIC_NS] + FALLBACK_NS:  # the Forever item database is incomplete, so try the other game databases for the same item id
+            try:
+                data = api(f"/data/wow/item/{item_id}", ns, token)
+                break
+            except urllib.error.HTTPError as e:
+                if e.code != 404 or ns == (FALLBACK_NS[-1] if FALLBACK_NS else STATIC_NS):
+                    raise
         name = data.get("name")
         if isinstance(name, dict):
             name = name.get("en_GB") or name.get("en_US") or next(iter(name.values()), None)
@@ -365,7 +373,8 @@ def lookup_item(item_id, token):
         q = QUALITY_NUM.get(str(q.get("type") if isinstance(q, dict) else q).upper())
         return item_id, name, sell, q
     except Exception as e:
-        FAILS[str(item_id)] = str(getattr(e, "code", None) or type(e).__name__)
+        code = getattr(e, "code", None)
+        FAILS[str(item_id)] = "404:all" if code == 404 else str(code or type(e).__name__)
         return item_id, None, None, None
 
 
@@ -379,7 +388,13 @@ def update_item_names(rows, token, budget_seconds=300):
     vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
     quality = json.loads(QUALITY_FILE.read_text(encoding="utf-8")) if QUALITY_FILE.exists() else {}
     order = sorted(rows, key=lambda r: -r[4])
-    missing = [r[0] for r in order if str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality][:MAX_NAME_LOOKUPS]
+    try:
+        FAILS.update(json.loads(Path("item_failures.json").read_text(encoding="utf-8")))
+    except Exception:
+        pass
+    # ids that already failed in every database are skipped (delete item_failures.json to try them all again)
+    given_up = {k for k, v in FAILS.items() if v.startswith("404:all")}
+    missing = [r[0] for r in order if (str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality) and str(r[0]) not in given_up][:MAX_NAME_LOOKUPS]
     print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
     tried = failed = 0
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -390,6 +405,7 @@ def update_item_names(rows, token, budget_seconds=300):
             for item_id, name, sell, q in pool.map(lambda x: lookup_item(x, token), missing[i : i + 200]):
                 tried += 1
                 if name:
+                    FAILS.pop(str(item_id), None)
                     names[str(item_id)] = name
                     vendor[str(item_id)] = sell or 0
                     if q is not None:
