@@ -158,7 +158,18 @@ def diag_house(hid, house, lm):
             keys[k] = keys.get(k, 0) + 1
         if len(extra) < 6 and len(it) > 1:
             extra.append({"item": it, "quantity": a.get("quantity"), "buyout": a.get("buyout"), "unit_price": a.get("unit_price")})
-    DIAG[str(hid)] = {"regular_listings": len(regular), "commodity_listings": len(comm), "items": len(rows), "last_modified": lm, "probes": probes, "item_fields": keys, "item_examples": extra}
+    # do listings of the same item id with different bonus lists / modifiers sell at different prices?
+    variants = defaultdict(lambda: defaultdict(list))
+    for a in regular:
+        it = a.get("item") or {}
+        p = unit_price(a)
+        if p is None or it.get("id") is None:
+            continue
+        vk = json.dumps({"b": sorted(it.get("bonus_lists") or []), "m": [[m.get("type"), m.get("value")] for m in it.get("modifiers") or []], "c": it.get("context")}, sort_keys=True)
+        variants[it["id"]][vk].append(p)
+    multi = sorted(((i, v) for i, v in variants.items() if len(v) > 1), key=lambda x: -sum(len(l) for l in x[1].values()))[:25]
+    spread = {str(i): {k: [len(l), min(l), sorted(l)[len(l) // 2]] for k, l in sorted(v.items(), key=lambda kv: -len(kv[1]))[:8]} for i, v in multi}
+    DIAG[str(hid)] = {"regular_listings": len(regular), "commodity_listings": len(comm), "items": len(rows), "last_modified": lm, "probes": probes, "item_fields": keys, "item_examples": extra, "items_with_variants": sum(1 for v in variants.values() if len(v) > 1), "variant_spread": spread}
     print(f"    listings={len(regular)} commodities={len(comm)} items={len(rows)}")
     for nm, p in probes.items():
         print(f"    probe {nm}: {p}")
