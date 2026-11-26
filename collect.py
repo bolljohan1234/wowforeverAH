@@ -38,6 +38,7 @@ DATA_DIR = Path("data")
 ITEMS_FILE = Path("items.json")
 VENDOR_FILE = Path("vendor.json")
 QUALITY_FILE = Path("quality.json")
+CATEGORY_FILE = Path("categories.json")  # item id -> [item class, item subclass, item level, required level, equipment slot, binding, stack size], class and subclass as the auction house shows them, e.g. ["Trade Goods", "Leather", ...]
 QUALITY_NUM = {"POOR": 0, "COMMON": 1, "UNCOMMON": 2, "RARE": 3, "EPIC": 4, "LEGENDARY": 5, "ARTIFACT": 6, "HEIRLOOM": 7}
 RUNS_FILE = Path("runs.csv")
 HOUSE_FILE = Path("house_choice.json")
@@ -149,7 +150,15 @@ def diag_house(hid, house, lm):
     for iid, nm in PROBE_ITEMS.items():
         r = rows.get(iid)
         probes[nm] = {"min": r[1], "median": r[2], "units": r[3], "listings": r[4]} if r else None
-    DIAG[str(hid)] = {"regular_listings": len(regular), "commodity_listings": len(comm), "items": len(rows), "last_modified": lm, "probes": probes}
+    # what a listing's item looks like: any extra field (random suffix, bonus list, ...) means one item id can be several different goods
+    keys, extra = {}, []
+    for a in regular[:20000]:
+        it = a.get("item") or {}
+        for k in it:
+            keys[k] = keys.get(k, 0) + 1
+        if len(extra) < 6 and len(it) > 1:
+            extra.append({"item": it, "quantity": a.get("quantity"), "buyout": a.get("buyout"), "unit_price": a.get("unit_price")})
+    DIAG[str(hid)] = {"regular_listings": len(regular), "commodity_listings": len(comm), "items": len(rows), "last_modified": lm, "probes": probes, "item_fields": keys, "item_examples": extra}
     print(f"    listings={len(regular)} commodities={len(comm)} items={len(rows)}")
     for nm, p in probes.items():
         print(f"    probe {nm}: {p}")
@@ -389,6 +398,18 @@ def lookup_item(item_id, token):
             sell = 0
         q = data.get("quality")
         q = QUALITY_NUM.get(str(q.get("type") if isinstance(q, dict) else q).upper())
+        def _cat(x):
+            x = x.get("name") if isinstance(x, dict) else x
+            if isinstance(x, dict):
+                x = x.get("en_GB") or x.get("en_US") or next(iter(x.values()), None)
+            return x
+        inv = data.get("inventory_type")
+        inv = _cat(inv) if isinstance(inv, dict) else None
+        bind = ((data.get("preview_item") or {}).get("binding") or {})
+        bind = _cat(bind) if isinstance(bind, dict) and bind else None
+        # [class, subclass, item level, required level, equipment slot, binding, stack size]
+        cat = [_cat(data.get("item_class")), _cat(data.get("item_subclass")) or "", data.get("level"), data.get("required_level"), inv, bind, data.get("max_count")]
+        CATS[str(item_id)] = cat if cat[0] else ["Uncategorized", ""] + cat[2:]  # Blizzard returned no class for this item
         return item_id, name, sell, q
     except Exception as e:
         code = getattr(e, "code", None)
@@ -396,6 +417,7 @@ def lookup_item(item_id, token):
         return item_id, None, None, None
 
 
+CATS = {}  # item id -> [class, subclass] found during this run
 FAILS = {}  # item id -> why the lookup failed (HTTP code or error type), saved to item_failures.json
 
 
@@ -405,13 +427,14 @@ def update_item_names(rows, token, budget_seconds=300):
     names = json.loads(ITEMS_FILE.read_text(encoding="utf-8")) if ITEMS_FILE.exists() else {}
     vendor = json.loads(VENDOR_FILE.read_text(encoding="utf-8")) if VENDOR_FILE.exists() else {}
     quality = json.loads(QUALITY_FILE.read_text(encoding="utf-8")) if QUALITY_FILE.exists() else {}
+    cats = json.loads(CATEGORY_FILE.read_text(encoding="utf-8")) if CATEGORY_FILE.exists() else {}
     order = sorted(rows, key=lambda r: -r[4])
     try:
         FAILS.update(json.loads(Path("item_failures.json").read_text(encoding="utf-8")))
     except Exception:
         pass
     given_up = set()  # nothing is given up: items without a name are tried again on every run
-    missing = [r[0] for r in order if (str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality) and str(r[0]) not in given_up][:MAX_NAME_LOOKUPS]
+    missing = [r[0] for r in order if (str(r[0]) not in names or str(r[0]) not in vendor or str(r[0]) not in quality or str(r[0]) not in cats) and str(r[0]) not in given_up][:MAX_NAME_LOOKUPS]
     print(f"Names known: {len(names)}, vendor prices known: {len(vendor)}, items to look up: {len(missing)}")
     tried = failed = 0
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -427,11 +450,14 @@ def update_item_names(rows, token, budget_seconds=300):
                     vendor[str(item_id)] = sell or 0
                     if q is not None:
                         quality[str(item_id)] = q
+                    if CATS.get(str(item_id)):
+                        cats[str(item_id)] = CATS[str(item_id)]
                 else:
                     failed += 1
             ITEMS_FILE.write_text(json.dumps(names, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8")
             VENDOR_FILE.write_text(json.dumps(vendor, sort_keys=True, indent=0), encoding="utf-8")
             QUALITY_FILE.write_text(json.dumps(quality, sort_keys=True, indent=0), encoding="utf-8")
+            CATEGORY_FILE.write_text(json.dumps(cats, ensure_ascii=False, sort_keys=True, indent=0), encoding="utf-8")
             print(f"  progress: {tried} tried, {failed} failed, {len(names)} names, {len(vendor)} vendor prices, {time.time()-started:.0f}s")
     try:
         from collections import Counter
