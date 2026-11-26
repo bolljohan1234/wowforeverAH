@@ -49,7 +49,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in data items.json vendor.json quality.json professions.json icons.json skills.json ladder.json.gz runs.csv house_choice.json item_failures.json sales ladderhist; do [ -e "$f" ] && git add "$f"; done; true
+          for f in data items.json vendor.json quality.json professions.json icons.json skills.json ladder.json.gz runs.csv house_choice.json item_failures.json sales ladderhist categories.json; do [ -e "$f" ] && git add "$f"; done; true
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
