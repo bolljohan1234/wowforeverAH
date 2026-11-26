@@ -1,4 +1,13 @@
 {
+"10001": [
+"Armor",
+"Cloth",
+42,
+37,
+"Chest",
+"Binds when equipped",
+0
+],
 "10002": [
 "Armor",
 "Cloth",
@@ -18,6 +27,15 @@
 0
 ],
 "10004": [
+"Armor",
+"Cloth",
+43,
+38,
+"Chest",
+"Binds when equipped",
+0
+],
+"10007": [
 "Armor",
 "Cloth",
 43,
@@ -251,6 +269,15 @@ null,
 null,
 0
 ],
+"10046": [
+"Armor",
+"Cloth",
+9,
+4,
+"Feet",
+null,
+0
+],
 "10047": [
 "Armor",
 "Cloth",
@@ -296,6 +323,24 @@ null,
 null,
 0
 ],
+"10053": [
+"Armor",
+"Cloth",
+47,
+0,
+"Chest",
+null,
+0
+],
+"10055": [
+"Armor",
+"Miscellaneous",
+47,
+0,
+"Shirt",
+null,
+0
+],
 "10056": [
 "Armor",
 "Miscellaneous",
@@ -323,6 +368,15 @@ null,
 "Binds when equipped",
 0
 ],
+"10284": [
+"Trade Goods",
+"Cooking",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
 "10285": [
 "Trade Goods",
 "Cloth",
@@ -336,6 +390,33 @@ null,
 "Trade Goods",
 "Elemental",
 45,
+0,
+"Non-equippable",
+null,
+0
+],
+"10290": [
+"Trade Goods",
+"Other",
+50,
+0,
+"Non-equippable",
+null,
+0
+],
+"10300": [
+"Recipe",
+"Tailoring",
+43,
+0,
+"Non-equippable",
+null,
+0
+],
+"10301": [
+"Recipe",
+"Tailoring",
+43,
 0,
 "Non-equippable",
 null,
@@ -467,6 +548,24 @@ null,
 null,
 0
 ],
+"10321": [
+"Recipe",
+"Tailoring",
+48,
+0,
+"Non-equippable",
+null,
+0
+],
+"10323": [
+"Recipe",
+"Tailoring",
+49,
+0,
+"Non-equippable",
+null,
+0
+],
 "10325": [
 "Recipe",
 "Tailoring",
@@ -494,7 +593,25 @@ null,
 null,
 0
 ],
+"10384": [
+"Armor",
+"Plate",
+65,
+60,
+"Chest",
+"Binds when equipped",
+0
+],
 "10392": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"10393": [
 "Miscellaneous",
 "Pet",
 30,
@@ -510,6 +627,33 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"10405": [
+"Armor",
+"Leather",
+22,
+17,
+"Shoulder",
+null,
+0
+],
+"10407": [
+"Armor",
+"Mail",
+21,
+16,
+"Shoulder",
+null,
+0
+],
+"10423": [
+"Armor",
+"Mail",
+31,
+26,
+"Legs",
+"Binds when equipped",
 0
 ],
 "10424": [
@@ -561,6 +705,15 @@ null,
 "Armor",
 "Cloth",
 44,
+0,
+"Head",
+"Binds when equipped",
+0
+],
+"10502": [
+"Armor",
+"Cloth",
+43,
 0,
 "Head",
 "Binds when equipped",
@@ -638,6 +791,15 @@ null,
 null,
 0
 ],
+"10514": [
+"Consumable",
+"Explosives",
+43,
+0,
+"Non-equippable",
+null,
+0
+],
 "10518": [
 "Armor",
 "Cloth",
@@ -645,6 +807,15 @@ null,
 0,
 "Back",
 "Binds when equipped",
+0
+],
+"10546": [
+"Consumable",
+"Device",
+42,
+30,
+"Non-equippable",
+null,
 0
 ],
 "10548": [
@@ -690,6 +861,24 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"10562": [
+"Consumable",
+"Explosives",
+47,
+0,
+"Non-equippable",
+null,
+0
+],
+"10576": [
+"Armor",
+"Miscellaneous",
+50,
+40,
+"Trinket",
+"Binds when equipped",
 0
 ],
 "10577": [
@@ -917,6 +1106,24 @@ null,
 null,
 0
 ],
+"10822": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"10840": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
 "10841": [
 "Consumable",
 "Food & Drink",
@@ -984,6 +1191,24 @@ null,
 "Quest",
 "Quest",
 1,
+0,
+"Non-equippable",
+null,
+0
+],
+"11023": [
+"Miscellaneous",
+"Pet",
+35,
+0,
+"Non-equippable",
+null,
+0
+],
+"11038": [
+"Recipe",
+"Enchanting",
+22,
 0,
 "Non-equippable",
 null,
@@ -1142,6 +1367,15 @@ null,
 null,
 0
 ],
+"11152": [
+"Recipe",
+"Enchanting",
+29,
+0,
+"Non-equippable",
+null,
+0
+],
 "11164": [
 "Recipe",
 "Enchanting",
@@ -1164,6 +1398,15 @@ null,
 "Recipe",
 "Enchanting",
 40,
+0,
+"Non-equippable",
+null,
+0
+],
+"11167": [
+"Recipe",
+"Enchanting",
+38,
 0,
 "Non-equippable",
 null,
@@ -1322,10 +1565,28 @@ null,
 null,
 0
 ],
+"11224": [
+"Recipe",
+"Enchanting",
+47,
+0,
+"Non-equippable",
+null,
+0
+],
 "11225": [
 "Recipe",
 "Enchanting",
 49,
+0,
+"Non-equippable",
+null,
+0
+],
+"11226": [
+"Recipe",
+"Enchanting",
+50,
 0,
 "Non-equippable",
 null,
@@ -1339,6 +1600,15 @@ null,
 "Non-equippable",
 null,
 1
+],
+"11284": [
+"Projectile",
+"Bullet",
+45,
+40,
+"Ammo",
+null,
+0
 ],
 "11285": [
 "Projectile",
@@ -1394,6 +1664,15 @@ null,
 "Binds when equipped",
 0
 ],
+"11306": [
+"Weapon",
+"Bow",
+32,
+27,
+"Ranged",
+"Binds when equipped",
+0
+],
 "11325": [
 "Consumable",
 "Other",
@@ -1434,6 +1713,15 @@ null,
 "Trade Goods",
 "Other",
 50,
+0,
+"Non-equippable",
+null,
+0
+],
+"11384": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -1484,7 +1772,43 @@ null,
 null,
 0
 ],
+"11393": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "11394": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"11395": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"11402": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"11403": [
 "Miscellaneous",
 "Junk",
 1,
@@ -1556,6 +1880,15 @@ null,
 null,
 0
 ],
+"11414": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "11416": [
 "Miscellaneous",
 "Junk",
@@ -1601,6 +1934,15 @@ null,
 null,
 0
 ],
+"11444": [
+"Consumable",
+"Food & Drink",
+55,
+45,
+"Non-equippable",
+null,
+0
+],
 "11474": [
 "Miscellaneous",
 "Junk",
@@ -1628,10 +1970,28 @@ null,
 null,
 0
 ],
+"11608": [
+"Weapon",
+"Mace",
+55,
+50,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "11610": [
 "Recipe",
 "Blacksmithing",
 53,
+0,
+"Non-equippable",
+null,
+0
+],
+"11611": [
+"Recipe",
+"Blacksmithing",
+55,
 0,
 "Non-equippable",
 null,
@@ -1763,6 +2123,15 @@ null,
 null,
 0
 ],
+"11818": [
+"Quest",
+"Quest",
+43,
+43,
+"Non-equippable",
+null,
+1
+],
 "11903": [
 "Miscellaneous",
 "Pet",
@@ -1770,6 +2139,33 @@ null,
 0,
 "Non-equippable",
 "Binds when used",
+0
+],
+"1194": [
+"Weapon",
+"Sword",
+4,
+1,
+"Two-Hand",
+null,
+0
+],
+"11941": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"1196": [
+"Weapon",
+"Axe",
+14,
+9,
+"Two-Hand",
+null,
 0
 ],
 "12037": [
@@ -1803,6 +2199,15 @@ null,
 "Trade Goods",
 "Other",
 20,
+0,
+"Non-equippable",
+null,
+0
+],
+"12162": [
+"Recipe",
+"Blacksmithing",
+32,
 0,
 "Non-equippable",
 null,
@@ -1934,7 +2339,25 @@ null,
 null,
 0
 ],
+"12215": [
+"Consumable",
+"Food & Drink",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
 "12216": [
+"Consumable",
+"Food & Drink",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
+"12217": [
 "Consumable",
 "Food & Drink",
 35,
@@ -1997,7 +2420,52 @@ null,
 null,
 0
 ],
+"12251": [
+"Weapon",
+"Staff",
+37,
+32,
+"Two-Hand",
+"Binds when equipped",
+0
+],
+"12259": [
+"Weapon",
+"Dagger",
+36,
+31,
+"One-Hand",
+"Binds when equipped",
+0
+],
+"12260": [
+"Weapon",
+"Dagger",
+39,
+34,
+"One-Hand",
+"Binds when equipped",
+0
+],
+"12264": [
+"Miscellaneous",
+"Junk",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
 "12284": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
+"12286": [
 "Quest",
 "Quest",
 1,
@@ -2069,6 +2537,15 @@ null,
 null,
 0
 ],
+"12405": [
+"Armor",
+"Plate",
+50,
+45,
+"Chest",
+"Binds when equipped",
+0
+],
 "12406": [
 "Armor",
 "Plate",
@@ -2105,6 +2582,15 @@ null,
 "Binds when equipped",
 0
 ],
+"12415": [
+"Armor",
+"Mail",
+54,
+49,
+"Chest",
+"Binds when equipped",
+0
+],
 "12416": [
 "Armor",
 "Mail",
@@ -2129,6 +2615,15 @@ null,
 57,
 52,
 "Hands",
+"Binds when equipped",
+0
+],
+"12419": [
+"Armor",
+"Mail",
+58,
+53,
+"Feet",
 "Binds when equipped",
 0
 ],
@@ -2192,6 +2687,15 @@ null,
 53,
 47,
 "Shoulder",
+"Binds when equipped",
+0
+],
+"12429": [
+"Armor",
+"Plate",
+61,
+56,
+"Legs",
 "Binds when equipped",
 0
 ],
@@ -2294,11 +2798,56 @@ null,
 null,
 0
 ],
+"12624": [
+"Armor",
+"Mail",
+54,
+49,
+"Chest",
+"Binds when equipped",
+0
+],
+"12631": [
+"Armor",
+"Plate",
+58,
+53,
+"Hands",
+"Binds when equipped",
+0
+],
+"12632": [
+"Armor",
+"Mail",
+59,
+54,
+"Hands",
+"Binds when equipped",
+0
+],
 "12633": [
 "Armor",
 "Plate",
 60,
 55,
+"Head",
+"Binds when equipped",
+0
+],
+"12636": [
+"Armor",
+"Mail",
+61,
+56,
+"Head",
+"Binds when equipped",
+0
+],
+"12640": [
+"Armor",
+"Plate",
+61,
+56,
 "Head",
 "Binds when equipped",
 0
@@ -2384,6 +2933,15 @@ null,
 null,
 0
 ],
+"12692": [
+"Recipe",
+"Blacksmithing",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "12693": [
 "Recipe",
 "Blacksmithing",
@@ -2402,10 +2960,46 @@ null,
 null,
 0
 ],
+"12695": [
+"Recipe",
+"Blacksmithing",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
 "12697": [
 "Recipe",
 "Blacksmithing",
 58,
+0,
+"Non-equippable",
+null,
+0
+],
+"127": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
+"12702": [
+"Recipe",
+"Blacksmithing",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
+"12704": [
+"Recipe",
+"Blacksmithing",
+60,
 0,
 "Non-equippable",
 null,
@@ -2429,10 +3023,37 @@ null,
 null,
 0
 ],
+"12716": [
+"Recipe",
+"Leatherworking",
+61,
+0,
+"Non-equippable",
+null,
+0
+],
+"12717": [
+"Recipe",
+"Blacksmithing",
+61,
+0,
+"Non-equippable",
+null,
+0
+],
 "12720": [
 "Recipe",
 "Blacksmithing",
 62,
+0,
+"Non-equippable",
+null,
+0
+],
+"12728": [
+"Recipe",
+"Leatherworking",
+63,
 0,
 "Non-equippable",
 null,
@@ -2453,6 +3074,15 @@ null,
 56,
 51,
 "Two-Hand",
+"Binds when equipped",
+0
+],
+"12777": [
+"Weapon",
+"Sword",
+56,
+51,
+"One-Hand",
 "Binds when equipped",
 0
 ],
@@ -2546,7 +3176,79 @@ null,
 null,
 0
 ],
+"12828": [
+"Recipe",
+"Blacksmithing",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
+"12830": [
+"Recipe",
+"Blacksmithing",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
+"12833": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
+"12834": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
+"12835": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
 "12836": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
+"12837": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
+"12838": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
+"12839": [
 "Recipe",
 "Blacksmithing",
 63,
@@ -2591,10 +3293,37 @@ null,
 "Binds when equipped",
 0
 ],
+"12990": [
+"Weapon",
+"Axe",
+23,
+18,
+"One-Hand",
+"Binds when equipped",
+0
+],
 "13159": [
 "Quest",
 "Quest",
 1,
+0,
+"Non-equippable",
+null,
+0
+],
+"13287": [
+"Recipe",
+"Leatherworking",
+33,
+0,
+"Non-equippable",
+null,
+0
+],
+"13288": [
+"Recipe",
+"Leatherworking",
+33,
 0,
 "Non-equippable",
 null,
@@ -2649,6 +3378,15 @@ null,
 "Key",
 "Key",
 1,
+0,
+"Non-equippable",
+null,
+0
+],
+"13311": [
+"Recipe",
+"Engineering",
+40,
 0,
 "Non-equippable",
 null,
@@ -2762,6 +3500,33 @@ null,
 null,
 0
 ],
+"13456": [
+"Consumable",
+"Potions",
+58,
+48,
+"Non-equippable",
+null,
+0
+],
+"13457": [
+"Consumable",
+"Potions",
+58,
+48,
+"Non-equippable",
+null,
+0
+],
+"13458": [
+"Consumable",
+"Potions",
+58,
+48,
+"Non-equippable",
+null,
+0
+],
 "13459": [
 "Consumable",
 "Potions",
@@ -2870,6 +3635,42 @@ null,
 null,
 0
 ],
+"13481": [
+"Recipe",
+"Alchemy",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"13486": [
+"Recipe",
+"Alchemy",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"13487": [
+"Recipe",
+"Alchemy",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"13488": [
+"Recipe",
+"Alchemy",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "13490": [
 "Recipe",
 "Alchemy",
@@ -2883,6 +3684,15 @@ null,
 "Recipe",
 "Alchemy",
 56,
+0,
+"Non-equippable",
+null,
+0
+],
+"13493": [
+"Recipe",
+"Alchemy",
+57,
 0,
 "Non-equippable",
 null,
@@ -2906,7 +3716,25 @@ null,
 null,
 0
 ],
+"13496": [
+"Recipe",
+"Alchemy",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
 "13497": [
+"Recipe",
+"Alchemy",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
+"13499": [
 "Recipe",
 "Alchemy",
 58,
@@ -2942,6 +3770,15 @@ null,
 null,
 0
 ],
+"13513": [
+"Consumable",
+"Flasks",
+60,
+50,
+"Non-equippable",
+null,
+0
+],
 "13519": [
 "Recipe",
 "Alchemy",
@@ -2952,6 +3789,15 @@ null,
 0
 ],
 "13520": [
+"Recipe",
+"Alchemy",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"13521": [
 "Recipe",
 "Alchemy",
 60,
@@ -2978,12 +3824,57 @@ null,
 null,
 0
 ],
+"13546": [
+"Consumable",
+"Food & Drink",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
+"1364": [
+"Armor",
+"Leather",
+5,
+1,
+"Chest",
+null,
+0
+],
 "1368": [
 "Armor",
 "Leather",
 4,
 1,
 "Hands",
+null,
+0
+],
+"1370": [
+"Armor",
+"Leather",
+4,
+1,
+"Wrist",
+null,
+0
+],
+"1372": [
+"Armor",
+"Cloth",
+3,
+1,
+"Back",
+null,
+0
+],
+"1374": [
+"Armor",
+"Cloth",
+4,
+1,
+"Feet",
 null,
 0
 ],
@@ -3032,6 +3923,15 @@ null,
 null,
 0
 ],
+"1376": [
+"Armor",
+"Cloth",
+5,
+1,
+"Back",
+null,
+0
+],
 "13760": [
 "Trade Goods",
 "Cooking",
@@ -3041,11 +3941,83 @@ null,
 null,
 0
 ],
+"1378": [
+"Armor",
+"Cloth",
+2,
+1,
+"Legs",
+null,
+0
+],
+"1380": [
+"Armor",
+"Cloth",
+4,
+1,
+"Chest",
+null,
+0
+],
+"13816": [
+"Weapon",
+"Sword",
+52,
+47,
+"Main Hand",
+null,
+0
+],
+"13817": [
+"Weapon",
+"Sword",
+58,
+53,
+"Two-Hand",
+null,
+0
+],
 "13818": [
 "Weapon",
 "Axe",
 56,
 51,
+"Main Hand",
+null,
+0
+],
+"13820": [
+"Weapon",
+"Mace",
+54,
+49,
+"Main Hand",
+null,
+0
+],
+"13822": [
+"Weapon",
+"Dagger",
+53,
+48,
+"One-Hand",
+null,
+0
+],
+"13824": [
+"Weapon",
+"Bow",
+55,
+45,
+"Ranged",
+null,
+0
+],
+"1384": [
+"Weapon",
+"Sword",
+3,
+1,
 "Main Hand",
 null,
 0
@@ -3065,6 +4037,15 @@ null,
 51,
 46,
 "Waist",
+"Binds when equipped",
+0
+],
+"13858": [
+"Armor",
+"Cloth",
+52,
+47,
+"Chest",
 "Binds when equipped",
 0
 ],
@@ -3131,6 +4112,24 @@ null,
 "Binds when equipped",
 0
 ],
+"13869": [
+"Armor",
+"Cloth",
+51,
+46,
+"Chest",
+"Binds when equipped",
+0
+],
+"13871": [
+"Armor",
+"Cloth",
+56,
+51,
+"Legs",
+"Binds when equipped",
+0
+],
 "13876": [
 "Miscellaneous",
 "Junk",
@@ -3158,12 +4157,57 @@ null,
 null,
 0
 ],
+"13879": [
+"Miscellaneous",
+"Junk",
+45,
+0,
+"Non-equippable",
+null,
+0
+],
+"13882": [
+"Miscellaneous",
+"Junk",
+45,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"13883": [
+"Miscellaneous",
+"Junk",
+45,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"13885": [
+"Miscellaneous",
+"Junk",
+45,
+0,
+"Held In Off-hand",
+null,
+0
+],
 "13886": [
 "Miscellaneous",
 "Junk",
 45,
 0,
 "Held In Off-hand",
+null,
+0
+],
+"13888": [
+"Trade Goods",
+"Cooking",
+55,
+45,
+"Non-equippable",
 null,
 0
 ],
@@ -3190,6 +4234,51 @@ null,
 "Food & Drink",
 55,
 45,
+"Non-equippable",
+null,
+0
+],
+"13897": [
+"Armor",
+"Miscellaneous",
+10,
+0,
+"Chest",
+null,
+0
+],
+"13902": [
+"Miscellaneous",
+"Junk",
+55,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"13907": [
+"Miscellaneous",
+"Junk",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"13908": [
+"Miscellaneous",
+"Junk",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"13910": [
+"Miscellaneous",
+"Junk",
+55,
+0,
 "Non-equippable",
 null,
 0
@@ -3365,6 +4454,15 @@ null,
 null,
 0
 ],
+"140": [
+"Armor",
+"Cloth",
+1,
+0,
+"Feet",
+null,
+0
+],
 "14043": [
 "Armor",
 "Cloth",
@@ -3407,6 +4505,42 @@ null,
 55,
 0,
 "Non-equippable",
+null,
+0
+],
+"14086": [
+"Armor",
+"Cloth",
+10,
+5,
+"Feet",
+null,
+0
+],
+"14087": [
+"Armor",
+"Cloth",
+8,
+3,
+"Wrist",
+null,
+0
+],
+"14093": [
+"Armor",
+"Cloth",
+9,
+4,
+"Waist",
+null,
+0
+],
+"14098": [
+"Armor",
+"Cloth",
+10,
+5,
+"Back",
 null,
 0
 ],
@@ -3455,6 +4589,15 @@ null,
 "Binds when equipped",
 0
 ],
+"14108": [
+"Armor",
+"Cloth",
+57,
+52,
+"Feet",
+"Binds when equipped",
+0
+],
 "14111": [
 "Armor",
 "Cloth",
@@ -3479,6 +4622,15 @@ null,
 14,
 9,
 "Wrist",
+null,
+0
+],
+"14116": [
+"Armor",
+"Cloth",
+14,
+9,
+"Back",
 null,
 0
 ],
@@ -3518,12 +4670,39 @@ null,
 "Binds when equipped",
 0
 ],
+"1414": [
+"Weapon",
+"Mace",
+9,
+4,
+"Two-Hand",
+null,
+0
+],
 "14141": [
 "Armor",
 "Cloth",
 55,
 50,
 "Chest",
+"Binds when equipped",
+0
+],
+"14142": [
+"Armor",
+"Cloth",
+54,
+49,
+"Hands",
+"Binds when equipped",
+0
+],
+"14143": [
+"Armor",
+"Cloth",
+53,
+48,
+"Waist",
 "Binds when equipped",
 0
 ],
@@ -3536,6 +4715,33 @@ null,
 "Binds when equipped",
 0
 ],
+"1415": [
+"Weapon",
+"Mace",
+9,
+4,
+"Main Hand",
+null,
+0
+],
+"14155": [
+"Container",
+"Bag",
+60,
+0,
+"Bag",
+null,
+0
+],
+"14157": [
+"Armor",
+"Cloth",
+24,
+19,
+"Shoulder",
+null,
+0
+],
 "14158": [
 "Armor",
 "Cloth",
@@ -3543,6 +4749,33 @@ null,
 21,
 "Chest",
 "Binds when equipped",
+0
+],
+"1416": [
+"Weapon",
+"Axe",
+9,
+4,
+"Main Hand",
+null,
+0
+],
+"14169": [
+"Armor",
+"Cloth",
+21,
+16,
+"Shoulder",
+null,
+0
+],
+"1417": [
+"Weapon",
+"Axe",
+8,
+3,
+"Two-Hand",
+null,
 0
 ],
 "1418": [
@@ -3554,12 +4787,39 @@ null,
 null,
 0
 ],
+"1420": [
+"Armor",
+"Leather",
+9,
+4,
+"Wrist",
+null,
+0
+],
+"1421": [
+"Armor",
+"Cloth",
+10,
+5,
+"Back",
+null,
+0
+],
 "14227": [
 "Trade Goods",
 "Cloth",
 50,
 0,
 "Non-equippable",
+null,
+0
+],
+"1423": [
+"Armor",
+"Leather",
+7,
+2,
+"Legs",
 null,
 0
 ],
@@ -3578,6 +4838,33 @@ null,
 10,
 5,
 "Feet",
+null,
+0
+],
+"1430": [
+"Armor",
+"Cloth",
+7,
+2,
+"Hands",
+null,
+0
+],
+"1431": [
+"Armor",
+"Cloth",
+8,
+3,
+"Legs",
+null,
+0
+],
+"1433": [
+"Armor",
+"Cloth",
+7,
+2,
+"Chest",
 null,
 0
 ],
@@ -3617,7 +4904,25 @@ null,
 null,
 0
 ],
+"14368": [
+"Armor",
+"Cloth",
+22,
+17,
+"Shoulder",
+null,
+0
+],
 "14466": [
+"Recipe",
+"Tailoring",
+51,
+0,
+"Non-equippable",
+null,
+0
+],
+"14467": [
 "Recipe",
 "Tailoring",
 51,
@@ -3653,6 +4958,15 @@ null,
 null,
 0
 ],
+"14473": [
+"Recipe",
+"Tailoring",
+53,
+0,
+"Non-equippable",
+null,
+0
+],
 "14474": [
 "Recipe",
 "Tailoring",
@@ -3680,6 +4994,15 @@ null,
 null,
 0
 ],
+"14479": [
+"Recipe",
+"Tailoring",
+54,
+0,
+"Non-equippable",
+null,
+0
+],
 "14482": [
 "Recipe",
 "Tailoring",
@@ -3689,7 +5012,34 @@ null,
 null,
 0
 ],
+"14484": [
+"Recipe",
+"Tailoring",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"14485": [
+"Recipe",
+"Tailoring",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "14489": [
+"Recipe",
+"Tailoring",
+56,
+0,
+"Non-equippable",
+null,
+0
+],
+"14490": [
 "Recipe",
 "Tailoring",
 56,
@@ -3717,6 +5067,15 @@ null,
 0
 ],
 "14494": [
+"Recipe",
+"Tailoring",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
+"14495": [
 "Recipe",
 "Tailoring",
 58,
@@ -3761,7 +5120,34 @@ null,
 null,
 0
 ],
+"14500": [
+"Recipe",
+"Tailoring",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"14501": [
+"Recipe",
+"Tailoring",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "14504": [
+"Recipe",
+"Tailoring",
+61,
+0,
+"Non-equippable",
+null,
+0
+],
+"14505": [
 "Recipe",
 "Tailoring",
 61,
@@ -3788,7 +5174,25 @@ null,
 null,
 0
 ],
+"14510": [
+"Recipe",
+"Tailoring",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
 "14511": [
+"Recipe",
+"Tailoring",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
+"14513": [
 "Recipe",
 "Tailoring",
 62,
@@ -3806,10 +5210,28 @@ null,
 null,
 0
 ],
+"14529": [
+"Consumable",
+"Bandages",
+52,
+0,
+"Non-equippable",
+null,
+0
+],
 "14530": [
 "Consumable",
 "Bandages",
 58,
+0,
+"Non-equippable",
+null,
+0
+],
+"14635": [
+"Recipe",
+"Leatherworking",
+37,
 0,
 "Non-equippable",
 null,
@@ -3833,11 +5255,29 @@ null,
 null,
 0
 ],
+"14652": [
+"Armor",
+"Leather",
+45,
+40,
+"Waist",
+"Binds when equipped",
+0
+],
 "14661": [
 "Armor",
 "Leather",
 49,
 44,
+"Waist",
+"Binds when equipped",
+0
+],
+"14674": [
+"Armor",
+"Leather",
+55,
+50,
 "Waist",
 "Binds when equipped",
 0
@@ -3878,6 +5318,15 @@ null,
 null,
 0
 ],
+"1476": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "1477": [
 "Consumable",
 "Scrolls",
@@ -3905,12 +5354,93 @@ null,
 null,
 0
 ],
+"14864": [
+"Armor",
+"Plate",
+59,
+54,
+"Waist",
+"Binds when equipped",
+0
+],
+"1495": [
+"Armor",
+"Cloth",
+13,
+8,
+"Feet",
+null,
+0
+],
 "1497": [
 "Armor",
 "Cloth",
 14,
 9,
 "Back",
+null,
+0
+],
+"1498": [
+"Armor",
+"Cloth",
+15,
+10,
+"Hands",
+null,
+0
+],
+"1499": [
+"Armor",
+"Cloth",
+11,
+6,
+"Legs",
+null,
+0
+],
+"15004": [
+"Armor",
+"Leather",
+9,
+4,
+"Feet",
+null,
+0
+],
+"15007": [
+"Armor",
+"Cloth",
+8,
+3,
+"Back",
+null,
+0
+],
+"15013": [
+"Armor",
+"Leather",
+14,
+9,
+"Wrist",
+null,
+0
+],
+"15015": [
+"Armor",
+"Cloth",
+13,
+8,
+"Back",
+null,
+0
+],
+"15019": [
+"Armor",
+"Leather",
+21,
+16,
+"Shoulder",
 null,
 0
 ],
@@ -3923,12 +5453,39 @@ null,
 "Binds when equipped",
 0
 ],
+"15046": [
+"Armor",
+"Mail",
+54,
+49,
+"Legs",
+"Binds when equipped",
+0
+],
 "15047": [
 "Armor",
 "Mail",
 61,
 56,
 "Chest",
+"Binds when equipped",
+0
+],
+"15048": [
+"Armor",
+"Mail",
+57,
+52,
+"Chest",
+"Binds when equipped",
+0
+],
+"15049": [
+"Armor",
+"Mail",
+59,
+54,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -3941,12 +5498,48 @@ null,
 null,
 0
 ],
+"15050": [
+"Armor",
+"Mail",
+58,
+53,
+"Chest",
+"Binds when equipped",
+0
+],
 "15053": [
 "Armor",
 "Leather",
 57,
 52,
 "Chest",
+"Binds when equipped",
+0
+],
+"15055": [
+"Armor",
+"Leather",
+61,
+56,
+"Shoulder",
+"Binds when equipped",
+0
+],
+"15056": [
+"Armor",
+"Leather",
+57,
+52,
+"Chest",
+"Binds when equipped",
+0
+],
+"15058": [
+"Armor",
+"Leather",
+59,
+54,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -4004,6 +5597,24 @@ null,
 "Binds when equipped",
 0
 ],
+"15067": [
+"Armor",
+"Leather",
+54,
+49,
+"Shoulder",
+"Binds when equipped",
+0
+],
+"1507": [
+"Armor",
+"Leather",
+14,
+9,
+"Legs",
+null,
+0
+],
 "15071": [
 "Armor",
 "Leather",
@@ -4049,12 +5660,39 @@ null,
 "Binds when equipped",
 0
 ],
+"15078": [
+"Armor",
+"Mail",
+55,
+50,
+"Hands",
+"Binds when equipped",
+0
+],
 "15079": [
 "Armor",
 "Mail",
 57,
 52,
 "Legs",
+"Binds when equipped",
+0
+],
+"15080": [
+"Armor",
+"Mail",
+59,
+54,
+"Head",
+"Binds when equipped",
+0
+],
+"15082": [
+"Armor",
+"Mail",
+56,
+51,
+"Waist",
 "Binds when equipped",
 0
 ],
@@ -4083,6 +5721,15 @@ null,
 51,
 "Head",
 "Binds when equipped",
+0
+],
+"1509": [
+"Armor",
+"Leather",
+11,
+6,
+"Chest",
+null,
 0
 ],
 "15091": [
@@ -4130,6 +5777,33 @@ null,
 "Binds when equipped",
 0
 ],
+"1510": [
+"Weapon",
+"Mace",
+12,
+7,
+"Main Hand",
+null,
+0
+],
+"1512": [
+"Weapon",
+"Axe",
+12,
+7,
+"Two-Hand",
+null,
+0
+],
+"1513": [
+"Weapon",
+"Sword",
+14,
+9,
+"Two-Hand",
+null,
+0
+],
 "1514": [
 "Weapon",
 "Mace",
@@ -4137,6 +5811,24 @@ null,
 9,
 "Two-Hand",
 null,
+0
+],
+"1516": [
+"Weapon",
+"Axe",
+14,
+9,
+"Main Hand",
+null,
+0
+],
+"15180": [
+"Armor",
+"Leather",
+53,
+48,
+"Waist",
+"Binds when equipped",
 0
 ],
 "1520": [
@@ -4175,12 +5867,39 @@ null,
 null,
 0
 ],
+"15300": [
+"Armor",
+"Leather",
+14,
+9,
+"Hands",
+null,
+0
+],
+"15301": [
+"Armor",
+"Leather",
+13,
+8,
+"Feet",
+null,
+0
+],
 "15324": [
 "Weapon",
 "Gun",
 56,
 51,
 "Ranged",
+"Binds when equipped",
+0
+],
+"15388": [
+"Armor",
+"Leather",
+52,
+47,
+"Waist",
 "Binds when equipped",
 0
 ],
@@ -4292,6 +6011,69 @@ null,
 null,
 0
 ],
+"15474": [
+"Armor",
+"Mail",
+8,
+3,
+"Wrist",
+null,
+0
+],
+"15480": [
+"Armor",
+"Mail",
+13,
+8,
+"Waist",
+null,
+0
+],
+"15481": [
+"Armor",
+"Mail",
+13,
+8,
+"Feet",
+null,
+0
+],
+"15482": [
+"Armor",
+"Mail",
+11,
+6,
+"Wrist",
+null,
+0
+],
+"15484": [
+"Armor",
+"Mail",
+12,
+7,
+"Hands",
+null,
+0
+],
+"15490": [
+"Armor",
+"Cloth",
+14,
+9,
+"Back",
+null,
+0
+],
+"15496": [
+"Armor",
+"Mail",
+21,
+16,
+"Shoulder",
+null,
+0
+],
 "15505": [
 "Armor",
 "Mail",
@@ -4328,6 +6110,15 @@ null,
 null,
 0
 ],
+"15727": [
+"Recipe",
+"Leatherworking",
+53,
+0,
+"Non-equippable",
+null,
+0
+],
 "15728": [
 "Recipe",
 "Leatherworking",
@@ -4338,6 +6129,15 @@ null,
 0
 ],
 "15731": [
+"Recipe",
+"Leatherworking",
+54,
+0,
+"Non-equippable",
+null,
+0
+],
+"15732": [
 "Recipe",
 "Leatherworking",
 54,
@@ -4373,7 +6173,34 @@ null,
 null,
 0
 ],
+"15739": [
+"Recipe",
+"Leatherworking",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"15742": [
+"Recipe",
+"Leatherworking",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "15743": [
+"Recipe",
+"Leatherworking",
+56,
+0,
+"Non-equippable",
+null,
+0
+],
+"15745": [
 "Recipe",
 "Leatherworking",
 56,
@@ -4401,6 +6228,15 @@ null,
 0
 ],
 "15748": [
+"Recipe",
+"Leatherworking",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
+"15749": [
 "Recipe",
 "Leatherworking",
 57,
@@ -4490,6 +6326,15 @@ null,
 null,
 0
 ],
+"15768": [
+"Recipe",
+"Leatherworking",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "15770": [
 "Recipe",
 "Leatherworking",
@@ -4517,6 +6362,15 @@ null,
 null,
 0
 ],
+"15773": [
+"Recipe",
+"Leatherworking",
+61,
+0,
+"Non-equippable",
+null,
+0
+],
 "15775": [
 "Recipe",
 "Leatherworking",
@@ -4530,6 +6384,15 @@ null,
 "Recipe",
 "Leatherworking",
 61,
+0,
+"Non-equippable",
+null,
+0
+],
+"15777": [
+"Recipe",
+"Leatherworking",
+62,
 0,
 "Non-equippable",
 null,
@@ -4571,6 +6434,15 @@ null,
 null,
 0
 ],
+"15870": [
+"Consumable",
+"Other",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
 "159": [
 "Consumable",
 "Food & Drink",
@@ -4578,6 +6450,15 @@ null,
 1,
 "Non-equippable",
 null,
+0
+],
+"15912": [
+"Armor",
+"Miscellaneous",
+23,
+18,
+"Held In Off-hand",
+"Binds when equipped",
 0
 ],
 "15918": [
@@ -4589,11 +6470,29 @@ null,
 "Binds when equipped",
 0
 ],
+"15925": [
+"Armor",
+"Miscellaneous",
+10,
+5,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "15926": [
 "Armor",
 "Miscellaneous",
 17,
 12,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15928": [
+"Armor",
+"Miscellaneous",
+31,
+26,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -4612,6 +6511,24 @@ null,
 "Miscellaneous",
 56,
 51,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15932": [
+"Armor",
+"Miscellaneous",
+12,
+7,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15933": [
+"Armor",
+"Miscellaneous",
+15,
+10,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -4643,11 +6560,38 @@ null,
 "Binds when equipped",
 0
 ],
+"15937": [
+"Armor",
+"Miscellaneous",
+51,
+46,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "15938": [
 "Armor",
 "Miscellaneous",
 58,
 53,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15939": [
+"Armor",
+"Miscellaneous",
+59,
+54,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15940": [
+"Armor",
+"Miscellaneous",
+62,
+57,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -4679,11 +6623,38 @@ null,
 "Binds when equipped",
 0
 ],
+"15947": [
+"Armor",
+"Miscellaneous",
+28,
+23,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15963": [
+"Armor",
+"Miscellaneous",
+39,
+34,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "15964": [
 "Armor",
 "Miscellaneous",
 44,
 39,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15967": [
+"Armor",
+"Miscellaneous",
+59,
+54,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -4738,6 +6709,105 @@ null,
 "Miscellaneous",
 26,
 21,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15975": [
+"Armor",
+"Miscellaneous",
+31,
+26,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15976": [
+"Armor",
+"Miscellaneous",
+36,
+31,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15977": [
+"Armor",
+"Miscellaneous",
+37,
+32,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15978": [
+"Armor",
+"Miscellaneous",
+41,
+36,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15979": [
+"Armor",
+"Miscellaneous",
+42,
+37,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15980": [
+"Armor",
+"Miscellaneous",
+46,
+41,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15981": [
+"Armor",
+"Miscellaneous",
+47,
+42,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15982": [
+"Armor",
+"Miscellaneous",
+51,
+46,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15983": [
+"Armor",
+"Miscellaneous",
+52,
+47,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15984": [
+"Armor",
+"Miscellaneous",
+56,
+51,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"15985": [
+"Armor",
+"Miscellaneous",
+57,
+52,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -4814,6 +6884,15 @@ null,
 null,
 0
 ],
+"16041": [
+"Recipe",
+"Engineering",
+52,
+0,
+"Non-equippable",
+null,
+0
+],
 "16042": [
 "Recipe",
 "Engineering",
@@ -4832,6 +6911,15 @@ null,
 null,
 0
 ],
+"16044": [
+"Recipe",
+"Engineering",
+53,
+0,
+"Non-equippable",
+null,
+0
+],
 "16045": [
 "Recipe",
 "Engineering",
@@ -4841,10 +6929,55 @@ null,
 null,
 0
 ],
+"16048": [
+"Recipe",
+"Engineering",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"16049": [
+"Recipe",
+"Engineering",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
 "16051": [
 "Recipe",
 "Engineering",
 57,
+0,
+"Non-equippable",
+null,
+0
+],
+"16053": [
+"Recipe",
+"Engineering",
+58,
+0,
+"Non-equippable",
+null,
+0
+],
+"16055": [
+"Recipe",
+"Engineering",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"16056": [
+"Recipe",
+"Engineering",
+61,
 0,
 "Non-equippable",
 null,
@@ -5012,6 +7145,15 @@ null,
 null,
 0
 ],
+"16221": [
+"Recipe",
+"Enchanting",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "16223": [
 "Recipe",
 "Enchanting",
@@ -5030,7 +7172,25 @@ null,
 null,
 0
 ],
+"16246": [
+"Recipe",
+"Enchanting",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
 "16247": [
+"Recipe",
+"Enchanting",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
+"16248": [
 "Recipe",
 "Enchanting",
 59,
@@ -5048,10 +7208,37 @@ null,
 null,
 0
 ],
+"16250": [
+"Recipe",
+"Enchanting",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "16251": [
 "Recipe",
 "Enchanting",
 60,
+0,
+"Non-equippable",
+null,
+0
+],
+"16252": [
+"Recipe",
+"Enchanting",
+61,
+0,
+"Non-equippable",
+null,
+0
+],
+"16255": [
+"Recipe",
+"Enchanting",
+62,
 0,
 "Non-equippable",
 null,
@@ -5183,6 +7370,15 @@ null,
 null,
 0
 ],
+"16747": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "16766": [
 "Consumable",
 "Food & Drink",
@@ -5192,7 +7388,25 @@ null,
 null,
 0
 ],
+"1685": [
+"Container",
+"Bag",
+45,
+0,
+"Bag",
+null,
+0
+],
 "1686": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"1687": [
 "Miscellaneous",
 "Junk",
 1,
@@ -5255,6 +7469,33 @@ null,
 null,
 0
 ],
+"17021": [
+"Miscellaneous",
+"Reagent",
+50,
+0,
+"Non-equippable",
+null,
+0
+],
+"17026": [
+"Miscellaneous",
+"Reagent",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"17028": [
+"Miscellaneous",
+"Reagent",
+48,
+0,
+"Non-equippable",
+null,
+0
+],
 "1703": [
 "Consumable",
 "Other",
@@ -5291,10 +7532,37 @@ null,
 null,
 0
 ],
+"17033": [
+"Miscellaneous",
+"Reagent",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
 "17034": [
 "Miscellaneous",
 "Reagent",
 20,
+0,
+"Non-equippable",
+null,
+0
+],
+"17036": [
+"Miscellaneous",
+"Reagent",
+40,
+0,
+"Non-equippable",
+null,
+0
+],
+"17038": [
+"Miscellaneous",
+"Reagent",
+60,
 0,
 "Non-equippable",
 null,
@@ -5390,6 +7658,15 @@ null,
 null,
 0
 ],
+"17183": [
+"Armor",
+"Shield",
+3,
+1,
+"Off Hand",
+null,
+0
+],
 "17222": [
 "Consumable",
 "Food & Drink",
@@ -5405,6 +7682,60 @@ null,
 35,
 0,
 "Bag",
+null,
+0
+],
+"1730": [
+"Armor",
+"Mail",
+12,
+7,
+"Waist",
+null,
+0
+],
+"1731": [
+"Armor",
+"Mail",
+13,
+8,
+"Feet",
+null,
+0
+],
+"1732": [
+"Armor",
+"Mail",
+14,
+9,
+"Wrist",
+null,
+0
+],
+"1733": [
+"Armor",
+"Cloth",
+15,
+10,
+"Back",
+null,
+0
+],
+"1738": [
+"Armor",
+"Mail",
+19,
+14,
+"Waist",
+null,
+0
+],
+"1740": [
+"Armor",
+"Mail",
+16,
+11,
+"Wrist",
 null,
 0
 ],
@@ -5426,12 +7757,147 @@ null,
 null,
 0
 ],
+"1743": [
+"Armor",
+"Mail",
+19,
+14,
+"Legs",
+null,
+0
+],
+"1744": [
+"Armor",
+"Mail",
+20,
+15,
+"Shoulder",
+null,
+0
+],
+"1746": [
+"Armor",
+"Mail",
+25,
+20,
+"Waist",
+null,
+0
+],
+"1748": [
+"Armor",
+"Mail",
+22,
+17,
+"Wrist",
+null,
+0
+],
 "1749": [
 "Armor",
 "Cloth",
 23,
 18,
 "Back",
+null,
+0
+],
+"1751": [
+"Armor",
+"Mail",
+25,
+20,
+"Legs",
+null,
+0
+],
+"1752": [
+"Armor",
+"Mail",
+21,
+16,
+"Shoulder",
+null,
+0
+],
+"1753": [
+"Armor",
+"Mail",
+22,
+17,
+"Chest",
+null,
+0
+],
+"1755": [
+"Armor",
+"Mail",
+27,
+22,
+"Feet",
+null,
+0
+],
+"1756": [
+"Armor",
+"Mail",
+28,
+23,
+"Wrist",
+null,
+0
+],
+"1757": [
+"Armor",
+"Cloth",
+29,
+24,
+"Back",
+null,
+0
+],
+"1758": [
+"Armor",
+"Mail",
+30,
+25,
+"Hands",
+null,
+0
+],
+"1760": [
+"Armor",
+"Mail",
+27,
+22,
+"Shoulder",
+null,
+0
+],
+"1761": [
+"Armor",
+"Mail",
+28,
+23,
+"Chest",
+null,
+0
+],
+"1766": [
+"Armor",
+"Cloth",
+18,
+13,
+"Back",
+null,
+0
+],
+"1768": [
+"Armor",
+"Cloth",
+20,
+15,
+"Legs",
 null,
 0
 ],
@@ -5462,6 +7928,60 @@ null,
 null,
 0
 ],
+"1770": [
+"Armor",
+"Cloth",
+17,
+12,
+"Chest",
+null,
+0
+],
+"1772": [
+"Armor",
+"Cloth",
+23,
+18,
+"Feet",
+null,
+0
+],
+"1774": [
+"Armor",
+"Cloth",
+24,
+19,
+"Back",
+null,
+0
+],
+"17747": [
+"Consumable",
+"Other",
+50,
+40,
+"Non-equippable",
+null,
+0
+],
+"1776": [
+"Armor",
+"Cloth",
+21,
+16,
+"Legs",
+null,
+0
+],
+"1777": [
+"Armor",
+"Cloth",
+22,
+17,
+"Shoulder",
+null,
+0
+],
 "1778": [
 "Armor",
 "Cloth",
@@ -5480,6 +8000,123 @@ null,
 null,
 0
 ],
+"1780": [
+"Armor",
+"Cloth",
+29,
+24,
+"Feet",
+null,
+0
+],
+"1784": [
+"Armor",
+"Cloth",
+27,
+22,
+"Legs",
+null,
+0
+],
+"1785": [
+"Armor",
+"Cloth",
+28,
+23,
+"Shoulder",
+null,
+0
+],
+"1786": [
+"Armor",
+"Cloth",
+29,
+24,
+"Chest",
+null,
+0
+],
+"1790": [
+"Armor",
+"Cloth",
+16,
+11,
+"Back",
+null,
+0
+],
+"1791": [
+"Armor",
+"Leather",
+17,
+12,
+"Hands",
+null,
+0
+],
+"1794": [
+"Armor",
+"Leather",
+20,
+15,
+"Chest",
+null,
+0
+],
+"1796": [
+"Armor",
+"Leather",
+25,
+20,
+"Feet",
+null,
+0
+],
+"1797": [
+"Armor",
+"Leather",
+21,
+16,
+"Wrist",
+null,
+0
+],
+"1798": [
+"Armor",
+"Cloth",
+22,
+17,
+"Back",
+null,
+0
+],
+"1799": [
+"Armor",
+"Leather",
+23,
+18,
+"Hands",
+null,
+0
+],
+"1800": [
+"Armor",
+"Leather",
+24,
+19,
+"Legs",
+null,
+0
+],
+"1801": [
+"Armor",
+"Leather",
+25,
+20,
+"Shoulder",
+null,
+0
+],
 "1802": [
 "Armor",
 "Leather",
@@ -5495,6 +8132,15 @@ null,
 30,
 25,
 "Waist",
+null,
+0
+],
+"1804": [
+"Armor",
+"Leather",
+26,
+21,
+"Feet",
 null,
 0
 ],
@@ -5525,6 +8171,42 @@ null,
 null,
 0
 ],
+"1805": [
+"Armor",
+"Leather",
+27,
+22,
+"Wrist",
+null,
+0
+],
+"1806": [
+"Armor",
+"Cloth",
+28,
+23,
+"Back",
+null,
+0
+],
+"1807": [
+"Armor",
+"Leather",
+29,
+24,
+"Hands",
+null,
+0
+],
+"1808": [
+"Armor",
+"Leather",
+30,
+25,
+"Legs",
+null,
+0
+],
 "1809": [
 "Armor",
 "Leather",
@@ -5540,6 +8222,33 @@ null,
 27,
 22,
 "Chest",
+null,
+0
+],
+"1811": [
+"Weapon",
+"Sword",
+17,
+12,
+"Two-Hand",
+null,
+0
+],
+"1812": [
+"Weapon",
+"Axe",
+17,
+12,
+"Two-Hand",
+null,
+0
+],
+"1813": [
+"Weapon",
+"Staff",
+18,
+13,
+"Two-Hand",
 null,
 0
 ],
@@ -5561,6 +8270,33 @@ null,
 null,
 0
 ],
+"1817": [
+"Weapon",
+"Sword",
+19,
+14,
+"Main Hand",
+null,
+0
+],
+"1818": [
+"Weapon",
+"Sword",
+24,
+19,
+"Two-Hand",
+null,
+0
+],
+"1819": [
+"Weapon",
+"Axe",
+22,
+17,
+"Main Hand",
+null,
+0
+],
 "1820": [
 "Weapon",
 "Mace",
@@ -5570,12 +8306,48 @@ null,
 null,
 0
 ],
+"1821": [
+"Weapon",
+"Sword",
+24,
+19,
+"Main Hand",
+null,
+0
+],
 "1822": [
 "Weapon",
 "Staff",
 23,
 18,
 "Two-Hand",
+null,
+0
+],
+"18222": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"18224": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"18229": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -5606,6 +8378,24 @@ null,
 null,
 0
 ],
+"1824": [
+"Weapon",
+"Axe",
+23,
+18,
+"Two-Hand",
+null,
+0
+],
+"1825": [
+"Weapon",
+"Mace",
+28,
+23,
+"Main Hand",
+null,
+0
+],
 "18253": [
 "Consumable",
 "Potions",
@@ -5633,6 +8423,24 @@ null,
 null,
 0
 ],
+"18256": [
+"Trade Goods",
+"Other",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"18258": [
+"Quest",
+"Quest",
+55,
+55,
+"Non-equippable",
+null,
+1
+],
 "1826": [
 "Weapon",
 "Mace",
@@ -5642,12 +8450,75 @@ null,
 null,
 0
 ],
+"1827": [
+"Weapon",
+"Axe",
+27,
+22,
+"Main Hand",
+null,
+0
+],
+"1828": [
+"Weapon",
+"Axe",
+27,
+22,
+"Two-Hand",
+null,
+0
+],
+"18285": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"18286": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"1829": [
+"Weapon",
+"Sword",
+29,
+24,
+"Main Hand",
+null,
+0
+],
 "18294": [
 "Consumable",
 "Elixirs",
 45,
 35,
 "Non-equippable",
+null,
+0
+],
+"1830": [
+"Weapon",
+"Sword",
+28,
+23,
+"Two-Hand",
+null,
+0
+],
+"1831": [
+"Weapon",
+"Staff",
+28,
+23,
+"Two-Hand",
 null,
 0
 ],
@@ -5678,7 +8549,25 @@ null,
 null,
 0
 ],
+"1835": [
+"Armor",
+"Leather",
+5,
+1,
+"Waist",
+null,
+0
+],
 "18356": [
+"Quest",
+"Quest",
+60,
+54,
+"Non-equippable",
+null,
+1
+],
+"18357": [
 "Quest",
 "Quest",
 60,
@@ -5696,6 +8585,15 @@ null,
 null,
 1
 ],
+"18359": [
+"Quest",
+"Quest",
+60,
+54,
+"Non-equippable",
+null,
+1
+],
 "1836": [
 "Armor",
 "Leather",
@@ -5705,7 +8603,25 @@ null,
 null,
 0
 ],
+"18360": [
+"Quest",
+"Quest",
+60,
+54,
+"Non-equippable",
+null,
+1
+],
 "18361": [
+"Quest",
+"Quest",
+60,
+54,
+"Non-equippable",
+null,
+1
+],
+"18362": [
 "Quest",
 "Quest",
 60,
@@ -5732,6 +8648,15 @@ null,
 null,
 1
 ],
+"18365": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "18401": [
 "Quest",
 "Quest",
@@ -5750,10 +8675,64 @@ null,
 "Binds when equipped",
 0
 ],
+"18413": [
+"Armor",
+"Cloth",
+62,
+57,
+"Back",
+"Binds when equipped",
+0
+],
+"1843": [
+"Armor",
+"Leather",
+17,
+12,
+"Waist",
+null,
+0
+],
+"18506": [
+"Armor",
+"Leather",
+62,
+57,
+"Feet",
+"Binds when equipped",
+0
+],
+"18510": [
+"Armor",
+"Cloth",
+62,
+57,
+"Back",
+"Binds when equipped",
+0
+],
 "18512": [
 "Trade Goods",
 "Other",
 55,
+0,
+"Non-equippable",
+null,
+0
+],
+"18517": [
+"Recipe",
+"Leatherworking",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
+"18518": [
+"Recipe",
+"Leatherworking",
+62,
 0,
 "Non-equippable",
 null,
@@ -5786,6 +8765,15 @@ null,
 null,
 0
 ],
+"18594": [
+"Consumable",
+"Explosives",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
 "18600": [
 "Recipe",
 "Book",
@@ -5804,6 +8792,15 @@ null,
 null,
 0
 ],
+"18637": [
+"Armor",
+"Miscellaneous",
+55,
+0,
+"Trinket",
+null,
+0
+],
 "18640": [
 "Consumable",
 "Other",
@@ -5817,6 +8814,15 @@ null,
 "Consumable",
 "Explosives",
 45,
+0,
+"Non-equippable",
+null,
+0
+],
+"18645": [
+"Consumable",
+"Device",
+53,
 0,
 "Non-equippable",
 null,
@@ -5844,6 +8850,15 @@ null,
 "Recipe",
 "Engineering",
 53,
+0,
+"Non-equippable",
+null,
+0
+],
+"18655": [
+"Recipe",
+"Engineering",
+55,
 0,
 "Non-equippable",
 null,
@@ -5894,7 +8909,43 @@ null,
 null,
 0
 ],
+"18769": [
+"Quest",
+"Quest",
+60,
+50,
+"Non-equippable",
+null,
+1
+],
+"18770": [
+"Quest",
+"Quest",
+60,
+50,
+"Non-equippable",
+null,
+1
+],
+"18771": [
+"Quest",
+"Quest",
+60,
+50,
+"Non-equippable",
+null,
+1
+],
 "18779": [
+"Quest",
+"Quest",
+60,
+50,
+"Non-equippable",
+null,
+1
+],
+"18780": [
 "Quest",
 "Quest",
 60,
@@ -5930,6 +8981,15 @@ null,
 null,
 1
 ],
+"18784": [
+"Quest",
+"Quest",
+60,
+50,
+"Non-equippable",
+null,
+1
+],
 "18945": [
 "Quest",
 "Quest",
@@ -5957,12 +9017,39 @@ null,
 "Binds when used",
 0
 ],
+"19044": [
+"Armor",
+"Leather",
+58,
+53,
+"Waist",
+"Binds when equipped",
+0
+],
 "19047": [
 "Armor",
 "Cloth",
 58,
 53,
 "Waist",
+"Binds when equipped",
+0
+],
+"19049": [
+"Armor",
+"Leather",
+61,
+56,
+"Hands",
+"Binds when equipped",
+0
+],
+"19050": [
+"Armor",
+"Cloth",
+61,
+56,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -5975,6 +9062,15 @@ null,
 "Binds when equipped",
 0
 ],
+"19052": [
+"Armor",
+"Leather",
+58,
+53,
+"Feet",
+"Binds when equipped",
+0
+],
 "19227": [
 "Quest",
 "Quest",
@@ -5984,7 +9080,25 @@ null,
 null,
 0
 ],
+"19228": [
+"Quest",
+"Quest",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
 "19230": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"19231": [
 "Quest",
 "Quest",
 1,
@@ -6092,11 +9206,29 @@ null,
 null,
 0
 ],
+"19264": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "19265": [
 "Quest",
 "Quest",
 1,
 0,
+"Non-equippable",
+null,
+0
+],
+"19267": [
+"Quest",
+"Quest",
+1,
+1,
 "Non-equippable",
 null,
 0
@@ -6245,6 +9377,15 @@ null,
 null,
 0
 ],
+"19291": [
+"Container",
+"Bag",
+45,
+0,
+"Bag",
+null,
+1
+],
 "193": [
 "Armor",
 "Cloth",
@@ -6260,6 +9401,15 @@ null,
 5,
 1,
 "Legs",
+null,
+0
+],
+"19440": [
+"Consumable",
+"Other",
+58,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -6309,6 +9459,24 @@ null,
 0
 ],
 "19934": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"19935": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"19936": [
 "Miscellaneous",
 "Junk",
 1,
@@ -6380,6 +9548,15 @@ null,
 "Binds to Account",
 0
 ],
+"20395": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+"Binds to Account",
+0
+],
 "20396": [
 "Quest",
 "Quest",
@@ -6407,9 +9584,27 @@ null,
 null,
 0
 ],
+"20452": [
+"Consumable",
+"Food & Drink",
+55,
+45,
+"Non-equippable",
+null,
+0
+],
 "20498": [
 "Trade Goods",
 "Leather",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"20499": [
+"Miscellaneous",
+"Junk",
 55,
 0,
 "Non-equippable",
@@ -6443,6 +9638,51 @@ null,
 null,
 0
 ],
+"20545": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"20546": [
+"Recipe",
+"Tailoring",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
+"20548": [
+"Recipe",
+"Tailoring",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
+"20549": [
+"Armor",
+"Plate",
+63,
+58,
+"Hands",
+"Binds when equipped",
+0
+],
+"20555": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
 "20575": [
 "Armor",
 "Leather",
@@ -6450,6 +9690,33 @@ null,
 15,
 "Chest",
 "Binds when equipped",
+0
+],
+"20677": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"20678": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"20679": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
 0
 ],
 "2070": [
@@ -6587,6 +9854,33 @@ null,
 null,
 1
 ],
+"20770": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"2091": [
+"Consumable",
+"Other",
+20,
+10,
+"Non-equippable",
+null,
+0
+],
+"2092": [
+"Weapon",
+"Dagger",
+2,
+1,
+"One-Hand",
+null,
+0
+],
 "210": [
 "Armor",
 "Leather",
@@ -6623,6 +9917,15 @@ null,
 null,
 0
 ],
+"210781": [
+"Armor",
+"Cloth",
+30,
+25,
+"Wrist",
+"Binds when equipped",
+0
+],
 "21099": [
 "Recipe",
 "Cooking",
@@ -6655,6 +9958,15 @@ null,
 "Cooking",
 40,
 30,
+"Non-equippable",
+null,
+0
+],
+"21177": [
+"Miscellaneous",
+"Reagent",
+60,
+0,
 "Non-equippable",
 null,
 0
@@ -6740,10 +10052,46 @@ null,
 null,
 0
 ],
+"21278": [
+"Armor",
+"Leather",
+62,
+57,
+"Hands",
+"Binds when equipped",
+0
+],
+"2130": [
+"Weapon",
+"Mace",
+3,
+1,
+"One-Hand",
+null,
+0
+],
+"2134": [
+"Weapon",
+"Axe",
+4,
+1,
+"One-Hand",
+null,
+0
+],
 "21340": [
 "Container",
 "Soul Bag",
 52,
+0,
+"Bag",
+"Binds when equipped",
+0
+],
+"21341": [
+"Container",
+"Soul Bag",
+57,
 0,
 "Bag",
 "Binds when equipped",
@@ -6821,12 +10169,30 @@ null,
 null,
 0
 ],
+"2138": [
+"Weapon",
+"Dagger",
+7,
+2,
+"One-Hand",
+null,
+0
+],
 "2139": [
 "Weapon",
 "Dagger",
 3,
 1,
 "One-Hand",
+null,
+0
+],
+"2143": [
+"Armor",
+"Leather",
+27,
+22,
+"Feet",
 null,
 0
 ],
@@ -6837,6 +10203,24 @@ null,
 22,
 "Hands",
 null,
+0
+],
+"215365": [
+"Armor",
+"Cloth",
+30,
+25,
+"Shoulder",
+"Binds when equipped",
+0
+],
+"215366": [
+"Armor",
+"Cloth",
+30,
+25,
+"Waist",
+"Binds when equipped",
 0
 ],
 "215369": [
@@ -6893,6 +10277,51 @@ null,
 null,
 1
 ],
+"2194": [
+"Weapon",
+"Mace",
+25,
+20,
+"One-Hand",
+"Binds when equipped",
+1
+],
+"2211": [
+"Armor",
+"Shield",
+4,
+1,
+"Off Hand",
+null,
+0
+],
+"2212": [
+"Armor",
+"Shield",
+6,
+1,
+"Off Hand",
+null,
+0
+],
+"2213": [
+"Armor",
+"Shield",
+7,
+2,
+"Off Hand",
+null,
+0
+],
+"2214": [
+"Armor",
+"Shield",
+15,
+10,
+"Off Hand",
+null,
+0
+],
 "2215": [
 "Armor",
 "Shield",
@@ -6916,6 +10345,33 @@ null,
 "Shield",
 22,
 17,
+"Off Hand",
+null,
+0
+],
+"2220": [
+"Armor",
+"Shield",
+23,
+18,
+"Off Hand",
+null,
+0
+],
+"2221": [
+"Armor",
+"Shield",
+28,
+23,
+"Off Hand",
+null,
+0
+],
+"2222": [
+"Armor",
+"Shield",
+29,
+24,
 "Off Hand",
 null,
 0
@@ -6960,6 +10416,15 @@ null,
 "Recipe",
 "Tailoring",
 55,
+0,
+"Non-equippable",
+null,
+0
+],
+"22389": [
+"Recipe",
+"Blacksmithing",
+64,
 0,
 "Non-equippable",
 null,
@@ -7163,6 +10628,15 @@ null,
 "Binds when equipped",
 1
 ],
+"23199": [
+"Armor",
+"Totem",
+65,
+60,
+"Relic",
+"Binds when equipped",
+1
+],
 "2320": [
 "Trade Goods",
 "Cloth",
@@ -7190,12 +10664,66 @@ null,
 null,
 0
 ],
+"2371": [
+"Armor",
+"Leather",
+10,
+5,
+"Waist",
+null,
+0
+],
+"2374": [
+"Armor",
+"Leather",
+10,
+5,
+"Wrist",
+null,
+0
+],
 "2386": [
 "Armor",
 "Mail",
 5,
 1,
 "Chest",
+null,
+0
+],
+"2387": [
+"Armor",
+"Mail",
+5,
+1,
+"Waist",
+null,
+0
+],
+"2389": [
+"Armor",
+"Mail",
+5,
+1,
+"Feet",
+null,
+0
+],
+"239": [
+"Armor",
+"Leather",
+22,
+17,
+"Hands",
+null,
+0
+],
+"2390": [
+"Armor",
+"Mail",
+5,
+1,
+"Wrist",
 null,
 0
 ],
@@ -7208,10 +10736,55 @@ null,
 null,
 0
 ],
+"2398": [
+"Armor",
+"Mail",
+10,
+5,
+"Chest",
+null,
+0
+],
+"2400": [
+"Armor",
+"Mail",
+10,
+5,
+"Legs",
+null,
+0
+],
+"2402": [
+"Armor",
+"Mail",
+10,
+5,
+"Wrist",
+null,
+0
+],
+"2403": [
+"Armor",
+"Mail",
+10,
+5,
+"Hands",
+null,
+0
+],
 "2406": [
 "Recipe",
 "Leatherworking",
 15,
+0,
+"Non-equippable",
+null,
+0
+],
+"2407": [
+"Recipe",
+"Leatherworking",
+13,
 0,
 "Non-equippable",
 null,
@@ -7240,6 +10813,33 @@ null,
 "Potions",
 70,
 60,
+"Non-equippable",
+null,
+0
+],
+"24231": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"24281": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"24282": [
+"Miscellaneous",
+"Junk",
+1,
+0,
 "Non-equippable",
 null,
 0
@@ -7343,6 +10943,24 @@ null,
 null,
 0
 ],
+"247239": [
+"Consumable",
+"Potions",
+13,
+3,
+"Non-equippable",
+null,
+0
+],
+"247242": [
+"Consumable",
+"Potions",
+45,
+35,
+"Non-equippable",
+null,
+0
+],
 "247754": [
 "Consumable",
 "Elixirs",
@@ -7385,6 +11003,24 @@ null,
 5,
 0,
 "Non-equippable",
+null,
+0
+],
+"2479": [
+"Weapon",
+"Axe",
+4,
+1,
+"Two-Hand",
+null,
+0
+],
+"2480": [
+"Weapon",
+"Mace",
+3,
+1,
+"Two-Hand",
 null,
 0
 ],
@@ -7658,6 +11294,15 @@ null,
 null,
 0
 ],
+"2488": [
+"Weapon",
+"Sword",
+9,
+4,
+"One-Hand",
+null,
+0
+],
 "248815": [
 "Trade Goods",
 "Metal & Stone",
@@ -7730,6 +11375,15 @@ null,
 null,
 0
 ],
+"2490": [
+"Weapon",
+"Axe",
+9,
+4,
+"One-Hand",
+null,
+0
+],
 "249144": [
 "Weapon",
 "Wand",
@@ -7737,6 +11391,15 @@ null,
 37,
 "Ranged",
 "Binds when equipped",
+0
+],
+"2492": [
+"Weapon",
+"Mace",
+7,
+2,
+"One-Hand",
+null,
 0
 ],
 "249274": [
@@ -7865,6 +11528,15 @@ null,
 null,
 0
 ],
+"249432": [
+"Trade Goods",
+"Parts",
+45,
+0,
+"Non-equippable",
+null,
+0
+],
 "249695": [
 "Quest",
 "Quest",
@@ -7879,6 +11551,15 @@ null,
 "Metal & Stone",
 55,
 0,
+"Non-equippable",
+null,
+0
+],
+"249865": [
+"Consumable",
+"Food & Drink",
+5,
+1,
 "Non-equippable",
 null,
 0
@@ -7901,6 +11582,15 @@ null,
 null,
 0
 ],
+"249869": [
+"Consumable",
+"Food & Drink",
+45,
+35,
+"Non-equippable",
+null,
+0
+],
 "249870": [
 "Consumable",
 "Food & Drink",
@@ -7910,11 +11600,38 @@ null,
 null,
 0
 ],
+"249872": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
+"249873": [
+"Consumable",
+"Food & Drink",
+25,
+15,
+"Non-equippable",
+null,
+0
+],
 "249874": [
 "Consumable",
 "Food & Drink",
 35,
 25,
+"Non-equippable",
+null,
+0
+],
+"249875": [
+"Consumable",
+"Food & Drink",
+45,
+35,
 "Non-equippable",
 null,
 0
@@ -7938,6 +11655,15 @@ null,
 0
 ],
 "250067": [
+"Consumable",
+"Food & Drink",
+55,
+45,
+"Non-equippable",
+null,
+0
+],
+"250068": [
 "Consumable",
 "Food & Drink",
 55,
@@ -7973,11 +11699,38 @@ null,
 null,
 0
 ],
+"250072": [
+"Consumable",
+"Food & Drink",
+55,
+45,
+"Non-equippable",
+null,
+0
+],
 "250073": [
 "Consumable",
 "Food & Drink",
 35,
 25,
+"Non-equippable",
+null,
+0
+],
+"250075": [
+"Consumable",
+"Food & Drink",
+55,
+45,
+"Non-equippable",
+null,
+0
+],
+"250076": [
+"Consumable",
+"Food & Drink",
+45,
+35,
 "Non-equippable",
 null,
 0
@@ -8041,6 +11794,15 @@ null,
 "Elixirs",
 25,
 25,
+"Non-equippable",
+null,
+0
+],
+"250332": [
+"Consumable",
+"Elixirs",
+45,
+45,
 "Non-equippable",
 null,
 0
@@ -8144,6 +11906,15 @@ null,
 null,
 0
 ],
+"250346": [
+"Consumable",
+"Elixirs",
+45,
+45,
+"Non-equippable",
+null,
+0
+],
 "250347": [
 "Consumable",
 "Elixirs",
@@ -8158,6 +11929,15 @@ null,
 "Elixirs",
 55,
 55,
+"Non-equippable",
+null,
+0
+],
+"250349": [
+"Consumable",
+"Elixirs",
+45,
+45,
 "Non-equippable",
 null,
 0
@@ -8180,7 +11960,25 @@ null,
 null,
 0
 ],
+"250363": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
 "250366": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250370": [
 "Recipe",
 "Alchemy",
 1,
@@ -8225,12 +12023,39 @@ null,
 null,
 0
 ],
+"250533": [
+"Armor",
+"Mail",
+34,
+29,
+"Chest",
+"Binds when equipped",
+0
+],
+"250534": [
+"Armor",
+"Mail",
+35,
+30,
+"Feet",
+"Binds when equipped",
+0
+],
 "250538": [
 "Armor",
 "Mail",
 40,
 35,
 "Hands",
+"Binds when equipped",
+0
+],
+"250539": [
+"Armor",
+"Mail",
+40,
+35,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -8333,6 +12158,15 @@ null,
 "Binds when equipped",
 0
 ],
+"250592": [
+"Armor",
+"Plate",
+59,
+54,
+"Waist",
+"Binds when equipped",
+0
+],
 "250593": [
 "Armor",
 "Plate",
@@ -8348,6 +12182,15 @@ null,
 61,
 56,
 "Chest",
+"Binds when equipped",
+0
+],
+"250604": [
+"Weapon",
+"Fist Weapon",
+31,
+26,
+"One-Hand",
 "Binds when equipped",
 0
 ],
@@ -8369,6 +12212,15 @@ null,
 "Binds when equipped",
 0
 ],
+"250610": [
+"Weapon",
+"Sword",
+45,
+40,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "250611": [
 "Weapon",
 "Dagger",
@@ -8385,6 +12237,51 @@ null,
 52,
 "Two-Hand",
 "Binds when equipped",
+0
+],
+"250616": [
+"Weapon",
+"Dagger",
+57,
+52,
+"One-Hand",
+"Binds when equipped",
+0
+],
+"2509": [
+"Weapon",
+"Gun",
+9,
+4,
+"Ranged",
+null,
+0
+],
+"250932": [
+"Consumable",
+"Potions",
+45,
+5,
+"Non-equippable",
+null,
+0
+],
+"250933": [
+"Consumable",
+"Potions",
+5,
+15,
+"Non-equippable",
+null,
+0
+],
+"250934": [
+"Consumable",
+"Potions",
+5,
+25,
+"Non-equippable",
+null,
 0
 ],
 "250936": [
@@ -8423,6 +12320,15 @@ null,
 null,
 0
 ],
+"250941": [
+"Consumable",
+"Potions",
+45,
+35,
+"Non-equippable",
+null,
+0
+],
 "250942": [
 "Consumable",
 "Potions",
@@ -8441,6 +12347,24 @@ null,
 null,
 0
 ],
+"250944": [
+"Consumable",
+"Potions",
+55,
+5,
+"Non-equippable",
+null,
+0
+],
+"250945": [
+"Consumable",
+"Potions",
+55,
+15,
+"Non-equippable",
+null,
+0
+],
 "250947": [
 "Consumable",
 "Potions",
@@ -8455,6 +12379,15 @@ null,
 "Potions",
 25,
 55,
+"Non-equippable",
+null,
+0
+],
+"250950": [
+"Consumable",
+"Potions",
+55,
+30,
 "Non-equippable",
 null,
 0
@@ -8504,6 +12437,33 @@ null,
 null,
 0
 ],
+"250977": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250980": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250982": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
 "250983": [
 "Recipe",
 "Alchemy",
@@ -8514,6 +12474,24 @@ null,
 0
 ],
 "250986": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250988": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250992": [
 "Recipe",
 "Alchemy",
 1,
@@ -8558,6 +12536,33 @@ null,
 null,
 0
 ],
+"251524": [
+"Trade Goods",
+"Other",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
+"251525": [
+"Consumable",
+"Other",
+10,
+1,
+"Non-equippable",
+null,
+0
+],
+"251526": [
+"Recipe",
+"Cooking",
+18,
+0,
+"Non-equippable",
+null,
+0
+],
 "2516": [
 "Projectile",
 "Bullet",
@@ -8573,6 +12578,51 @@ null,
 15,
 10,
 "Ammo",
+null,
+0
+],
+"252022": [
+"Consumable",
+"Food & Drink",
+5,
+1,
+"Non-equippable",
+null,
+0
+],
+"252028": [
+"Consumable",
+"Food & Drink",
+5,
+1,
+"Non-equippable",
+null,
+0
+],
+"252030": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
+"252031": [
+"Consumable",
+"Food & Drink",
+5,
+1,
+"Non-equippable",
+null,
+0
+],
+"252032": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
 null,
 0
 ],
@@ -8630,12 +12680,30 @@ null,
 null,
 0
 ],
+"252463": [
+"Consumable",
+"Permanent",
+40,
+40,
+"Non-equippable",
+null,
+0
+],
 "252467": [
 "Armor",
 "Leather",
 52,
 47,
 "Feet",
+"Binds when equipped",
+0
+],
+"252478": [
+"Armor",
+"Leather",
+56,
+51,
+"Legs",
 "Binds when equipped",
 0
 ],
@@ -8648,7 +12716,43 @@ null,
 "Binds when equipped",
 0
 ],
+"252481": [
+"Armor",
+"Leather",
+59,
+54,
+"Waist",
+"Binds when equipped",
+0
+],
 "252482": [
+"Armor",
+"Leather",
+61,
+56,
+"Head",
+"Binds when equipped",
+0
+],
+"252483": [
+"Armor",
+"Leather",
+61,
+56,
+"Chest",
+"Binds when equipped",
+0
+],
+"252484": [
+"Armor",
+"Leather",
+61,
+56,
+"Chest",
+"Binds when equipped",
+0
+],
+"252485": [
 "Armor",
 "Leather",
 61,
@@ -8747,6 +12851,15 @@ null,
 "Binds when equipped",
 0
 ],
+"252561": [
+"Armor",
+"Leather",
+61,
+56,
+"Head",
+"Binds when equipped",
+0
+],
 "252574": [
 "Armor",
 "Mail",
@@ -8810,6 +12923,15 @@ null,
 "Binds when equipped",
 0
 ],
+"252595": [
+"Armor",
+"Mail",
+56,
+51,
+"Waist",
+"Binds when equipped",
+0
+],
 "252596": [
 "Armor",
 "Mail",
@@ -8825,6 +12947,15 @@ null,
 57,
 52,
 "Head",
+"Binds when equipped",
+0
+],
+"252598": [
+"Armor",
+"Mail",
+57,
+52,
+"Chest",
 "Binds when equipped",
 0
 ],
@@ -8855,6 +12986,15 @@ null,
 "Binds when equipped",
 0
 ],
+"252604": [
+"Armor",
+"Mail",
+61,
+56,
+"Head",
+"Binds when equipped",
+0
+],
 "252605": [
 "Armor",
 "Mail",
@@ -8873,7 +13013,34 @@ null,
 "Binds when equipped",
 0
 ],
+"252761": [
+"Recipe",
+"Leatherworking",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
+"252763": [
+"Recipe",
+"Leatherworking",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
 "252771": [
+"Recipe",
+"Leatherworking",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"252772": [
 "Recipe",
 "Leatherworking",
 20,
@@ -8954,6 +13121,15 @@ null,
 null,
 0
 ],
+"252794": [
+"Recipe",
+"Leatherworking",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
 "252795": [
 "Recipe",
 "Leatherworking",
@@ -8981,6 +13157,24 @@ null,
 null,
 0
 ],
+"252804": [
+"Recipe",
+"Leatherworking",
+27,
+0,
+"Non-equippable",
+null,
+0
+],
+"252811": [
+"Recipe",
+"Leatherworking",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
 "252812": [
 "Recipe",
 "Leatherworking",
@@ -8990,7 +13184,25 @@ null,
 null,
 0
 ],
+"252814": [
+"Recipe",
+"Leatherworking",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
 "252815": [
+"Recipe",
+"Leatherworking",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"252816": [
 "Recipe",
 "Leatherworking",
 30,
@@ -9021,6 +13233,15 @@ null,
 "Recipe",
 "Leatherworking",
 30,
+0,
+"Non-equippable",
+null,
+0
+],
+"252829": [
+"Recipe",
+"Leatherworking",
+35,
 0,
 "Non-equippable",
 null,
@@ -9071,6 +13292,15 @@ null,
 null,
 0
 ],
+"252865": [
+"Recipe",
+"Leatherworking",
+53,
+0,
+"Non-equippable",
+null,
+0
+],
 "252866": [
 "Recipe",
 "Leatherworking",
@@ -9116,10 +13346,64 @@ null,
 null,
 0
 ],
+"252878": [
+"Recipe",
+"Leatherworking",
+56,
+0,
+"Non-equippable",
+null,
+0
+],
+"252879": [
+"Recipe",
+"Leatherworking",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
+"252880": [
+"Recipe",
+"Leatherworking",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
 "252882": [
 "Recipe",
 "Leatherworking",
 58,
+0,
+"Non-equippable",
+null,
+0
+],
+"252885": [
+"Recipe",
+"Leatherworking",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
+"252886": [
+"Recipe",
+"Leatherworking",
+59,
+0,
+"Non-equippable",
+null,
+0
+],
+"252888": [
+"Recipe",
+"Leatherworking",
+60,
 0,
 "Non-equippable",
 null,
@@ -9134,7 +13418,34 @@ null,
 null,
 0
 ],
+"252891": [
+"Recipe",
+"Leatherworking",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "252892": [
+"Recipe",
+"Leatherworking",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"252893": [
+"Recipe",
+"Leatherworking",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"252894": [
 "Recipe",
 "Leatherworking",
 60,
@@ -9183,6 +13494,15 @@ null,
 "Recipe",
 "Leatherworking",
 45,
+0,
+"Non-equippable",
+null,
+0
+],
+"252908": [
+"Recipe",
+"Leatherworking",
+51,
 0,
 "Non-equippable",
 null,
@@ -9282,6 +13602,33 @@ null,
 "Recipe",
 "Leatherworking",
 56,
+0,
+"Non-equippable",
+null,
+0
+],
+"252930": [
+"Recipe",
+"Leatherworking",
+56,
+0,
+"Non-equippable",
+null,
+0
+],
+"252931": [
+"Recipe",
+"Leatherworking",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
+"252937": [
+"Recipe",
+"Leatherworking",
+60,
 0,
 "Non-equippable",
 null,
@@ -9476,6 +13823,24 @@ null,
 "Binds when equipped",
 0
 ],
+"253976": [
+"Recipe",
+"Tailoring",
+30,
+1,
+"Non-equippable",
+null,
+0
+],
+"253978": [
+"Recipe",
+"Tailoring",
+30,
+1,
+"Non-equippable",
+null,
+0
+],
 "253980": [
 "Recipe",
 "Tailoring",
@@ -9521,6 +13886,24 @@ null,
 "Binds when equipped",
 0
 ],
+"254000": [
+"Recipe",
+"Tailoring",
+35,
+1,
+"Non-equippable",
+null,
+0
+],
+"254013": [
+"Armor",
+"Cloth",
+36,
+31,
+"Feet",
+"Binds when equipped",
+0
+],
 "254015": [
 "Armor",
 "Cloth",
@@ -9528,6 +13911,15 @@ null,
 32,
 "Head",
 "Binds when equipped",
+0
+],
+"254016": [
+"Recipe",
+"Tailoring",
+37,
+1,
+"Non-equippable",
+null,
 0
 ],
 "254017": [
@@ -9557,6 +13949,24 @@ null,
 null,
 0
 ],
+"254021": [
+"Armor",
+"Cloth",
+40,
+35,
+"Hands",
+"Binds when equipped",
+0
+],
+"254034": [
+"Recipe",
+"Tailoring",
+41,
+1,
+"Non-equippable",
+null,
+0
+],
 "254035": [
 "Container",
 "Reagent Bag",
@@ -9576,6 +13986,15 @@ null,
 0
 ],
 "254040": [
+"Recipe",
+"Tailoring",
+45,
+1,
+"Non-equippable",
+null,
+0
+],
+"254042": [
 "Recipe",
 "Tailoring",
 45,
@@ -9611,6 +14030,15 @@ null,
 null,
 0
 ],
+"254073": [
+"Armor",
+"Cloth",
+52,
+47,
+"Waist",
+"Binds when equipped",
+0
+],
 "254074": [
 "Recipe",
 "Tailoring",
@@ -9627,6 +14055,15 @@ null,
 47,
 "Hands",
 "Binds when equipped",
+0
+],
+"254076": [
+"Recipe",
+"Tailoring",
+52,
+1,
+"Non-equippable",
+null,
 0
 ],
 "254078": [
@@ -9656,6 +14093,15 @@ null,
 "Binds when equipped",
 0
 ],
+"254094": [
+"Recipe",
+"Tailoring",
+54,
+1,
+"Non-equippable",
+null,
+0
+],
 "254096": [
 "Recipe",
 "Tailoring",
@@ -9675,6 +14121,15 @@ null,
 0
 ],
 "254100": [
+"Recipe",
+"Tailoring",
+55,
+1,
+"Non-equippable",
+null,
+0
+],
+"254102": [
 "Recipe",
 "Tailoring",
 55,
@@ -9726,6 +14181,15 @@ null,
 54,
 "Chest",
 "Binds when equipped",
+0
+],
+"254122": [
+"Recipe",
+"Tailoring",
+59,
+1,
+"Non-equippable",
+null,
 0
 ],
 "254123": [
@@ -9782,6 +14246,33 @@ null,
 "Binds when equipped",
 0
 ],
+"254132": [
+"Recipe",
+"Tailoring",
+60,
+1,
+"Non-equippable",
+null,
+0
+],
+"254133": [
+"Container",
+"Reagent Bag",
+60,
+0,
+"Bag",
+"Binds when equipped",
+0
+],
+"254135": [
+"Armor",
+"Cloth",
+61,
+56,
+"Head",
+"Binds when equipped",
+0
+],
 "254137": [
 "Armor",
 "Cloth",
@@ -9813,6 +14304,15 @@ null,
 "Miscellaneous",
 "Junk",
 1,
+1,
+"Non-equippable",
+null,
+0
+],
+"254684": [
+"Recipe",
+"Tailoring",
+48,
 1,
 "Non-equippable",
 null,
@@ -9881,10 +14381,37 @@ null,
 null,
 0
 ],
+"255715": [
+"Trade Goods",
+"Other",
+36,
+0,
+"Non-equippable",
+null,
+0
+],
 "255716": [
 "Trade Goods",
 "Other",
 16,
+0,
+"Non-equippable",
+null,
+0
+],
+"255718": [
+"Trade Goods",
+"Other",
+36,
+0,
+"Non-equippable",
+null,
+0
+],
+"255719": [
+"Trade Goods",
+"Other",
+58,
 0,
 "Non-equippable",
 null,
@@ -9921,6 +14448,15 @@ null,
 "Recipe",
 "First Aid",
 31,
+0,
+"Non-equippable",
+null,
+0
+],
+"255724": [
+"Recipe",
+"First Aid",
+26,
 0,
 "Non-equippable",
 null,
@@ -10088,6 +14624,15 @@ null,
 null,
 0
 ],
+"2582": [
+"Armor",
+"Cloth",
+17,
+12,
+"Chest",
+"Binds when equipped",
+0
+],
 "2583": [
 "Armor",
 "Cloth",
@@ -10115,6 +14660,15 @@ null,
 null,
 0
 ],
+"258882": [
+"Weapon",
+"Sword",
+5,
+1,
+"Two-Hand",
+null,
+0
+],
 "2589": [
 "Trade Goods",
 "Cloth",
@@ -10133,10 +14687,28 @@ null,
 null,
 0
 ],
+"2594": [
+"Consumable",
+"Food & Drink",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
 "2595": [
 "Consumable",
 "Food & Drink",
 35,
+0,
+"Non-equippable",
+null,
+0
+],
+"2596": [
+"Consumable",
+"Food & Drink",
+15,
 0,
 "Non-equippable",
 null,
@@ -10160,6 +14732,42 @@ null,
 null,
 0
 ],
+"2604": [
+"Trade Goods",
+"Other",
+10,
+0,
+"Non-equippable",
+null,
+0
+],
+"2605": [
+"Trade Goods",
+"Other",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
+"260629": [
+"Consumable",
+"Food & Drink",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"260792": [
+"Consumable",
+"Explosives",
+25,
+1,
+"Non-equippable",
+null,
+0
+],
 "260793": [
 "Consumable",
 "Explosives",
@@ -10169,10 +14777,28 @@ null,
 null,
 0
 ],
+"260794": [
+"Trade Goods",
+"Parts",
+15,
+1,
+"Non-equippable",
+null,
+0
+],
 "260796": [
 "Trade Goods",
 "Parts",
 29,
+1,
+"Non-equippable",
+null,
+0
+],
+"260800": [
+"Consumable",
+"Explosives",
+35,
 1,
 "Non-equippable",
 null,
@@ -10214,6 +14840,15 @@ null,
 null,
 0
 ],
+"260808": [
+"Trade Goods",
+"Parts",
+48,
+1,
+"Non-equippable",
+null,
+0
+],
 "260810": [
 "Armor",
 "Cloth",
@@ -10223,9 +14858,27 @@ null,
 "Binds when equipped",
 0
 ],
+"260813": [
+"Trade Goods",
+"Parts",
+55,
+1,
+"Non-equippable",
+null,
+0
+],
 "260815": [
 "Trade Goods",
 "Parts",
+57,
+1,
+"Non-equippable",
+null,
+0
+],
+"260816": [
+"Consumable",
+"Explosives",
 57,
 1,
 "Non-equippable",
@@ -10250,6 +14903,15 @@ null,
 "Binds when used",
 0
 ],
+"260822": [
+"Consumable",
+"Device",
+60,
+60,
+"Non-equippable",
+null,
+0
+],
 "260825": [
 "Miscellaneous",
 "Other",
@@ -10257,6 +14919,15 @@ null,
 0,
 "Non-equippable",
 "Binds when used",
+0
+],
+"2613": [
+"Armor",
+"Cloth",
+13,
+8,
+"Chest",
+null,
 0
 ],
 "262888": [
@@ -10295,7 +14966,25 @@ null,
 null,
 0
 ],
+"263509": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
 "263511": [
+"Recipe",
+"Cooking",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
+"263513": [
 "Recipe",
 "Cooking",
 15,
@@ -10413,6 +15102,24 @@ null,
 0
 ],
 "264024": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
+"264026": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
+"264027": [
 "Consumable",
 "Other",
 1,
@@ -10574,6 +15281,15 @@ null,
 null,
 0
 ],
+"264045": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
 "264046": [
 "Consumable",
 "Other",
@@ -10620,6 +15336,15 @@ null,
 0
 ],
 "264051": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
+"264052": [
 "Consumable",
 "Other",
 1,
@@ -11339,6 +16064,15 @@ null,
 null,
 0
 ],
+"264133": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
 "264134": [
 "Consumable",
 "Other",
@@ -11537,6 +16271,15 @@ null,
 null,
 0
 ],
+"264156": [
+"Consumable",
+"Other",
+1,
+10,
+"Non-equippable",
+null,
+0
+],
 "264157": [
 "Consumable",
 "Other",
@@ -11573,6 +16316,33 @@ null,
 null,
 0
 ],
+"2642": [
+"Armor",
+"Mail",
+9,
+4,
+"Feet",
+null,
+0
+],
+"264201": [
+"Recipe",
+"Engineering",
+5,
+0,
+"Non-equippable",
+null,
+0
+],
+"264203": [
+"Recipe",
+"Engineering",
+11,
+0,
+"Non-equippable",
+null,
+0
+],
 "264206": [
 "Recipe",
 "Engineering",
@@ -11591,10 +16361,46 @@ null,
 null,
 0
 ],
+"264209": [
+"Recipe",
+"Engineering",
+35,
+0,
+"Non-equippable",
+null,
+0
+],
 "264210": [
 "Recipe",
 "Engineering",
 35,
+0,
+"Non-equippable",
+null,
+0
+],
+"264212": [
+"Recipe",
+"Engineering",
+38,
+0,
+"Non-equippable",
+null,
+0
+],
+"264213": [
+"Recipe",
+"Engineering",
+40,
+0,
+"Non-equippable",
+null,
+0
+],
+"264214": [
+"Recipe",
+"Engineering",
+43,
 0,
 "Non-equippable",
 null,
@@ -11627,7 +16433,70 @@ null,
 null,
 0
 ],
+"264223": [
+"Recipe",
+"Engineering",
+55,
+0,
+"Non-equippable",
+null,
+0
+],
+"264224": [
+"Recipe",
+"Engineering",
+50,
+0,
+"Non-equippable",
+null,
+0
+],
+"264225": [
+"Recipe",
+"Engineering",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
+"264226": [
+"Recipe",
+"Engineering",
+57,
+0,
+"Non-equippable",
+null,
+0
+],
+"264227": [
+"Recipe",
+"Engineering",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "264228": [
+"Recipe",
+"Engineering",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"264229": [
+"Recipe",
+"Engineering",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"264230": [
 "Recipe",
 "Engineering",
 60,
@@ -11651,6 +16520,51 @@ null,
 8,
 3,
 "Legs",
+null,
+0
+],
+"2648": [
+"Armor",
+"Mail",
+10,
+5,
+"Chest",
+null,
+0
+],
+"2651": [
+"Armor",
+"Mail",
+4,
+1,
+"Wrist",
+null,
+0
+],
+"2652": [
+"Armor",
+"Cloth",
+5,
+1,
+"Back",
+null,
+0
+],
+"2653": [
+"Armor",
+"Mail",
+4,
+1,
+"Hands",
+null,
+0
+],
+"2656": [
+"Armor",
+"Mail",
+5,
+1,
+"Chest",
 null,
 0
 ],
@@ -11861,6 +16775,15 @@ null,
 null,
 0
 ],
+"269739": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "2698": [
 "Recipe",
 "Cooking",
@@ -11875,6 +16798,15 @@ null,
 "Cooking",
 20,
 0,
+"Non-equippable",
+null,
+0
+],
+"269900": [
+"Miscellaneous",
+"Other",
+1,
+1,
 "Non-equippable",
 null,
 0
@@ -11924,7 +16856,34 @@ null,
 null,
 0
 ],
+"271648": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"271666": [
+"Armor",
+"Cloth",
+1,
+1,
+"Legs",
+null,
+0
+],
 "271668": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
+"271675": [
 "Armor",
 "Miscellaneous",
 1,
@@ -11937,6 +16896,15 @@ null,
 "Miscellaneous",
 "Junk",
 1,
+0,
+"Non-equippable",
+null,
+0
+],
+"272015": [
+"Miscellaneous",
+"Junk",
+60,
 0,
 "Non-equippable",
 null,
@@ -12059,6 +17027,15 @@ null,
 null,
 0
 ],
+"273101": [
+"Recipe",
+"Cooking",
+40,
+0,
+"Non-equippable",
+null,
+0
+],
 "273102": [
 "Recipe",
 "Cooking",
@@ -12122,6 +17099,15 @@ null,
 null,
 0
 ],
+"273116": [
+"Recipe",
+"Enchanting",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "273117": [
 "Recipe",
 "Engineering",
@@ -12143,6 +17129,24 @@ null,
 "273119": [
 "Recipe",
 "Fishing",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"273120": [
+"Recipe",
+"Book",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"273121": [
+"Recipe",
+"Leatherworking",
 60,
 0,
 "Non-equippable",
@@ -12221,6 +17225,15 @@ null,
 null,
 0
 ],
+"273141": [
+"Recipe",
+"Fishing",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
 "2732": [
 "Quest",
 "Quest",
@@ -12275,6 +17288,15 @@ null,
 null,
 0
 ],
+"273815": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
 "2740": [
 "Quest",
 "Quest",
@@ -12287,6 +17309,15 @@ null,
 "274041": [
 "Miscellaneous",
 "Junk",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
+"274077": [
+"Quest",
+"Quest",
 1,
 0,
 "Non-equippable",
@@ -12401,6 +17432,24 @@ null,
 null,
 0
 ],
+"2754": [
+"Weapon",
+"Sword",
+3,
+1,
+"Two-Hand",
+null,
+0
+],
+"275604": [
+"Armor",
+"Cloth",
+58,
+53,
+"Hands",
+"Binds when equipped",
+0
+],
 "275682": [
 "Miscellaneous",
 "Pet",
@@ -12437,12 +17486,84 @@ null,
 null,
 0
 ],
+"2763": [
+"Weapon",
+"Dagger",
+14,
+9,
+"One-Hand",
+null,
+0
+],
+"2764": [
+"Weapon",
+"Dagger",
+18,
+13,
+"One-Hand",
+null,
+0
+],
+"2765": [
+"Weapon",
+"Dagger",
+23,
+18,
+"One-Hand",
+null,
+0
+],
+"2766": [
+"Weapon",
+"Dagger",
+29,
+24,
+"One-Hand",
+null,
+0
+],
+"276993": [
+"Armor",
+"Mail",
+10,
+5,
+"Wrist",
+"Binds when equipped",
+0
+],
 "276994": [
 "Armor",
 "Mail",
 11,
 6,
 "Hands",
+"Binds when equipped",
+0
+],
+"276995": [
+"Armor",
+"Mail",
+10,
+5,
+"Waist",
+"Binds when equipped",
+0
+],
+"276996": [
+"Armor",
+"Mail",
+12,
+7,
+"Legs",
+"Binds when equipped",
+0
+],
+"276997": [
+"Armor",
+"Mail",
+11,
+6,
+"Feet",
 "Binds when equipped",
 0
 ],
@@ -12488,6 +17609,15 @@ null,
 10,
 5,
 "Waist",
+"Binds when equipped",
+0
+],
+"277002": [
+"Armor",
+"Leather",
+12,
+7,
+"Legs",
 "Binds when equipped",
 0
 ],
@@ -12554,6 +17684,15 @@ null,
 "Binds when equipped",
 0
 ],
+"277010": [
+"Armor",
+"Cloth",
+12,
+7,
+"Chest",
+"Binds when equipped",
+0
+],
 "277011": [
 "Armor",
 "Cloth",
@@ -12569,6 +17708,42 @@ null,
 12,
 7,
 "Chest",
+"Binds when equipped",
+0
+],
+"277017": [
+"Armor",
+"Mail",
+10,
+5,
+"Wrist",
+"Binds when equipped",
+0
+],
+"277018": [
+"Armor",
+"Mail",
+11,
+6,
+"Hands",
+"Binds when equipped",
+0
+],
+"277019": [
+"Armor",
+"Mail",
+10,
+5,
+"Waist",
+"Binds when equipped",
+0
+],
+"277020": [
+"Armor",
+"Mail",
+12,
+7,
+"Legs",
 "Binds when equipped",
 0
 ],
@@ -12614,6 +17789,15 @@ null,
 12,
 7,
 "Legs",
+"Binds when equipped",
+0
+],
+"277028": [
+"Armor",
+"Leather",
+12,
+7,
+"Chest",
 "Binds when equipped",
 0
 ],
@@ -12689,6 +17873,15 @@ null,
 "Binds when equipped",
 0
 ],
+"277038": [
+"Armor",
+"Cloth",
+12,
+7,
+"Legs",
+"Binds when equipped",
+0
+],
 "277039": [
 "Armor",
 "Cloth",
@@ -12713,6 +17906,15 @@ null,
 35,
 30,
 "Head",
+"Binds when equipped",
+0
+],
+"277043": [
+"Armor",
+"Leather",
+35,
+30,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -12758,6 +17960,15 @@ null,
 30,
 0,
 "Non-equippable",
+null,
+0
+],
+"2773": [
+"Weapon",
+"Bow",
+8,
+3,
+"Ranged",
 null,
 0
 ],
@@ -12896,6 +18107,15 @@ null,
 null,
 0
 ],
+"277500": [
+"Consumable",
+"Scrolls",
+55,
+46,
+"Non-equippable",
+null,
+0
+],
 "277501": [
 "Consumable",
 "Scrolls",
@@ -12910,6 +18130,15 @@ null,
 "Scrolls",
 55,
 46,
+"Non-equippable",
+null,
+0
+],
+"277508": [
+"Miscellaneous",
+"Pet",
+20,
+0,
 "Non-equippable",
 null,
 0
@@ -12941,6 +18170,15 @@ null,
 "Binds when equipped",
 0
 ],
+"2777": [
+"Weapon",
+"Bow",
+13,
+8,
+"Ranged",
+null,
+0
+],
 "277715": [
 "Container",
 "Reagent Bag",
@@ -12955,6 +18193,33 @@ null,
 "Gun",
 13,
 8,
+"Ranged",
+null,
+0
+],
+"2780": [
+"Weapon",
+"Bow",
+19,
+14,
+"Ranged",
+null,
+0
+],
+"278029": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"2781": [
+"Weapon",
+"Gun",
+18,
+13,
 "Ranged",
 null,
 0
@@ -12995,6 +18260,24 @@ null,
 null,
 0
 ],
+"2786": [
+"Weapon",
+"Gun",
+29,
+24,
+"Ranged",
+null,
+0
+],
+"279277": [
+"Consumable",
+"Other",
+1,
+1,
+"Non-equippable",
+null,
+1
+],
 "279450": [
 "Miscellaneous",
 "Other",
@@ -13008,6 +18291,24 @@ null,
 "Quest",
 "Quest",
 1,
+0,
+"Non-equippable",
+null,
+0
+],
+"279938": [
+"Consumable",
+"Other",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"279940": [
+"Consumable",
+"Other",
+28,
 0,
 "Non-equippable",
 null,
@@ -13067,6 +18368,24 @@ null,
 null,
 0
 ],
+"279950": [
+"Consumable",
+"Other",
+4,
+0,
+"Non-equippable",
+null,
+0
+],
+"279951": [
+"Consumable",
+"Other",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "279955": [
 "Consumable",
 "Other",
@@ -13080,6 +18399,24 @@ null,
 "Consumable",
 "Other",
 4,
+0,
+"Non-equippable",
+null,
+0
+],
+"279957": [
+"Consumable",
+"Other",
+28,
+0,
+"Non-equippable",
+null,
+0
+],
+"279959": [
+"Consumable",
+"Other",
+60,
 0,
 "Non-equippable",
 null,
@@ -13112,6 +18449,15 @@ null,
 null,
 0
 ],
+"279964": [
+"Consumable",
+"Other",
+28,
+0,
+"Non-equippable",
+null,
+0
+],
 "279965": [
 "Consumable",
 "Other",
@@ -13139,10 +18485,37 @@ null,
 null,
 0
 ],
+"279968": [
+"Consumable",
+"Other",
+4,
+0,
+"Non-equippable",
+null,
+0
+],
+"279969": [
+"Consumable",
+"Other",
+28,
+0,
+"Non-equippable",
+null,
+0
+],
 "279970": [
 "Consumable",
 "Other",
 28,
+0,
+"Non-equippable",
+null,
+0
+],
+"279972": [
+"Consumable",
+"Other",
+4,
 0,
 "Non-equippable",
 null,
@@ -13184,10 +18557,109 @@ null,
 null,
 0
 ],
+"279982": [
+"Consumable",
+"Other",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
 "279985": [
 "Consumable",
 "Other",
 28,
+0,
+"Non-equippable",
+null,
+0
+],
+"279988": [
+"Consumable",
+"Other",
+28,
+0,
+"Non-equippable",
+null,
+0
+],
+"279989": [
+"Consumable",
+"Other",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"279990": [
+"Consumable",
+"Other",
+60,
+0,
+"Non-equippable",
+null,
+0
+],
+"280697": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"280699": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"280703": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"280794": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"280795": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"280801": [
+"Miscellaneous",
+"Pet",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"280803": [
+"Miscellaneous",
+"Pet",
+30,
 0,
 "Non-equippable",
 null,
@@ -13328,6 +18800,15 @@ null,
 "Binds when equipped",
 0
 ],
+"284870": [
+"Recipe",
+"Engineering",
+52,
+0,
+"Non-equippable",
+null,
+0
+],
 "284871": [
 "Recipe",
 "Alchemy",
@@ -13391,6 +18872,24 @@ null,
 "Binds when equipped",
 0
 ],
+"286152": [
+"Consumable",
+"Food & Drink",
+45,
+35,
+"Non-equippable",
+null,
+0
+],
+"2864": [
+"Armor",
+"Mail",
+18,
+13,
+"Chest",
+"Binds when equipped",
+0
+],
 "2865": [
 "Armor",
 "Mail",
@@ -13436,6 +18935,15 @@ null,
 null,
 0
 ],
+"2880": [
+"Trade Goods",
+"Other",
+5,
+0,
+"Non-equippable",
+null,
+0
+],
 "2881": [
 "Recipe",
 "Blacksmithing",
@@ -13446,6 +18954,15 @@ null,
 0
 ],
 "2882": [
+"Recipe",
+"Blacksmithing",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
+"2883": [
 "Recipe",
 "Blacksmithing",
 25,
@@ -13526,6 +19043,42 @@ null,
 null,
 0
 ],
+"2947": [
+"Weapon",
+"Thrown",
+3,
+1,
+"Thrown",
+null,
+0
+],
+"2960": [
+"Armor",
+"Cloth",
+9,
+4,
+"Hands",
+null,
+0
+],
+"2967": [
+"Armor",
+"Mail",
+10,
+5,
+"Feet",
+null,
+0
+],
+"2968": [
+"Armor",
+"Mail",
+9,
+4,
+"Hands",
+null,
+0
+],
 "2996": [
 "Trade Goods",
 "Cloth",
@@ -13571,6 +19124,15 @@ null,
 null,
 0
 ],
+"3023": [
+"Weapon",
+"Gun",
+21,
+16,
+"Ranged",
+null,
+0
+],
 "3030": [
 "Projectile",
 "Arrow",
@@ -13599,6 +19161,15 @@ null,
 0
 ],
 "3167": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"3171": [
 "Miscellaneous",
 "Junk",
 1,
@@ -13643,6 +19214,15 @@ null,
 null,
 0
 ],
+"3181": [
+"Miscellaneous",
+"Junk",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
 "3182": [
 "Trade Goods",
 "Cloth",
@@ -13661,6 +19241,15 @@ null,
 "Binds when equipped",
 0
 ],
+"3189": [
+"Weapon",
+"Axe",
+8,
+3,
+"Two-Hand",
+null,
+0
+],
 "3190": [
 "Weapon",
 "Mace",
@@ -13669,6 +19258,24 @@ null,
 "Two-Hand",
 null,
 0
+],
+"3207": [
+"Armor",
+"Leather",
+14,
+9,
+"Wrist",
+null,
+0
+],
+"3233": [
+"Container",
+"Bag",
+15,
+0,
+"Bag",
+null,
+1
 ],
 "3239": [
 "Consumable",
@@ -13679,11 +19286,56 @@ null,
 null,
 0
 ],
+"3240": [
+"Consumable",
+"Other",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
 "3241": [
 "Consumable",
 "Other",
 25,
 15,
+"Non-equippable",
+null,
+0
+],
+"3279": [
+"Armor",
+"Mail",
+12,
+7,
+"Feet",
+null,
+0
+],
+"3285": [
+"Armor",
+"Leather",
+10,
+5,
+"Wrist",
+null,
+0
+],
+"3295": [
+"Weapon",
+"Sword",
+3,
+1,
+"Main Hand",
+null,
+0
+],
+"3299": [
+"Miscellaneous",
+"Junk",
+1,
+0,
 "Non-equippable",
 null,
 0
@@ -13706,12 +19358,39 @@ null,
 null,
 0
 ],
+"3303": [
+"Armor",
+"Mail",
+12,
+7,
+"Wrist",
+null,
+0
+],
 "3319": [
 "Weapon",
 "Sword",
 9,
 4,
 "Main Hand",
+null,
+0
+],
+"3327": [
+"Weapon",
+"Staff",
+9,
+4,
+"Two-Hand",
+null,
+0
+],
+"3328": [
+"Armor",
+"Cloth",
+9,
+4,
+"Chest",
 null,
 0
 ],
@@ -13760,12 +19439,30 @@ null,
 null,
 0
 ],
+"3363": [
+"Armor",
+"Cloth",
+3,
+1,
+"Waist",
+null,
+0
+],
 "3369": [
 "Trade Goods",
 "Herb",
 24,
 0,
 "Non-equippable",
+null,
+0
+],
+"3370": [
+"Armor",
+"Cloth",
+8,
+3,
+"Waist",
 null,
 0
 ],
@@ -13787,11 +19484,65 @@ null,
 null,
 0
 ],
+"3374": [
+"Armor",
+"Cloth",
+14,
+9,
+"Waist",
+null,
+0
+],
+"3375": [
+"Armor",
+"Cloth",
+12,
+7,
+"Wrist",
+null,
+0
+],
+"3376": [
+"Armor",
+"Cloth",
+18,
+13,
+"Waist",
+null,
+0
+],
+"3378": [
+"Armor",
+"Cloth",
+21,
+16,
+"Waist",
+null,
+0
+],
 "3379": [
 "Armor",
 "Cloth",
 22,
 17,
+"Wrist",
+null,
+0
+],
+"3380": [
+"Armor",
+"Cloth",
+30,
+25,
+"Waist",
+null,
+0
+],
+"3381": [
+"Armor",
+"Cloth",
+28,
+23,
 "Wrist",
 null,
 0
@@ -13850,6 +19601,15 @@ null,
 null,
 0
 ],
+"3389": [
+"Consumable",
+"Elixirs",
+26,
+16,
+"Non-equippable",
+null,
+0
+],
 "3390": [
 "Consumable",
 "Elixirs",
@@ -13868,10 +19628,46 @@ null,
 null,
 0
 ],
+"3393": [
+"Recipe",
+"Alchemy",
+22,
+0,
+"Non-equippable",
+null,
+0
+],
 "3395": [
 "Recipe",
 "Alchemy",
 50,
+0,
+"Non-equippable",
+null,
+0
+],
+"3396": [
+"Recipe",
+"Alchemy",
+28,
+0,
+"Non-equippable",
+null,
+0
+],
+"3399": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"3401": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -13908,6 +19704,15 @@ null,
 "Armor",
 "Miscellaneous",
 20,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"3421": [
+"Armor",
+"Miscellaneous",
+10,
 0,
 "Held In Off-hand",
 null,
@@ -14093,6 +19898,15 @@ null,
 null,
 0
 ],
+"3487": [
+"Weapon",
+"Sword",
+19,
+14,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "3488": [
 "Weapon",
 "Axe",
@@ -14125,6 +19939,15 @@ null,
 "Mace",
 25,
 20,
+"One-Hand",
+"Binds when equipped",
+0
+],
+"3492": [
+"Weapon",
+"Mace",
+30,
+25,
 "One-Hand",
 "Binds when equipped",
 0
@@ -14183,12 +20006,48 @@ null,
 null,
 0
 ],
+"3589": [
+"Armor",
+"Cloth",
+17,
+12,
+"Waist",
+null,
+0
+],
+"3590": [
+"Armor",
+"Cloth",
+17,
+12,
+"Wrist",
+null,
+0
+],
 "3596": [
 "Armor",
 "Cloth",
 5,
 1,
 "Wrist",
+null,
+0
+],
+"36": [
+"Weapon",
+"Mace",
+2,
+1,
+"Main Hand",
+null,
+0
+],
+"3608": [
+"Recipe",
+"Blacksmithing",
+29,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -14216,6 +20075,60 @@ null,
 29,
 0,
 "Non-equippable",
+null,
+0
+],
+"3612": [
+"Recipe",
+"Blacksmithing",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"3642": [
+"Armor",
+"Cloth",
+9,
+4,
+"Wrist",
+null,
+0
+],
+"3643": [
+"Armor",
+"Cloth",
+14,
+9,
+"Wrist",
+null,
+0
+],
+"3644": [
+"Armor",
+"Cloth",
+12,
+7,
+"Wrist",
+null,
+0
+],
+"3649": [
+"Armor",
+"Shield",
+11,
+6,
+"Off Hand",
+null,
+0
+],
+"3650": [
+"Armor",
+"Shield",
+9,
+4,
+"Off Hand",
 null,
 0
 ],
@@ -14256,6 +20169,15 @@ null,
 0
 ],
 "3671": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"3674": [
 "Miscellaneous",
 "Junk",
 1,
@@ -14339,6 +20261,15 @@ null,
 "3702": [
 "Miscellaneous",
 "Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"3703": [
+"Consumable",
+"Food & Drink",
 1,
 0,
 "Non-equippable",
@@ -14480,6 +20411,15 @@ null,
 null,
 0
 ],
+"3778": [
+"Weapon",
+"Bow",
+31,
+26,
+"Ranged",
+null,
+0
+],
 "3779": [
 "Weapon",
 "Axe",
@@ -14561,12 +20501,165 @@ null,
 null,
 0
 ],
+"3792": [
+"Armor",
+"Cloth",
+34,
+29,
+"Waist",
+null,
+0
+],
+"3793": [
+"Armor",
+"Cloth",
+32,
+27,
+"Feet",
+null,
+0
+],
+"3795": [
+"Armor",
+"Cloth",
+36,
+31,
+"Back",
+null,
+0
+],
 "3796": [
 "Armor",
 "Cloth",
 33,
 28,
 "Hands",
+null,
+0
+],
+"3797": [
+"Armor",
+"Cloth",
+39,
+34,
+"Legs",
+null,
+0
+],
+"3799": [
+"Armor",
+"Cloth",
+37,
+32,
+"Chest",
+null,
+0
+],
+"3800": [
+"Armor",
+"Leather",
+39,
+34,
+"Waist",
+null,
+0
+],
+"3801": [
+"Armor",
+"Leather",
+35,
+30,
+"Feet",
+null,
+0
+],
+"3802": [
+"Armor",
+"Leather",
+34,
+29,
+"Wrist",
+null,
+0
+],
+"3805": [
+"Armor",
+"Leather",
+32,
+27,
+"Legs",
+null,
+0
+],
+"3806": [
+"Armor",
+"Leather",
+37,
+32,
+"Shoulder",
+null,
+0
+],
+"3807": [
+"Armor",
+"Leather",
+33,
+28,
+"Chest",
+null,
+0
+],
+"3811": [
+"Armor",
+"Cloth",
+37,
+32,
+"Back",
+null,
+0
+],
+"3812": [
+"Armor",
+"Mail",
+36,
+31,
+"Hands",
+null,
+0
+],
+"3813": [
+"Armor",
+"Mail",
+35,
+30,
+"Legs",
+null,
+0
+],
+"3814": [
+"Armor",
+"Mail",
+39,
+34,
+"Shoulder",
+null,
+0
+],
+"3815": [
+"Armor",
+"Mail",
+33,
+28,
+"Chest",
+null,
+0
+],
+"3816": [
+"Armor",
+"Shield",
+36,
+31,
+"Off Hand",
 null,
 0
 ],
@@ -14611,6 +20704,15 @@ null,
 "Potions",
 33,
 23,
+"Non-equippable",
+null,
+0
+],
+"3824": [
+"Consumable",
+"Other",
+34,
+24,
 "Non-equippable",
 null,
 0
@@ -14759,11 +20861,29 @@ null,
 "Binds when equipped",
 0
 ],
+"3845": [
+"Armor",
+"Mail",
+40,
+35,
+"Chest",
+"Binds when equipped",
+0
+],
 "3846": [
 "Armor",
 "Mail",
 37,
 32,
+"Feet",
+"Binds when equipped",
+0
+],
+"3847": [
+"Armor",
+"Mail",
+40,
+35,
 "Feet",
 "Binds when equipped",
 0
@@ -14804,11 +20924,29 @@ null,
 "Binds when equipped",
 0
 ],
+"3852": [
+"Weapon",
+"Mace",
+34,
+29,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "3853": [
 "Weapon",
 "Sword",
 36,
 31,
+"Two-Hand",
+"Binds when equipped",
+0
+],
+"3854": [
+"Weapon",
+"Sword",
+40,
+35,
 "Two-Hand",
 "Binds when equipped",
 0
@@ -14885,6 +21023,15 @@ null,
 null,
 0
 ],
+"3867": [
+"Recipe",
+"Blacksmithing",
+34,
+0,
+"Non-equippable",
+null,
+0
+],
 "3868": [
 "Recipe",
 "Blacksmithing",
@@ -14898,6 +21045,24 @@ null,
 "Recipe",
 "Blacksmithing",
 40,
+0,
+"Non-equippable",
+null,
+0
+],
+"3870": [
+"Recipe",
+"Blacksmithing",
+32,
+0,
+"Non-equippable",
+null,
+0
+],
+"3871": [
+"Recipe",
+"Blacksmithing",
+35,
 0,
 "Non-equippable",
 null,
@@ -14925,6 +21090,15 @@ null,
 "Recipe",
 "Blacksmithing",
 37,
+0,
+"Non-equippable",
+null,
+0
+],
+"3875": [
+"Recipe",
+"Blacksmithing",
+40,
 0,
 "Non-equippable",
 null,
@@ -14966,6 +21140,141 @@ null,
 null,
 0
 ],
+"3937": [
+"Armor",
+"Cloth",
+46,
+41,
+"Feet",
+null,
+0
+],
+"3939": [
+"Armor",
+"Cloth",
+47,
+42,
+"Back",
+null,
+0
+],
+"3941": [
+"Armor",
+"Cloth",
+45,
+40,
+"Legs",
+null,
+0
+],
+"3943": [
+"Armor",
+"Cloth",
+43,
+38,
+"Chest",
+null,
+0
+],
+"3961": [
+"Armor",
+"Leather",
+44,
+39,
+"Waist",
+null,
+0
+],
+"3963": [
+"Armor",
+"Leather",
+43,
+38,
+"Wrist",
+null,
+0
+],
+"3967": [
+"Armor",
+"Leather",
+47,
+42,
+"Shoulder",
+null,
+0
+],
+"3968": [
+"Armor",
+"Leather",
+45,
+40,
+"Chest",
+null,
+0
+],
+"3969": [
+"Armor",
+"Leather",
+55,
+50,
+"Waist",
+null,
+0
+],
+"3990": [
+"Armor",
+"Shield",
+56,
+51,
+"Off Hand",
+null,
+0
+],
+"3995": [
+"Armor",
+"Cloth",
+57,
+52,
+"Back",
+null,
+0
+],
+"3999": [
+"Armor",
+"Mail",
+54,
+49,
+"Chest",
+null,
+0
+],
+"4000": [
+"Armor",
+"Mail",
+44,
+39,
+"Waist",
+null,
+0
+],
+"4018": [
+"Weapon",
+"Sword",
+42,
+37,
+"Two-Hand",
+null,
+0
+],
+"4021": [
+"Weapon",
+"Mace",
+46,
+41,
+"Main Hand",
+null,
+0
+],
 "4023": [
 "Weapon",
 "Dagger",
@@ -14974,6 +21283,42 @@ null,
 "One-Hand",
 null,
 0
+],
+"4024": [
+"Weapon",
+"Staff",
+47,
+42,
+"Two-Hand",
+null,
+0
+],
+"4025": [
+"Weapon",
+"Bow",
+45,
+40,
+"Ranged",
+null,
+0
+],
+"4026": [
+"Weapon",
+"Gun",
+43,
+38,
+"Ranged",
+null,
+0
+],
+"4056": [
+"Quest",
+"Quest",
+35,
+35,
+"Non-equippable",
+null,
+1
 ],
 "4092": [
 "Miscellaneous",
@@ -15002,11 +21347,38 @@ null,
 null,
 0
 ],
+"4098": [
+"Quest",
+"Quest",
+45,
+45,
+"Non-equippable",
+null,
+1
+],
 "4099": [
 "Miscellaneous",
 "Junk",
 1,
 0,
+"Non-equippable",
+null,
+0
+],
+"4102": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"414": [
+"Consumable",
+"Food & Drink",
+15,
+5,
 "Non-equippable",
 null,
 0
@@ -15191,6 +21563,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4250": [
+"Armor",
+"Leather",
+25,
+20,
+"Waist",
+"Binds when equipped",
+0
+],
 "4251": [
 "Armor",
 "Leather",
@@ -15254,11 +21635,29 @@ null,
 "Binds when equipped",
 0
 ],
+"4258": [
+"Armor",
+"Leather",
+34,
+29,
+"Waist",
+"Binds when equipped",
+0
+],
 "4259": [
 "Armor",
 "Leather",
 36,
 31,
+"Wrist",
+"Binds when equipped",
+0
+],
+"4260": [
+"Armor",
+"Leather",
+39,
+34,
 "Wrist",
 "Binds when equipped",
 0
@@ -15294,6 +21693,15 @@ null,
 "Trade Goods",
 "Leather",
 10,
+0,
+"Non-equippable",
+null,
+0
+],
+"4291": [
+"Trade Goods",
+"Cloth",
+30,
 0,
 "Non-equippable",
 null,
@@ -15344,6 +21752,15 @@ null,
 null,
 0
 ],
+"4298": [
+"Recipe",
+"Leatherworking",
+34,
+0,
+"Non-equippable",
+null,
+0
+],
 "4299": [
 "Recipe",
 "Leatherworking",
@@ -15357,6 +21774,15 @@ null,
 "Recipe",
 "Leatherworking",
 39,
+0,
+"Non-equippable",
+null,
+0
+],
+"4301": [
+"Recipe",
+"Leatherworking",
+40,
 0,
 "Non-equippable",
 null,
@@ -15416,6 +21842,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4311": [
+"Armor",
+"Cloth",
+21,
+16,
+"Back",
+"Binds when equipped",
+0
+],
 "4312": [
 "Armor",
 "Cloth",
@@ -15452,6 +21887,24 @@ null,
 "Binds when equipped",
 0
 ],
+"4316": [
+"Armor",
+"Cloth",
+22,
+17,
+"Legs",
+"Binds when equipped",
+0
+],
+"4317": [
+"Armor",
+"Cloth",
+25,
+20,
+"Legs",
+"Binds when equipped",
+0
+],
 "4318": [
 "Armor",
 "Cloth",
@@ -15475,6 +21928,15 @@ null,
 "Cloth",
 33,
 28,
+"Head",
+"Binds when equipped",
+0
+],
+"4323": [
+"Armor",
+"Cloth",
+34,
+29,
 "Head",
 "Binds when equipped",
 0
@@ -15531,6 +21993,15 @@ null,
 35,
 "Waist",
 "Binds when equipped",
+0
+],
+"4330": [
+"Armor",
+"Miscellaneous",
+22,
+0,
+"Shirt",
+null,
 0
 ],
 "4332": [
@@ -15600,6 +22071,15 @@ null,
 "Trade Goods",
 "Cloth",
 45,
+0,
+"Non-equippable",
+null,
+0
+],
+"4340": [
+"Trade Goods",
+"Other",
+25,
 0,
 "Non-equippable",
 null,
@@ -15695,6 +22175,15 @@ null,
 null,
 0
 ],
+"4352": [
+"Recipe",
+"Tailoring",
+35,
+0,
+"Non-equippable",
+null,
+0
+],
 "4353": [
 "Recipe",
 "Tailoring",
@@ -15714,6 +22203,15 @@ null,
 0
 ],
 "4355": [
+"Recipe",
+"Tailoring",
+40,
+0,
+"Non-equippable",
+null,
+0
+],
+"4356": [
 "Recipe",
 "Tailoring",
 40,
@@ -15803,6 +22301,15 @@ null,
 null,
 0
 ],
+"4366": [
+"Consumable",
+"Device",
+17,
+0,
+"Non-equippable",
+null,
+0
+],
 "4367": [
 "Consumable",
 "Explosives",
@@ -15866,6 +22373,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4374": [
+"Consumable",
+"Explosives",
+29,
+0,
+"Non-equippable",
+null,
+0
+],
 "4375": [
 "Trade Goods",
 "Parts",
@@ -15893,6 +22409,15 @@ null,
 null,
 0
 ],
+"4379": [
+"Weapon",
+"Gun",
+26,
+21,
+"Ranged",
+"Binds when equipped",
+0
+],
 "4380": [
 "Consumable",
 "Explosives",
@@ -15908,6 +22433,15 @@ null,
 28,
 0,
 "Trinket",
+null,
+0
+],
+"4382": [
+"Trade Goods",
+"Parts",
+29,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -16046,6 +22580,15 @@ null,
 null,
 0
 ],
+"4400": [
+"Trade Goods",
+"Parts",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
 "4402": [
 "Trade Goods",
 "Other",
@@ -16091,6 +22634,24 @@ null,
 null,
 0
 ],
+"4407": [
+"Consumable",
+"Device",
+36,
+20,
+"Non-equippable",
+null,
+0
+],
+"4408": [
+"Recipe",
+"Engineering",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
 "4409": [
 "Recipe",
 "Engineering",
@@ -16109,10 +22670,28 @@ null,
 null,
 0
 ],
+"4411": [
+"Recipe",
+"Engineering",
+25,
+0,
+"Non-equippable",
+null,
+0
+],
 "4414": [
 "Recipe",
 "Engineering",
 33,
+0,
+"Non-equippable",
+null,
+0
+],
+"4415": [
+"Recipe",
+"Engineering",
+37,
 0,
 "Non-equippable",
 null,
@@ -16325,6 +22904,15 @@ null,
 null,
 0
 ],
+"4536": [
+"Consumable",
+"Food & Drink",
+5,
+1,
+"Non-equippable",
+null,
+0
+],
 "4537": [
 "Consumable",
 "Food & Drink",
@@ -16357,6 +22945,15 @@ null,
 "Food & Drink",
 5,
 1,
+"Non-equippable",
+null,
+0
+],
+"4541": [
+"Consumable",
+"Food & Drink",
+15,
+5,
 "Non-equippable",
 null,
 0
@@ -16424,6 +23021,15 @@ null,
 null,
 0
 ],
+"4557": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "4558": [
 "Miscellaneous",
 "Junk",
@@ -16458,6 +23064,24 @@ null,
 16,
 "One-Hand",
 "Binds when equipped",
+0
+],
+"4580": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"4581": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
 0
 ],
 "4582": [
@@ -16577,6 +23201,15 @@ null,
 null,
 0
 ],
+"4595": [
+"Consumable",
+"Food & Drink",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "4596": [
 "Consumable",
 "Potions",
@@ -16591,6 +23224,15 @@ null,
 "Food & Drink",
 45,
 35,
+"Non-equippable",
+null,
+0
+],
+"4600": [
+"Consumable",
+"Food & Drink",
+35,
+25,
 "Non-equippable",
 null,
 0
@@ -16721,6 +23363,123 @@ null,
 null,
 0
 ],
+"4668": [
+"Armor",
+"Cloth",
+9,
+4,
+"Back",
+null,
+0
+],
+"4671": [
+"Armor",
+"Cloth",
+9,
+4,
+"Back",
+null,
+0
+],
+"4674": [
+"Armor",
+"Cloth",
+9,
+4,
+"Back",
+null,
+0
+],
+"4675": [
+"Armor",
+"Leather",
+10,
+5,
+"Waist",
+null,
+0
+],
+"4677": [
+"Armor",
+"Cloth",
+12,
+7,
+"Back",
+null,
+0
+],
+"4680": [
+"Armor",
+"Cloth",
+13,
+8,
+"Back",
+null,
+0
+],
+"4681": [
+"Armor",
+"Mail",
+14,
+9,
+"Waist",
+null,
+0
+],
+"4683": [
+"Armor",
+"Cloth",
+13,
+8,
+"Back",
+null,
+0
+],
+"4687": [
+"Armor",
+"Cloth",
+14,
+9,
+"Waist",
+null,
+0
+],
+"4690": [
+"Armor",
+"Leather",
+13,
+8,
+"Waist",
+null,
+0
+],
+"4693": [
+"Armor",
+"Leather",
+14,
+9,
+"Waist",
+null,
+0
+],
+"4694": [
+"Armor",
+"Mail",
+22,
+17,
+"Shoulder",
+null,
+0
+],
+"4698": [
+"Armor",
+"Cloth",
+21,
+16,
+"Shoulder",
+null,
+0
+],
 "4700": [
 "Armor",
 "Leather",
@@ -16730,7 +23489,34 @@ null,
 null,
 0
 ],
+"4765": [
+"Weapon",
+"Sword",
+14,
+9,
+"Main Hand",
+"Binds when equipped",
+0
+],
+"4766": [
+"Weapon",
+"Sword",
+13,
+8,
+"Main Hand",
+"Binds when equipped",
+0
+],
 "4775": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"4776": [
 "Miscellaneous",
 "Junk",
 1,
@@ -16748,6 +23534,24 @@ null,
 "Binds when equipped",
 0
 ],
+"4778": [
+"Weapon",
+"Mace",
+19,
+14,
+"Two-Hand",
+"Binds when equipped",
+0
+],
+"4782": [
+"Armor",
+"Cloth",
+18,
+13,
+"Chest",
+"Binds when equipped",
+0
+],
 "4784": [
 "Miscellaneous",
 "Junk",
@@ -16757,6 +23561,15 @@ null,
 null,
 0
 ],
+"4786": [
+"Armor",
+"Cloth",
+20,
+15,
+"Waist",
+"Binds when equipped",
+0
+],
 "4787": [
 "Miscellaneous",
 "Junk",
@@ -16764,6 +23577,15 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"4788": [
+"Armor",
+"Leather",
+20,
+15,
+"Feet",
+"Binds when equipped",
 0
 ],
 "4789": [
@@ -16784,7 +23606,25 @@ null,
 null,
 0
 ],
+"4792": [
+"Armor",
+"Cloth",
+23,
+18,
+"Back",
+"Binds when equipped",
+0
+],
 "4794": [
+"Armor",
+"Leather",
+25,
+20,
+"Wrist",
+"Binds when equipped",
+0
+],
+"4795": [
 "Armor",
 "Leather",
 25,
@@ -16811,12 +23651,84 @@ null,
 "Binds when equipped",
 0
 ],
+"4827": [
+"Armor",
+"Cloth",
+28,
+23,
+"Waist",
+"Binds when equipped",
+0
+],
+"4837": [
+"Armor",
+"Miscellaneous",
+30,
+25,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "4852": [
 "Consumable",
 "Explosives",
 37,
 27,
 "Non-equippable",
+null,
+0
+],
+"4865": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"4867": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"4872": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"4879": [
+"Miscellaneous",
+"Junk",
+5,
+0,
+"Non-equippable",
+null,
+0
+],
+"4882": [
+"Key",
+"Key",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
+"4951": [
+"Armor",
+"Leather",
+7,
+1,
+"Waist",
 null,
 0
 ],
@@ -16837,6 +23749,15 @@ null,
 "Non-equippable",
 null,
 1
+],
+"5029": [
+"Armor",
+"Miscellaneous",
+47,
+42,
+"Neck",
+"Binds when equipped",
+0
 ],
 "5051": [
 "Quest",
@@ -16901,6 +23822,24 @@ null,
 null,
 0
 ],
+"5083": [
+"Recipe",
+"Leatherworking",
+11,
+0,
+"Non-equippable",
+null,
+0
+],
+"5095": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
 "5107": [
 "Armor",
 "Miscellaneous",
@@ -16946,6 +23885,15 @@ null,
 null,
 0
 ],
+"5115": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "5116": [
 "Trade Goods",
 "Leather",
@@ -16964,6 +23912,24 @@ null,
 null,
 0
 ],
+"5118": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5119": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "5120": [
 "Miscellaneous",
 "Junk",
@@ -16973,7 +23939,25 @@ null,
 null,
 0
 ],
+"5123": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "5124": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5125": [
 "Miscellaneous",
 "Junk",
 1,
@@ -17003,6 +23987,15 @@ null,
 "5134": [
 "Quest",
 "Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5135": [
+"Miscellaneous",
+"Junk",
 1,
 0,
 "Non-equippable",
@@ -17054,10 +24047,46 @@ null,
 null,
 0
 ],
+"5206": [
+"Consumable",
+"Other",
+12,
+0,
+"Non-equippable",
+null,
+0
+],
+"5269": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"53": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
 "5342": [
 "Consumable",
 "Food & Drink",
 18,
+0,
+"Non-equippable",
+null,
+0
+],
+"537": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -17072,7 +24101,52 @@ null,
 null,
 0
 ],
+"5375": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5427": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5428": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "5429": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5431": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5432": [
 "Miscellaneous",
 "Junk",
 1,
@@ -17096,6 +24170,24 @@ null,
 5,
 1,
 "Bag",
+null,
+0
+],
+"5446": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5447": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -17162,6 +24254,24 @@ null,
 null,
 0
 ],
+"5473": [
+"Consumable",
+"Food & Drink",
+10,
+1,
+"Non-equippable",
+null,
+0
+],
+"5476": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
 "5477": [
 "Consumable",
 "Food & Drink",
@@ -17180,6 +24290,33 @@ null,
 null,
 0
 ],
+"5480": [
+"Consumable",
+"Food & Drink",
+25,
+15,
+"Non-equippable",
+null,
+0
+],
+"5482": [
+"Recipe",
+"Cooking",
+5,
+0,
+"Non-equippable",
+null,
+0
+],
+"5483": [
+"Recipe",
+"Cooking",
+8,
+0,
+"Non-equippable",
+null,
+0
+],
 "5484": [
 "Recipe",
 "Cooking",
@@ -17193,6 +24330,24 @@ null,
 "Recipe",
 "Cooking",
 15,
+0,
+"Non-equippable",
+null,
+0
+],
+"5486": [
+"Recipe",
+"Cooking",
+15,
+0,
+"Non-equippable",
+null,
+0
+],
+"5487": [
+"Recipe",
+"Cooking",
+20,
 0,
 "Non-equippable",
 null,
@@ -17249,6 +24404,15 @@ null,
 27,
 0,
 "Non-equippable",
+null,
+0
+],
+"5516": [
+"Weapon",
+"Dagger",
+16,
+11,
+"One-Hand",
 null,
 0
 ],
@@ -17319,6 +24483,24 @@ null,
 "Recipe",
 "Blacksmithing",
 28,
+0,
+"Non-equippable",
+null,
+0
+],
+"5566": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5567": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -17400,6 +24582,15 @@ null,
 "Recipe",
 "Blacksmithing",
 26,
+0,
+"Non-equippable",
+null,
+0
+],
+"5601": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -17621,6 +24812,15 @@ null,
 "Binds when equipped",
 0
 ],
+"5782": [
+"Armor",
+"Leather",
+34,
+29,
+"Chest",
+"Binds when equipped",
+0
+],
 "5783": [
 "Armor",
 "Leather",
@@ -17648,6 +24848,15 @@ null,
 null,
 0
 ],
+"5826": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
 "5829": [
 "Miscellaneous",
 "Junk",
@@ -17660,6 +24869,15 @@ null,
 "5833": [
 "Quest",
 "Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5871": [
+"Miscellaneous",
+"Junk",
 1,
 0,
 "Non-equippable",
@@ -17747,6 +24965,15 @@ null,
 null,
 0
 ],
+"5976": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Tabard",
+null,
+0
+],
 "5996": [
 "Consumable",
 "Elixirs",
@@ -17774,6 +25001,15 @@ null,
 null,
 0
 ],
+"6038": [
+"Consumable",
+"Food & Drink",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
 "6039": [
 "Recipe",
 "Cooking",
@@ -17790,6 +25026,24 @@ null,
 32,
 "Wrist",
 "Binds when equipped",
+0
+],
+"6041": [
+"Consumable",
+"Permanent",
+38,
+0,
+"Non-equippable",
+null,
+0
+],
+"6042": [
+"Consumable",
+"Permanent",
+30,
+0,
+"Non-equippable",
+null,
 0
 ],
 "6044": [
@@ -17828,6 +25082,15 @@ null,
 null,
 0
 ],
+"6050": [
+"Consumable",
+"Potions",
+38,
+28,
+"Non-equippable",
+null,
+0
+],
 "6051": [
 "Consumable",
 "Potions",
@@ -17847,6 +25110,15 @@ null,
 0
 ],
 "6096": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
+"6125": [
 "Armor",
 "Miscellaneous",
 1,
@@ -17963,6 +25235,15 @@ null,
 null,
 0
 ],
+"6261": [
+"Trade Goods",
+"Other",
+35,
+0,
+"Non-equippable",
+null,
+0
+],
 "6263": [
 "Armor",
 "Cloth",
@@ -17979,6 +25260,24 @@ null,
 18,
 "Chest",
 "Binds when equipped",
+0
+],
+"6270": [
+"Recipe",
+"Tailoring",
+12,
+0,
+"Non-equippable",
+null,
+0
+],
+"6271": [
+"Recipe",
+"Tailoring",
+12,
+0,
+"Non-equippable",
+null,
 0
 ],
 "6272": [
@@ -18044,12 +25343,39 @@ null,
 null,
 0
 ],
+"6293": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "6294": [
 "Miscellaneous",
 "Junk",
 15,
 0,
 "Held In Off-hand",
+null,
+0
+],
+"6296": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"6297": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
 null,
 0
 ],
@@ -18063,6 +25389,15 @@ null,
 0
 ],
 "6300": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"6301": [
 "Miscellaneous",
 "Junk",
 1,
@@ -18224,6 +25559,15 @@ null,
 null,
 0
 ],
+"6350": [
+"Armor",
+"Mail",
+18,
+13,
+"Feet",
+"Binds when equipped",
+0
+],
 "6358": [
 "Trade Goods",
 "Other",
@@ -18257,6 +25601,24 @@ null,
 35,
 25,
 "Non-equippable",
+null,
+0
+],
+"6363": [
+"Miscellaneous",
+"Junk",
+25,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"6364": [
+"Miscellaneous",
+"Junk",
+25,
+0,
+"Held In Off-hand",
 null,
 0
 ],
@@ -18377,7 +25739,34 @@ null,
 null,
 0
 ],
+"6438": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"6439": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "6444": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"6445": [
 "Miscellaneous",
 "Junk",
 1,
@@ -18404,10 +25793,28 @@ null,
 null,
 0
 ],
+"6452": [
+"Consumable",
+"Other",
+16,
+0,
+"Non-equippable",
+null,
+0
+],
 "6454": [
 "Recipe",
 "First Aid",
 26,
+0,
+"Non-equippable",
+null,
+0
+],
+"6457": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -18476,10 +25883,64 @@ null,
 null,
 0
 ],
+"6508": [
+"Armor",
+"Cloth",
+9,
+4,
+"Back",
+null,
+0
+],
+"6510": [
+"Armor",
+"Mail",
+11,
+6,
+"Hands",
+null,
+0
+],
+"6513": [
+"Armor",
+"Cloth",
+10,
+5,
+"Waist",
+null,
+0
+],
+"6520": [
+"Armor",
+"Cloth",
+9,
+4,
+"Back",
+null,
+0
+],
+"6521": [
+"Armor",
+"Leather",
+11,
+6,
+"Hands",
+null,
+0
+],
 "6522": [
 "Consumable",
 "Food & Drink",
 15,
+0,
+"Non-equippable",
+null,
+0
+],
+"6529": [
+"Consumable",
+"Other",
+10,
 0,
 "Non-equippable",
 null,
@@ -18509,6 +25970,51 @@ null,
 30,
 0,
 "Non-equippable",
+null,
+0
+],
+"6549": [
+"Armor",
+"Cloth",
+14,
+9,
+"Back",
+null,
+0
+],
+"6555": [
+"Armor",
+"Cloth",
+14,
+9,
+"Back",
+null,
+0
+],
+"6566": [
+"Armor",
+"Cloth",
+24,
+19,
+"Shoulder",
+null,
+0
+],
+"6579": [
+"Armor",
+"Mail",
+24,
+19,
+"Shoulder",
+null,
+0
+],
+"6588": [
+"Armor",
+"Leather",
+23,
+18,
+"Shoulder",
 null,
 0
 ],
@@ -18548,6 +26054,15 @@ null,
 null,
 0
 ],
+"6672": [
+"Recipe",
+"Engineering",
+37,
+0,
+"Non-equippable",
+null,
+0
+],
 "6709": [
 "Armor",
 "Leather",
@@ -18569,6 +26084,24 @@ null,
 "6716": [
 "Recipe",
 "Engineering",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"6731": [
+"Armor",
+"Mail",
+20,
+15,
+"Chest",
+"Binds when equipped",
+0
+],
+"6735": [
+"Recipe",
+"Blacksmithing",
 20,
 0,
 "Non-equippable",
@@ -18615,6 +26148,15 @@ null,
 "Consumable",
 "Food & Drink",
 35,
+0,
+"Non-equippable",
+null,
+0
+],
+"6811": [
+"Consumable",
+"Other",
+20,
 0,
 "Non-equippable",
 null,
@@ -18791,6 +26333,15 @@ null,
 "Binds when equipped",
 0
 ],
+"7059": [
+"Armor",
+"Cloth",
+38,
+33,
+"Shoulder",
+"Binds when equipped",
+0
+],
 "7060": [
 "Armor",
 "Cloth",
@@ -18824,6 +26375,15 @@ null,
 41,
 36,
 "Chest",
+"Binds when equipped",
+0
+],
+"7064": [
+"Armor",
+"Cloth",
+42,
+37,
+"Hands",
 "Binds when equipped",
 0
 ],
@@ -18885,6 +26445,15 @@ null,
 "Trade Goods",
 "Other",
 25,
+0,
+"Non-equippable",
+null,
+0
+],
+"7073": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
@@ -19016,6 +26585,15 @@ null,
 null,
 0
 ],
+"7096": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "7097": [
 "Consumable",
 "Food & Drink",
@@ -19133,6 +26711,24 @@ null,
 null,
 0
 ],
+"7280": [
+"Armor",
+"Leather",
+11,
+6,
+"Legs",
+"Binds when equipped",
+0
+],
+"7281": [
+"Armor",
+"Leather",
+14,
+9,
+"Wrist",
+"Binds when equipped",
+0
+],
 "7282": [
 "Armor",
 "Leather",
@@ -19169,10 +26765,37 @@ null,
 "Binds when equipped",
 0
 ],
+"7286": [
+"Trade Goods",
+"Leather",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"7287": [
+"Trade Goods",
+"Leather",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "7288": [
 "Recipe",
 "Leatherworking",
 11,
+0,
+"Non-equippable",
+null,
+0
+],
+"7289": [
+"Recipe",
+"Leatherworking",
+20,
 0,
 "Non-equippable",
 null,
@@ -19263,6 +26886,15 @@ null,
 "Recipe",
 "Leatherworking",
 28,
+0,
+"Non-equippable",
+null,
+0
+],
+"7364": [
+"Recipe",
+"Leatherworking",
+29,
 0,
 "Non-equippable",
 null,
@@ -19385,6 +27017,15 @@ null,
 null,
 0
 ],
+"7449": [
+"Recipe",
+"Leatherworking",
+33,
+0,
+"Non-equippable",
+null,
+0
+],
 "7450": [
 "Recipe",
 "Leatherworking",
@@ -19403,6 +27044,15 @@ null,
 null,
 0
 ],
+"7554": [
+"Armor",
+"Miscellaneous",
+19,
+14,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "7555": [
 "Armor",
 "Miscellaneous",
@@ -19417,6 +27067,15 @@ null,
 "Miscellaneous",
 40,
 35,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"7558": [
+"Armor",
+"Miscellaneous",
+25,
+20,
 "Held In Off-hand",
 "Binds when equipped",
 0
@@ -19454,6 +27113,15 @@ null,
 5,
 0,
 "Non-equippable",
+null,
+0
+],
+"766": [
+"Weapon",
+"Mace",
+7,
+2,
+"Main Hand",
 null,
 0
 ],
@@ -19505,6 +27173,15 @@ null,
 "7741": [
 "Quest",
 "Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"779": [
+"Miscellaneous",
+"Junk",
 1,
 0,
 "Non-equippable",
@@ -19610,6 +27287,15 @@ null,
 "Binds when equipped",
 0
 ],
+"7917": [
+"Armor",
+"Mail",
+37,
+32,
+"Hands",
+"Binds when equipped",
+0
+],
 "7918": [
 "Armor",
 "Plate",
@@ -19682,6 +27368,15 @@ null,
 "Binds when equipped",
 0
 ],
+"793": [
+"Armor",
+"Cloth",
+10,
+5,
+"Hands",
+null,
+0
+],
 "7930": [
 "Armor",
 "Plate",
@@ -19751,6 +27446,15 @@ null,
 49,
 44,
 "Head",
+"Binds when equipped",
+0
+],
+"7938": [
+"Armor",
+"Plate",
+45,
+40,
+"Hands",
 "Binds when equipped",
 0
 ],
@@ -19871,6 +27575,15 @@ null,
 "Binds when equipped",
 0
 ],
+"7960": [
+"Weapon",
+"Sword",
+52,
+47,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "7961": [
 "Weapon",
 "Sword",
@@ -19898,10 +27611,28 @@ null,
 null,
 0
 ],
+"7965": [
+"Consumable",
+"Other",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
 "7966": [
 "Trade Goods",
 "Metal & Stone",
 35,
+0,
+"Non-equippable",
+null,
+0
+],
+"7967": [
+"Consumable",
+"Permanent",
+43,
 0,
 "Non-equippable",
 null,
@@ -19961,6 +27692,24 @@ null,
 null,
 0
 ],
+"7978": [
+"Recipe",
+"Blacksmithing",
+32,
+0,
+"Non-equippable",
+null,
+0
+],
+"7979": [
+"Recipe",
+"Blacksmithing",
+32,
+0,
+"Non-equippable",
+null,
+0
+],
 "7989": [
 "Recipe",
 "Blacksmithing",
@@ -20001,6 +27750,15 @@ null,
 "Recipe",
 "Blacksmithing",
 48,
+0,
+"Non-equippable",
+null,
+0
+],
+"8028": [
+"Recipe",
+"Blacksmithing",
+49,
 0,
 "Non-equippable",
 null,
@@ -20048,6 +27806,24 @@ null,
 35,
 30,
 "Ammo",
+null,
+0
+],
+"8083": [
+"Armor",
+"Plate",
+53,
+48,
+"Wrist",
+null,
+0
+],
+"8086": [
+"Armor",
+"Plate",
+54,
+49,
+"Shoulder",
 null,
 0
 ],
@@ -20186,6 +27962,15 @@ null,
 null,
 0
 ],
+"8174": [
+"Armor",
+"Leather",
+40,
+35,
+"Head",
+"Binds when equipped",
+0
+],
 "8175": [
 "Armor",
 "Leather",
@@ -20213,12 +27998,30 @@ null,
 null,
 0
 ],
+"8179": [
+"Weapon",
+"Bow",
+6,
+1,
+"Ranged",
+null,
+0
+],
 "818": [
 "Trade Goods",
 "Other",
 15,
 0,
 "Non-equippable",
+null,
+0
+],
+"8181": [
+"Weapon",
+"Gun",
+9,
+4,
+"Ranged",
 null,
 0
 ],
@@ -20229,6 +28032,15 @@ null,
 2,
 "Ranged",
 null,
+0
+],
+"8185": [
+"Armor",
+"Mail",
+47,
+42,
+"Legs",
+"Binds when equipped",
 0
 ],
 "8187": [
@@ -20255,6 +28067,15 @@ null,
 46,
 41,
 "Head",
+"Binds when equipped",
+0
+],
+"8192": [
+"Armor",
+"Leather",
+42,
+37,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -20321,6 +28142,15 @@ null,
 "Binds when equipped",
 0
 ],
+"8203": [
+"Armor",
+"Mail",
+44,
+39,
+"Chest",
+"Binds when equipped",
+0
+],
 "8204": [
 "Armor",
 "Mail",
@@ -20336,6 +28166,33 @@ null,
 44,
 39,
 "Wrist",
+"Binds when equipped",
+0
+],
+"8206": [
+"Armor",
+"Mail",
+49,
+44,
+"Legs",
+"Binds when equipped",
+0
+],
+"8207": [
+"Armor",
+"Mail",
+48,
+43,
+"Shoulder",
+"Binds when equipped",
+0
+],
+"8208": [
+"Armor",
+"Mail",
+50,
+45,
+"Head",
 "Binds when equipped",
 0
 ],
@@ -20465,6 +28322,15 @@ null,
 "Binds when equipped",
 0
 ],
+"8346": [
+"Armor",
+"Leather",
+46,
+41,
+"Hands",
+"Binds when equipped",
+0
+],
 "8347": [
 "Armor",
 "Mail",
@@ -20480,6 +28346,15 @@ null,
 50,
 45,
 "Head",
+"Binds when equipped",
+0
+],
+"8349": [
+"Armor",
+"Leather",
+50,
+45,
+"Chest",
 "Binds when equipped",
 0
 ],
@@ -20519,6 +28394,15 @@ null,
 null,
 0
 ],
+"837": [
+"Armor",
+"Cloth",
+17,
+12,
+"Chest",
+null,
+0
+],
 "8386": [
 "Recipe",
 "Leatherworking",
@@ -20546,6 +28430,15 @@ null,
 null,
 0
 ],
+"839": [
+"Armor",
+"Cloth",
+17,
+12,
+"Hands",
+null,
+0
+],
 "8390": [
 "Recipe",
 "Leatherworking",
@@ -20565,6 +28458,15 @@ null,
 0
 ],
 "8392": [
+"Quest",
+"Quest",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"8393": [
 "Quest",
 "Quest",
 1,
@@ -20654,6 +28556,15 @@ null,
 null,
 0
 ],
+"844": [
+"Armor",
+"Leather",
+17,
+12,
+"Hands",
+null,
+0
+],
 "8483": [
 "Quest",
 "Quest",
@@ -20663,7 +28574,25 @@ null,
 null,
 0
 ],
+"8486": [
+"Miscellaneous",
+"Pet",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
 "8489": [
+"Miscellaneous",
+"Pet",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"8490": [
 "Miscellaneous",
 "Pet",
 20,
@@ -20696,6 +28625,42 @@ null,
 20,
 0,
 "Non-equippable",
+null,
+0
+],
+"8495": [
+"Miscellaneous",
+"Pet",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"8496": [
+"Miscellaneous",
+"Pet",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
+"8499": [
+"Miscellaneous",
+"Pet",
+30,
+0,
+"Non-equippable",
+null,
+0
+],
+"851": [
+"Weapon",
+"Sword",
+15,
+10,
+"One-Hand",
 null,
 0
 ],
@@ -20751,6 +28716,60 @@ null,
 33,
 "One-Hand",
 "Binds when equipped",
+0
+],
+"8685": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+1
+],
+"8746": [
+"Armor",
+"Cloth",
+33,
+28,
+"Head",
+null,
+0
+],
+"8747": [
+"Armor",
+"Leather",
+35,
+30,
+"Head",
+null,
+0
+],
+"8751": [
+"Armor",
+"Mail",
+44,
+39,
+"Head",
+null,
+0
+],
+"8753": [
+"Armor",
+"Leather",
+57,
+52,
+"Head",
+null,
+0
+],
+"8754": [
+"Armor",
+"Cloth",
+56,
+51,
+"Head",
+null,
 0
 ],
 "8766": [
@@ -20852,6 +28871,15 @@ null,
 null,
 0
 ],
+"8925": [
+"Trade Goods",
+"Other",
+35,
+0,
+"Non-equippable",
+null,
+0
+],
 "8932": [
 "Consumable",
 "Food & Drink",
@@ -20915,6 +28943,15 @@ null,
 null,
 0
 ],
+"8956": [
+"Consumable",
+"Other",
+41,
+31,
+"Non-equippable",
+null,
+0
+],
 "8957": [
 "Consumable",
 "Food & Drink",
@@ -20938,6 +28975,15 @@ null,
 "Potions",
 42,
 32,
+"Non-equippable",
+null,
+0
+],
+"9060": [
+"Trade Goods",
+"Parts",
+42,
+0,
 "Non-equippable",
 null,
 0
@@ -21023,12 +29069,30 @@ null,
 null,
 0
 ],
+"9206": [
+"Consumable",
+"Elixirs",
+48,
+48,
+"Non-equippable",
+null,
+0
+],
 "9210": [
 "Trade Goods",
 "Other",
 49,
 0,
 "Non-equippable",
+null,
+0
+],
+"922": [
+"Weapon",
+"Sword",
+26,
+21,
+"Two-Hand",
 null,
 0
 ],
@@ -21167,6 +29231,15 @@ null,
 null,
 0
 ],
+"9297": [
+"Recipe",
+"Alchemy",
+48,
+0,
+"Non-equippable",
+null,
+0
+],
 "9298": [
 "Recipe",
 "Alchemy",
@@ -21212,6 +29285,15 @@ null,
 null,
 0
 ],
+"9313": [
+"Consumable",
+"Other",
+20,
+0,
+"Non-equippable",
+null,
+0
+],
 "9318": [
 "Consumable",
 "Other",
@@ -21230,6 +29312,15 @@ null,
 null,
 1
 ],
+"9333": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Neck",
+null,
+0
+],
 "935": [
 "Weapon",
 "Sword",
@@ -21237,6 +29328,24 @@ null,
 15,
 "One-Hand",
 "Binds when equipped",
+0
+],
+"9355": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"9356": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
 0
 ],
 "9360": [
@@ -21302,6 +29411,15 @@ null,
 null,
 0
 ],
+"9719": [
+"Miscellaneous",
+"Other",
+38,
+0,
+"Non-equippable",
+null,
+0
+],
 "9743": [
 "Armor",
 "Cloth",
@@ -21311,11 +29429,74 @@ null,
 null,
 0
 ],
+"9744": [
+"Armor",
+"Cloth",
+12,
+7,
+"Wrist",
+null,
+0
+],
+"9745": [
+"Armor",
+"Cloth",
+11,
+6,
+"Back",
+null,
+0
+],
+"9750": [
+"Armor",
+"Leather",
+12,
+7,
+"Waist",
+null,
+0
+],
+"9751": [
+"Armor",
+"Leather",
+12,
+7,
+"Feet",
+null,
+0
+],
+"9769": [
+"Armor",
+"Miscellaneous",
+27,
+22,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "9800": [
 "Armor",
 "Miscellaneous",
 29,
 24,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"9882": [
+"Armor",
+"Miscellaneous",
+43,
+38,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
+"9914": [
+"Armor",
+"Miscellaneous",
+48,
+43,
 "Held In Off-hand",
 "Binds when equipped",
 0
