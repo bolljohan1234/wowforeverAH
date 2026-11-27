@@ -18485,6 +18485,15 @@ null,
 "Binds when equipped",
 0
 ],
+"15221": [
+"Weapon",
+"Sword",
+65,
+60,
+"One-Hand",
+"Binds when equipped",
+0
+],
 "15222": [
 "Weapon",
 "Mace",
@@ -27981,6 +27990,15 @@ null,
 0
 ],
 "20404": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"20416": [
 "Quest",
 "Quest",
 1,
@@ -51560,6 +51578,15 @@ null,
 null,
 0
 ],
+"6137": [
+"Armor",
+"Cloth",
+1,
+1,
+"Legs",
+null,
+0
+],
 "6138": [
 "Armor",
 "Cloth",
@@ -54805,6 +54832,15 @@ null,
 "Cooking",
 12,
 0,
+"Non-equippable",
+null,
+0
+],
+"724": [
+"Consumable",
+"Food & Drink",
+15,
+5,
 "Non-equippable",
 null,
 0
