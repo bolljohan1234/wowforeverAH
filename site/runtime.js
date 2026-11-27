@@ -104,6 +104,17 @@
       return out;
     },
   });
+  // your own full AH scan from the addon (Scan AH button): {t, auctions, p: Map(item id -> [lowest, next level, units at lowest, all units, listings])}
+  dash.calc("scan_saved", {
+    inputs: ["gamedb"],
+    fn: (g) => {
+      const s = g[0] && g[0].scan;
+      if (!s || !s.p || !s.t) return [];
+      const p = new Map();
+      for (const [id, v] of E(s.p)) { const a = Array.isArray(v) ? v : [v[1], v[2], v[3], v[4], v[5]]; p.set(Number(id), a.map(Number)); }
+      return [{ t: Number(s.t) * 1000, auctions: s.auctions || null, p: p }];
+    },
+  });
   dash.calc("skills_saved", {
     inputs: ["gamedb"],
     fn: (g) => {
