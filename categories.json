@@ -5984,6 +5984,15 @@ null,
 "Binds when equipped",
 0
 ],
+"1213": [
+"Armor",
+"Leather",
+14,
+9,
+"Wrist",
+null,
+0
+],
 "1214": [
 "Weapon",
 "Mace",
@@ -22184,6 +22193,15 @@ null,
 "Binds when equipped",
 0
 ],
+"15686": [
+"Armor",
+"Mail",
+63,
+58,
+"Shoulder",
+"Binds when equipped",
+0
+],
 "15693": [
 "Armor",
 "Leather",
@@ -33488,6 +33506,15 @@ null,
 null,
 0
 ],
+"2527": [
+"Weapon",
+"Staff",
+36,
+31,
+"Two-Hand",
+null,
+0
+],
 "252761": [
 "Recipe",
 "Leatherworking",
@@ -38933,6 +38960,15 @@ null,
 "Binds when equipped",
 0
 ],
+"275616": [
+"Armor",
+"Mail",
+58,
+53,
+"Hands",
+"Binds when equipped",
+0
+],
 "275619": [
 "Armor",
 "Mail",
@@ -40508,6 +40544,15 @@ null,
 "Binds when equipped",
 0
 ],
+"2821": [
+"Weapon",
+"Mace",
+18,
+13,
+"Main Hand",
+"Binds when equipped",
+0
+],
 "2823": [
 "Weapon",
 "Axe",
@@ -40761,6 +40806,15 @@ null,
 0
 ],
 "286263": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"286264": [
 "Miscellaneous",
 "Junk",
 1,
@@ -41442,6 +41496,15 @@ null,
 1,
 "Non-equippable",
 null,
+0
+],
+"3018": [
+"Armor",
+"Cloth",
+23,
+18,
+"Back",
+"Binds when equipped",
 0
 ],
 "3019": [
@@ -52513,6 +52576,15 @@ null,
 "Non-equippable",
 null,
 0
+],
+"6331": [
+"Weapon",
+"Dagger",
+36,
+31,
+"One-Hand",
+"Binds when equipped",
+1
 ],
 "6336": [
 "Armor",
