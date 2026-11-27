@@ -24767,6 +24767,15 @@ null,
 null,
 0
 ],
+"17192": [
+"Armor",
+"Shield",
+24,
+19,
+"Off Hand",
+null,
+0
+],
 "1720": [
 "Weapon",
 "Staff",
@@ -29339,6 +29348,15 @@ null,
 null,
 0
 ],
+"21548": [
+"Recipe",
+"Leatherworking",
+62,
+0,
+"Non-equippable",
+null,
+0
+],
 "2156": [
 "Armor",
 "Cloth",
@@ -29390,6 +29408,15 @@ null,
 45,
 40,
 "One-Hand",
+"Binds when equipped",
+0
+],
+"2166": [
+"Armor",
+"Mail",
+20,
+15,
+"Legs",
 "Binds when equipped",
 0
 ],
@@ -50337,6 +50364,15 @@ null,
 0
 ],
 "5375": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5376": [
 "Miscellaneous",
 "Junk",
 1,
