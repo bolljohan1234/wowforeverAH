@@ -8981,6 +8981,15 @@ null,
 "Binds when used",
 0
 ],
+"13364": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "13367": [
 "Consumable",
 "Other",
@@ -16808,6 +16817,15 @@ null,
 55,
 50,
 "Wrist",
+"Binds when equipped",
+0
+],
+"14975": [
+"Armor",
+"Plate",
+65,
+60,
+"Chest",
 "Binds when equipped",
 0
 ],
@@ -26945,6 +26963,15 @@ null,
 "Binds when equipped",
 0
 ],
+"19048": [
+"Armor",
+"Mail",
+61,
+56,
+"Feet",
+"Binds when equipped",
+0
+],
 "19049": [
 "Armor",
 "Leather",
@@ -27860,6 +27887,15 @@ null,
 26,
 21,
 "Main Hand",
+"Binds when equipped",
+0
+],
+"2013": [
+"Weapon",
+"Staff",
+26,
+21,
+"Two-Hand",
 "Binds when equipped",
 0
 ],
@@ -31586,6 +31622,15 @@ null,
 55,
 45,
 "Non-equippable",
+null,
+0
+],
+"25": [
+"Weapon",
+"Sword",
+2,
+1,
+"Main Hand",
 null,
 0
 ],
@@ -60519,6 +60564,15 @@ null,
 "Trade Goods",
 "Other",
 35,
+0,
+"Non-equippable",
+null,
+0
+],
+"893": [
+"Miscellaneous",
+"Junk",
+1,
 0,
 "Non-equippable",
 null,
