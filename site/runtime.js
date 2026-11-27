@@ -104,6 +104,17 @@
       return out;
     },
   });
+  // your own full AH scan from the addon (Scan AH button): {t, auctions, p: Map(item id -> [lowest, next level, units at lowest, all units, listings])}
+  dash.calc("scan_saved", {
+    inputs: ["gamedb"],
+    fn: (g) => {
+      const s = g[0] && g[0].scan;
+      if (!s || !s.p || !s.t) return [];
+      const p = new Map();
+      for (const [id, v] of E(s.p)) { const a = Array.isArray(v) ? v : [v[1], v[2], v[3], v[4], v[5]]; p.set(Number(id), a.map(Number)); }
+      return [{ t: Number(s.t) * 1000, auctions: s.auctions || null, p: p }];
+    },
+  });
   dash.calc("skills_saved", {
     inputs: ["gamedb"],
     fn: (g) => {
@@ -162,6 +173,8 @@
     if (!db || !db.chars) throw new Error("This does not look like WoWForeverCompanion.lua");
     S.mtime = file.lastModified; S.loadedAt = Date.now(); S.name = file.name; S.state = "ok"; S.msg = "";
     set("gamedb", { status: "ok", data: [db] });
+    // a copy is kept in this browser (on your PC only), so the page shows it on the next visit even when the file cannot be re-read by itself
+    try { await IDB.put("lastfile", { text: text, name: file.name, mtime: file.lastModified }); } catch (e) { /* ignore */ }
     changed();
     paint();
   }
@@ -182,7 +195,7 @@
     } catch (e) { if (e && e.name !== "AbortError") { S.state = "error"; S.msg = e.message; paint(); } }
   }
   async function forget() {
-    await IDB.del("gamefile");
+    await IDB.del("gamefile"); await IDB.del("lastfile");
     S.handle = null; S.state = "none"; S.mtime = 0;
     set("gamedb", { status: "ok", data: [] }); changed(); paint();
   }
@@ -193,17 +206,22 @@
     const span = (cls, t) => { const s = document.createElement("span"); s.className = cls; s.textContent = t; return s; };
     const kids = [span("lbl", "Your game file")];
     const hm = (t) => { const d = new Date(t); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0") + " " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+    const once = () => btn(S.state === "ok" ? "Pick the file again" : "Pick the file (any folder)", () => input.click());
     if (S.state === "ok") {
-      const s = span("pill", "✓ " + S.name + ", saved by the game " + hm(S.mtime)); s.dataset.tone = "up"; s.title = "Read from your PC. It is read again every time you open this page or come back to it.";
+      const live = !!S.handle;
+      const s = span("pill", "✓ " + S.name + ", saved by the game " + hm(S.mtime) + (live ? "" : " (copy kept in this browser)")); s.dataset.tone = "up";
+      s.title = live ? "Read from your PC. It is read again every time you open this page or come back to it." : "The last file you picked, kept in this browser on your PC. Pick the file again after playing to update it.";
       kids.push(s);
-      if (canPick) kids.push(btn("Read again", () => readHandle(true)), btn("Forget this file", forget));
-      else kids.push(btn("Pick the file again", () => input.click()));
+      if (live) kids.push(btn("Read again", () => readHandle(true)));
+      else kids.push(once());
+      kids.push(btn("Forget this file", forget));
     } else if (S.state === "ask") {
       kids.push(btn("Allow reading " + (S.handle ? S.handle.name : "the file"), () => readHandle(true)), span("sm", "The browser asks once per visit unless you choose \"Allow on every visit\"."));
     } else {
       if (S.state === "error") { const s = span("pill", "Could not read the file: " + S.msg); s.dataset.tone = "down"; kids.push(s); }
-      kids.push(btn("Connect WoWForeverCompanion.lua", () => (canPick ? pick() : input.click())),
-        span("sm", "Find it in World of Warcraft\\_forever_\\WTF\\Account\\<your account>\\SavedVariables. It stays on your PC; only this page in your browser reads it." + (canPick ? "" : " This browser cannot remember the file, so pick it again on each visit (Chrome or Edge can remember it).")));
+      if (canPick) kids.push(btn("Connect WoWForeverCompanion.lua", pick));
+      kids.push(once(),
+        span("sm", "Find it in World of Warcraft\\_forever_\\WTF\\Account\\<your account>\\SavedVariables. It stays on your PC; only this page in your browser reads it. Chrome does not let pages connect to files under Program Files: then use Pick the file (the page keeps the last copy and shows it on later visits; pick again after playing to update)."));
     }
     el.replaceChildren(...kids);
   }
@@ -213,9 +231,11 @@
   document.body.append(input);
   async function boot() {
     paint();
-    if (!canPick) return;
-    try { S.handle = (await IDB.get("gamefile")) || null; } catch (e) { S.handle = null; }
+    if (canPick) { try { S.handle = (await IDB.get("gamefile")) || null; } catch (e) { S.handle = null; } }
     if (S.handle) await readHandle(false);
+    if (S.state !== "ok") {   // no connected file (or not allowed yet): show the last copy kept in this browser
+      try { const c = await IDB.get("lastfile"); if (c && c.text) await readFile({ text: async () => c.text, name: c.name, lastModified: c.mtime }); } catch (e) { /* ignore */ }
+    }
     paint();
   }
   const again = () => { if (document.visibilityState === "visible" && S.handle && S.state === "ok") readHandle(false); };

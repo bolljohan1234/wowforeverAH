@@ -12,17 +12,23 @@
 
   dash.calc("latest", {
     title: "Latest prices",
-    description: "Newest snapshot: one row per item that has listings.",
-    inputs: ["hist", "snaps", "names"],
-    fn: (history, snaps, names) => {
+    description: "Newest prices: one row per item that has listings. From your own AH scan (addon) when it is newer than the collector's newest snapshot, otherwise from that snapshot.",
+    inputs: ["hist", "snaps", "names", "scan_saved"],
+    fn: (history, snaps, names, scan) => {
       const K = snaps.length;
       if (!K) return [];
       const last = K - 1, tNow = snaps[last].t;
       const nm = new Map(names.map((r) => [r.id, r.name])), vd = new Map(names.map((r) => [r.id, r.vendor == null ? null : Number(r.vendor)])), qm = new Map(names.map((r) => [r.id, r.q == null ? null : Number(r.q)]));
-      const out = [];
+      const out = [], S = scan[0] && scan[0].t > tNow ? scan[0] : null;   // items your scan did not see keep Blizzard's newest price
       for (const r of history) {
-        if (r.m[last] == null) continue;
-        out.push({ q: qm.has(r.id) ? qm.get(r.id) : null, id: r.id, name: nm.get(r.id) || "Item " + r.id, vendor: vd.has(r.id) ? vd.get(r.id) : null, min: r.m[last], med: r.d[last], qty: r.q[last], n: r.n[last], sold: r.o[last], exp: r.x[last], t: tNow });
+        const base = { q: qm.has(r.id) ? qm.get(r.id) : null, id: r.id, name: nm.get(r.id) || "Item " + r.id, vendor: vd.has(r.id) ? vd.get(r.id) : null, sold: r.o[last], exp: r.x[last] };
+        const s = S ? S.p.get(r.id) : null;
+        if (s && s[0] > 0) {
+          out.push(Object.assign(base, { min: s[0], med: r.d[last] != null ? r.d[last] : s[0], qty: s[3], n: s[4], t: S.t, src: "scan" }));
+        } else {
+          if (r.m[last] == null) continue;
+          out.push(Object.assign(base, { min: r.m[last], med: r.d[last], qty: r.q[last], n: r.n[last], t: tNow, src: "api" }));
+        }
       }
       return out;
     },
@@ -180,7 +186,7 @@
       return latest.map((L) => {
         const r = byId.get(L.id), m = r.m;
         let pk = -1;
-        for (let k = last - 1; k >= 0; k--) if (m[k] != null) { pk = k; break; }
+        for (let k = L.t > tNow ? last : last - 1; k >= 0; k--) if (m[k] != null) { pk = k; break; }   // a newer own scan is compared with the newest snapshot
         let avg7 = null, sd7 = null;
         if (enough) {
           const v = [];

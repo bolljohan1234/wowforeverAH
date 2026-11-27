@@ -337,6 +337,9 @@
     const kids = [];
     const last = r.status === "ok" && r.data[0] ? r.data[0].last_data || r.data[0].last_run : null;
     kids.push(pill(last ? "Prices from " + U.when(last) + " (" + U.ago(last) + ")" : "No run yet", last && Date.now() - last > 6 * 3600e3 ? "down" : "up", "When Blizzard's prices last changed"));
+    const SC = D("scan_saved"), sc = SC.status === "ok" && SC.data[0] ? SC.data[0] : null;
+    if (sc) kids.push(pill((sc.t > (last || 0) ? "Using your AH scan from " : "Your AH scan (older, not used) from ") + U.when(sc.t) + " (" + U.ago(sc.t) + ")", sc.t > (last || 0) ? "up" : "",
+      "Prices from the Scan AH button in the addon. The newer of your scan and Blizzard's prices is used for every Lowest now; history, averages and sales estimates always come from Blizzard's snapshots."));
     const m = readyList(), n = m.filter((x) => x[1]).length;
     const p2 = pill(n === m.length ? "✓ All data parts ready" : "Data building: " + n + " of " + m.length + " ready", n === m.length ? "up" : "", m.map(([t, ok]) => (ok ? "✓ " : "… ") + t).join("\n") + "\nPress for details (Info, Runs & snapshots).");
     p2.style.cursor = "pointer"; p2.addEventListener("click", () => { openTab("info"); openSub("runs"); const h = document.getElementById("h-ready"); if (h && h.scrollIntoView) h.scrollIntoView({ block: "start" }); });
