@@ -26,15 +26,15 @@
     const after = r.price != null && q > 0 ? Math.round(r.price * 0.95) * q : (q > 0 ? null : 0);
     const pl = value == null ? null : value - cost, after_pl = after == null ? null : after - cost;
     return Object.assign({}, r, { qty: q, sold: sq, cost: cost, value: value, pl: pl, pct: pl == null || !cost ? null : pl / cost, after: after, after_pl: after_pl, after_pct: after_pl == null || !cost ? null : after_pl / cost,
-      vendor_value: r.vendor == null || !q ? null : r.vendor * q, revenue: inv ? r.revenue_b : r.revenue_c, realized: inv ? r.realized_b : r.realized_c, collected: inv ? 0 : r.collected,
+      vendor_value: r.vendor == null || !q ? null : r.vendor * q, revenue: inv ? r.revenue_b : r.revenue_c, realized: inv ? r.realized_b : r.realized_c, paid: inv ? r.paid : 0, collected: inv ? 0 : r.collected,
       avg_sale: r.avg_sale, avg: inv ? r.avg : null });
   };
   const scopedLP = () => { const sc = WOW.pfScope, L = rowsOf("ledger_pl").filter((r) => catOk(r.id)); return sc === "total" ? L : L.map((r) => scopeRow(r, sc)).filter((r) => r.qty > 0 || r.sold > 0); };
   const scopedPortfolio = () => {
     const base = rowsOf("portfolio")[0]; if (!base || (WOW.pfScope === "total" && !catActive())) return base ? [base] : [];
     const pl = scopedLP(), held = pl.filter((r) => r.qty > 0), priced = held.filter((r) => r.value != null);
-    const invested = priced.reduce((a, r) => a + r.cost, 0), value = priced.reduce((a, r) => a + r.value, 0), realized = pl.reduce((a, r) => a + r.realized, 0);
-    return [Object.assign({}, base, { invested: invested, value: value, pl: value - invested, pct: invested ? (value - invested) / invested : null, after_cut: Math.round(value * 0.95) - invested, profit_today: realized + Math.round(value * 0.95) - invested,
+    const invested = priced.reduce((a, r) => a + r.cost, 0), value = priced.reduce((a, r) => a + r.value, 0), realized = pl.reduce((a, r) => a + r.realized, 0), paid = pl.reduce((a, r) => a + (r.paid || 0), 0);
+    return [Object.assign({}, base, { invested: invested, value: value, pl: value - invested, pct: invested ? (value - invested) / invested : null, paid: paid, after_cut: Math.round(value * 0.95) - invested, profit_today: realized + Math.round(value * 0.95),
       realized: realized, total: realized + value - invested, total_pct: invested ? (realized + value - invested) / invested : null, revenue: pl.reduce((a, r) => a + r.revenue, 0),
       unpriced: held.length - priced.length, floor: held.reduce((a, r) => a + (r.vendor_value || 0), 0), floor_known: held.filter((r) => r.vendor_value != null).length })];
   };
@@ -157,7 +157,7 @@
     ss.onchange = () => { WOW.cat.sub = ss.value; catChanged(); };
     const clr = el$("button", "btn sm", "Clear"); clr.type = "button"; clr.disabled = !WOW.cat.cls; clr.onclick = () => { WOW.cat = { cls: "", sub: "" }; catChanged(); };
     const lab = el$("span", "lbl", "Category");
-    const info = el$("span", "sm", WOW.cat.cls ? "Filtering the Portfolio and every table." : "Narrows the Portfolio and every table to one kind of item. Hover an item's name to see its category. Items sold in several versions (for example different suffixes) have a ▸ variants button: press it to list each version with its own price.");
+    const info = el$("span", "sm", "");
     el.replaceChildren(lab, cs, ss, clr, info);
   });
 
@@ -165,6 +165,7 @@
   function openTab(name) {
     document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== name; });
     document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+    const tb = document.querySelector(".timebar"); if (tb) tb.classList.toggle("off", !["portfolio", "explorer", "info"].includes(name));   // only tabs with time charts
     dash.setLink(name);
   }
   function openSub(name) {
@@ -294,7 +295,7 @@
   TVKEYS.forEach((k) => dash.draw("tv_" + k, (el) => {
     const s = TV[k] || {};
     const th = s.col == null ? null : document.querySelector('table[data-tv="' + k + '"] thead th:nth-child(' + (s.col + 1) + ')');
-    const txt = th ? "Sorted by " + th.textContent + (s.dir > 0 ? ", low to high" : ", high to low") + ". " : "Press a column heading to sort. Hover an item's name for its category.";
+    const txt = th ? "Sorted by " + th.textContent + (s.dir > 0 ? ", low to high" : ", high to low") + ". " : "";
     const kids = [document.createTextNode(txt)];
     if (th) { const g = el$("button", "btn sm", "Default order"); g.type = "button"; g.onclick = () => { s.col = null; TV[k] = s; redrawTable(k); }; kids.push(g, document.createTextNode(" ")); }
     if (LIMIT[k] && s.total > LIMIT[k]) {
@@ -370,7 +371,7 @@
   dash.draw("unnamed_note", (el) => {
     if (!ready(el, ["unnamed"])) return;
     const n = rowsOf("unnamed").length;
-    el.textContent = n ? n + " items in the newest snapshot have no name in Blizzard's item data, so search and the scanners cannot show them. The collector tries them again on every run. The 100 with the most listings are shown." : "Every item in the newest snapshot has a name.";
+    el.textContent = n ? n + " items without a name yet." : "";
   });
   stat("i_lastrun", "runs_summary", "last_run", (v) => U.when(v));
   stat("i_lastdata", "runs_summary", "last_data", (v) => U.when(v));
@@ -415,7 +416,7 @@
   // positions table, 23 columns: 1 Item, 2 Qty held, 3 Lowest now, 4 Median now, 5 Your avg buy price, 6 Paid total, 7 Worth, 8 Share, 9 After 5% cut, 10 Vendor value each,
   // 11 Vendor value total, 12 Profit, 13 Profit if sold today, 14 Profit %, 15 vs normal, 16 24 h, 17 Hold or sell?, 18 Collected, 19 List at, 20 After cut each, 21 Realistic total, 22 Days to sell, 23 Sale note
   GSUM.pos = (rows) => {
-    const tot = (rowsS("portfolio")[0] || {}).value || 0, pt = sumOf(rows, (r) => r.pt), cost = sumOf(rows, (r) => r.cost);
+    const tot = (rowsS("portfolio")[0] || {}).value || 0, pt = sumOf(rows, (r) => r.pt), cost = sumOf(rows, (r) => r.paid || 0);
     return ["Total", U.num(sumOf(rows, (r) => r.qty)), "", "", "", gold(cost), gold(sumOf(rows, (r) => r.value)), share(sumOf(rows, (r) => r.value), tot), gold(sumOf(rows, (r) => r.afterT)),
       "", gold(sumOf(rows, (r) => r.vendor_value)), goldS(sumOf(rows, (r) => r.realized)), goldS(pt), cost > 0 ? pctNode(pt / cost) : "—", "", "", "",
       U.num(sumOf(rows, (r) => r.collected)), "", "", gold(sumOf(rows, (r) => r.real_total)), "", ""];
@@ -430,18 +431,18 @@
       const listAt = L ? Math.max(1, L.min - 1) : null, net = listAt ? Math.round(listAt * 0.95) : 0, useV = vend > net, each = useV ? vend : net;
       const days = T.sold_day > 0 && r.qty > 0 ? r.qty / T.sold_day : null;
       const note = !(r.qty > 0) ? "All sold" : !L ? (vend ? "No listings. Vendor pays " + U.coinText(vend) + " each" : "No listings") : useV ? "A vendor pays more" : days == null ? "Sales speed unknown yet" : days > 7 ? "Slow: more than a week of market sales" : days > 2 ? "Sells over several days" : "Should sell quickly";
-      const afterT = held ? Math.round(r.value * 0.95) : null, pt = (held ? afterT - r.cost : 0) + (r.realized || 0);
-      return Object.assign({}, r, { value: held ? r.value : null, share: held && tot ? r.value / tot : null, afterT: afterT, pt: pt, pt_pct: r.cost > 0 ? pt / r.cost : null,
+      const afterT = held ? Math.round(r.value * 0.95) : null, pt = (r.realized || 0) + (held ? afterT : 0);   // Profit (sales minus everything paid) plus what you hold, sold today
+      return Object.assign({}, r, { value: held ? r.value : null, share: held && tot ? r.value / tot : null, afterT: afterT, pt: pt, pt_pct: r.paid > 0 ? pt / r.paid : null,
         dev7: A ? A.dev7 : null, chg24: A ? A.chg24 : null, advice: A ? A.advice : "", short: A ? A.short || A.advice : "", tone: A ? A.tone : "", list_at: r.qty > 0 ? listAt : null, each: r.qty > 0 ? each || null : null, real_total: each && r.qty > 0 ? each * r.qty : 0, days: days, note: note });
     });
     // without a column sort, the biggest come first (by worth, or by profit if sold today in the Profit view); the category groups follow that order
     const key = WOW.tile === "after" ? (r) => r.pt : (r) => (r.value == null ? -1 : r.value);
     base.sort((a, b) => key(b) - key(a));
-    const rows = tv("pos", base, [(r) => r.item, (r) => r.qty, (r) => r.price, (r) => r.med, (r) => r.avg, (r) => r.cost, (r) => r.value, (r) => r.share, (r) => r.afterT, (r) => r.vendor, (r) => r.vendor_value,
-      (r) => (r.sold > 0 ? r.realized : null), (r) => r.pt, (r) => r.pt_pct, (r) => r.dev7, (r) => r.chg24, (r) => r.advice, (r) => r.collected, (r) => r.list_at, (r) => r.each, (r) => r.real_total, (r) => r.days, (r) => r.note], (r) => r.item);
+    const rows = tv("pos", base, [(r) => r.item, (r) => r.qty, (r) => r.price, (r) => r.med, (r) => r.avg, (r) => r.paid, (r) => r.value, (r) => r.share, (r) => r.afterT, (r) => r.vendor, (r) => r.vendor_value,
+      (r) => (r.sold > 0 || r.paid > 0 ? r.realized : null), (r) => r.pt, (r) => r.pt_pct, (r) => r.dev7, (r) => r.chg24, (r) => r.advice, (r) => r.collected, (r) => r.list_at, (r) => r.each, (r) => r.real_total, (r) => r.days, (r) => r.note], (r) => r.item);
     const cn = (v, o) => (v == null ? "—" : U.coin(v, o));
-    tb.replaceChildren(...rows.map((r) => reg(r, tr(r.item, [nameCell(r.item, r.id), U.num(r.qty), r.price == null ? "no listings" : U.coin(r.price), cn(r.med), cn(r.avg), U.coin(r.cost),
-      cn(r.value), r.share == null ? "—" : U.pct(r.share), cn(r.afterT), cn(r.vendor), cn(r.vendor_value), r.sold > 0 ? U.coin(r.realized, { signed: true, tone: true }) : "—", U.coin(r.pt, { signed: true, tone: true }), r.pt_pct == null ? "—" : pctNode(r.pt_pct),
+    tb.replaceChildren(...rows.map((r) => reg(r, tr(r.item, [nameCell(r.item, r.id), U.num(r.qty), r.price == null ? "no listings" : U.coin(r.price), cn(r.med), cn(r.avg), U.coin(r.paid || 0),
+      cn(r.value), r.share == null ? "—" : U.pct(r.share), cn(r.afterT), cn(r.vendor), cn(r.vendor_value), r.sold > 0 || r.paid > 0 ? U.coin(r.realized, { signed: true, tone: true }) : "—", U.coin(r.pt, { signed: true, tone: true }), r.pt_pct == null ? "—" : pctNode(r.pt_pct),
       r.dev7 == null ? "—" : pctNode(r.dev7), r.chg24 == null ? "—" : pctNode(r.chg24), r.advice && r.qty > 0 ? (() => { const s = tn(r.short, r.tone === "flat" ? "" : r.tone); s.title = r.advice; s.className = "why"; return s; })() : "—",
       r.collected ? U.num(r.collected) : "—", cn(r.list_at), cn(r.each), r.each ? U.coin(r.real_total) : "—", r.days == null ? "—" : U.num(r.days, 1), r.note], r.id))));
     if (rows.length) tb.append(totRow(GSUM.pos(rows)));
@@ -458,7 +459,7 @@
   });
   dash.draw("sales_note", (el) => {
     const d = D("ledger_pl");
-    el.textContent = d.status === "ok" && !d.data.some((r) => r.sold > 0) ? "No sales recorded yet. When you sell on the auction house, the sale arrives here by itself at what you received after the 5% cut." : "Profit = what you received minus the avg cost per unit (collected = free) of the units sold. That cost spreads what you paid over every unit you got, bought and collected, so it is lower than your avg buy price when you also collected some.";
+    el.textContent = d.status === "ok" && !d.data.some((r) => r.sold > 0) ? "No sales yet." : "";
   });
   WOW.pieMode = "money";
   document.querySelectorAll("[data-piemode]").forEach((b) => b.addEventListener("click", () => {
@@ -519,8 +520,9 @@
   }
   dash.draw("ch_pl", (el) => {
     if (!ready(el, ["ledger_pl"])) return;
-    drillChart(el, "ch_pl", rowsS("ledger_pl").filter((r) => r.after_pl != null), { val: (r) => r.after_pl, label: (r) => r.item, agg: "sum", cap: { top: 10, bottom: 10 }, fmt: signedShort, signed: true,
-      tip: (r) => [el$("div", "", r.item), (() => { const d = el$("div", "", "Profit if sold today, after the 5% cut: "); d.append(U.coin(r.after_pl, { signed: true, tone: true, trim: true }), " ", pctNode(r.after_pct)); return d; })()],
+    const pt = (r) => (r.realized || 0) + (r.qty > 0 && r.after != null ? r.after : 0), pp = (r) => (r.paid > 0 ? pt(r) / r.paid : null);
+    drillChart(el, "ch_pl", rowsS("ledger_pl").filter((r) => (r.qty > 0 && r.after != null) || r.paid > 0 || r.sold > 0), { val: pt, label: (r) => r.item, agg: "sum", cap: { top: 10, bottom: 10 }, fmt: signedShort, signed: true,
+      tip: (r) => [el$("div", "", r.item), (() => { const d = el$("div", "", "Profit if sold today, after the 5% cut: "); d.append(U.coin(pt(r), { signed: true, tone: true, trim: true }), " ", pctNode(pp(r))); return d; })()],
       aria: "Profit or loss per item if sold today, after the 5% cut", empty: "No positions with a current price." });
   });
   WOW.pf = new Set(["total"]);
@@ -576,10 +578,21 @@
     panel.append(find, bar, list); wrap.append(tg, panel); el.replaceChildren(wrap); applyFind();
   });
   WOW.pfMode = "worth";   // worth only; price per unit against your avg buy price is the Explorer's price chart
+  // one time range for every time chart: 24 h, week or all time (from the first snapshot or first purchase, whichever is older), always ending now
+  const TIME_CHARTS = ["ch_pfseries", "chart", "chart_supply", "chart_sold", "chart_gap", "ch_profit", "ch_runs"];
+  U.setTimeDomain(() => {
+    const t1 = Date.now(), H = 3600e3;
+    if (WOW.pfRange === "24h") return [t1 - 24 * H, t1];
+    if (WOW.pfRange === "week") return [t1 - 7 * 24 * H, t1];
+    const sn = rowsOf("snaps"), L = rowsOf("ledger_all");
+    let t0 = sn.length ? sn[0].t : t1 - 24 * H;
+    if (L.length && L[0].date) t0 = Math.min(t0, new Date(L[0].date + "T00:00:00").getTime());
+    return [t0, t1];
+  });
   document.querySelectorAll("[data-pfrange]").forEach((b) => b.addEventListener("click", () => {
     WOW.pfRange = b.dataset.pfrange;
     document.querySelectorAll("[data-pfrange]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    dash.draw("ch_pfseries");
+    TIME_CHARTS.forEach((n) => dash.draw(n));
   }));
   // one point per hour (last 24 h), per day (last week) or per day / month / year (all time): the last snapshot of each period
   function pfBuckets(times) {
@@ -659,8 +672,6 @@
     tb.append(th, bd);
     const sc = el$("div", "scroll"); sc.append(tb);
     el.append(sc);
-    const per = { hour: "hour", day: "day", month: "month", year: "year" }[bk.unit];
-    el.append(el$("p", "note", "Each point is the last snapshot of its " + per + ". Hover a point to see how many units it covers and the price per unit (each for one item, the average per unit for Total and categories). " + (unit ? "Market price is the lowest buyout per unit. The dashed lines are your avg buy price (collected units left out)." : "Worth is units held times lowest buyout, so it also moves when you buy or sell units. An item with no listings at a snapshot counts as zero in totals and categories. vs paid compares the latest worth with what you have invested in what you hold (the dotted line).") + " Units that are in the game but not in your log are assumed to have been held the whole time."));
   });
   dash.draw("log_rows", (tb) => {
     if (!ready(tb, ["ledger_all"])) return;
@@ -697,7 +708,7 @@
     const all = rowsOf("holdings_view"), listed = all.filter((r) => r.price != null);
     const at = rowsOf("holdings_saved").reduce((m, c) => Math.max(m, c.at || 0), 0);
     const auto = rowsOf("ledger_pl").filter((r) => r.auto > 0);
-    el.textContent = all.length ? "Read from your game file; the newest character data in it is from " + U.when(at) + ". " + listed.length + " of " + all.length + " item types are on the auction house and counted in your Portfolio. " + auto.length + " of them were not (fully) in your purchase log, so the missing units count as collected at no cost. Soulbound gear and vendor-only items are left out." : "Nothing read from the game yet. Connect your game file with the button at the top of the page.";
+    el.textContent = all.length ? "" : "Nothing read from the game yet. Connect your game file at the top of the page.";
   });
   dash.draw("hold_chars", (tb) => {
     if (!ready(tb, ["holdings_chars"])) return;
@@ -875,7 +886,7 @@
     if (HP && HP.qty > 0) {
       const mine = (label, node) => { const d = el$("div", "mine"), v = el$("b"); v.append(node instanceof Node ? node : document.createTextNode(node)); d.append(el$("span", "lbl", label), v); return d; };
       grid.append(mine("You hold", U.num(HP.qty) + " units"), mine("Your avg buy price", HP.avg == null ? "—" : U.coin(HP.avg)), mine("Paid total", U.coin(HP.cost)),
-        mine("After 5% cut (total)", HP.after == null ? "—" : U.coin(HP.after)), mine("Profit if sold today", HP.after_pl == null ? "—" : U.coin(HP.after_pl, { signed: true, tone: true })));
+        mine("After 5% cut (total)", HP.after == null ? "—" : U.coin(HP.after)), mine("Profit if sold today", U.coin((HP.realized || 0) + (HP.qty > 0 && HP.after != null ? HP.after : 0), { signed: true, tone: true })));
     }
     if (T) {
       const pc = (v) => (v == null ? "—" : pctNode(v));
@@ -1025,8 +1036,7 @@
     const d = D("flip_view");
     if (d.status !== "ok") { el.textContent = ""; return; }
     const hidden = d.data.length - d.data.filter(flipOk).length, scan = d.data.some((r) => r.src === "scan");
-    el.textContent = (hidden ? hidden + " item(s) are hidden by the filters above. " : "") + (scan ? "Prices from your own AH scan where it is newer than the hourly data. " : "Prices from the hourly data: cheap units may already be bought. Scan the AH in game for fresh flips. ")
-      + "Sorted by Profit on those (all cheap units bought and resold, after the 5% cut). Press a heading to sort by another column.";
+    el.textContent = scan ? "" : "Hourly prices: cheap units may be gone. Scan the AH in game for fresh flips.";
   });
   dash.draw("writ_rows", (tb) => {
     if (!ready(tb, ["writ_view"])) return;
@@ -1037,7 +1047,7 @@
   dash.draw("writ_note", (el) => {
     const d = D("writ_view");
     if (d.status !== "ok") { el.textContent = ""; return; }
-    el.textContent = d.data.length ? "Craftsman's Writs are bought and sold on the auction house. Each one is linked to a craftable item, listed here with the item's price, the writ's price and the cheapest known craft cost. Sort by writ price, by sold per day, or by how few writs are listed to find the ones in demand or scarce."
+    el.textContent = d.data.length ? ""
       : "No writ items found yet.";
   });
 
@@ -1066,9 +1076,7 @@
     const hs = [...byH].map(([h, v]) => [h, avg(v) / mean - 1]).sort((x, y) => x[1] - y[1]);
     const f = (h) => String(h).padStart(2, "0") + ":00";
     const thin = n < 48 || byH.size < 12;
-    el.textContent = hs.length < 2 ? "Needs snapshots from more than one hour of the day."
-      : "Cheapest around " + f(hs[0][0]) + " (" + U.pct(hs[0][1], true) + " vs its average), priciest around " + f(hs[hs.length - 1][0]) + " (" + U.pct(hs[hs.length - 1][1], true) + "). Green hours are cheaper than average, a better time to buy; red are pricier, a better time to sell."
-        + (thin ? " Based on only " + n + " snapshots covering " + byH.size + " of 24 hours, so too early to trust. It firms up after a few days." : "");
+    el.textContent = hs.length < 2 ? "Needs snapshots from more than one hour of the day." : thin ? "Too little data yet (" + n + " snapshots)." : "";
   });
 
   // ---------- stack check ----------
@@ -1145,8 +1153,7 @@
   dash.draw("opp_note", (el) => {
     if (!ready(el, ["opportunity", "latest"])) return;
     const all = oppRows(), inView = all.filter((r) => r.dev7 >= -0.6 && r.dev7 <= 1);
-    el.textContent = (WOW.oppMode === "all" ? "Showing every item that sells at least 1 unit a day" : "Showing items at least 5% below their normal price that sell at least 10 units a day")
-      + ", with the rarity and listing filters from the Flip scanner. " + inView.length + " dots" + (all.length > inView.length ? " (" + (all.length - inView.length) + " more are off the chart, more than 60% below or 100% above normal)." : ".");
+    el.textContent = all.length > inView.length ? (all.length - inView.length) + " more off the chart." : "";
   });
   dash.draw("ch_opp", (el) => {
     if (!ready(el, ["opportunity", "latest"])) return;
@@ -1161,7 +1168,7 @@
   ["up", "down"].forEach((dir) => dash.draw("movers_" + dir, (tb) => { if (!ready(tb, ["movers"])) return; tb.replaceChildren(...tv(dir === "up" ? "mup" : "mdn", rowsOf("movers").filter((r) => r.dir === dir), [(r) => r.name, (r) => r.prev, (r) => r.now, (r) => r.pct, (r) => r.n], (r) => r.name).map(moversRow)); }));
   dash.draw("movers_note", (el) => {
     if (D("movers").status !== "ok") { el.textContent = ""; return; }
-    el.textContent = D("movers").data.length ? "Items with at least 5 listings, by change in lowest buyout." : "Needs at least two different price snapshots. " + snapInfo().n + " so far; this fills in as Blizzard's prices change.";
+    el.textContent = D("movers").data.length ? "" : "Needs at least two different price snapshots. " + snapInfo().n + " so far; this fills in as Blizzard's prices change.";
   });
   dash.draw("ch_movers", (el) => {
     if (!ready(el, ["movers"])) return;
@@ -1175,7 +1182,7 @@
   });
   dash.draw("supply_note", (el) => {
     if (D("supply_view").status !== "ok") { el.textContent = ""; return; }
-    el.textContent = D("supply_view").data.length ? "Change in units for sale over about 24 hours, items with at least 10 listings. A rising price with falling supply often means demand; rising supply pushes prices down."
+    el.textContent = D("supply_view").data.length ? ""
       : "Needs a snapshot from about 24 hours back. First snapshot: " + U.when(snapInfo().first) + ".";
   });
   dash.draw("ch_supply", (el) => {
@@ -1197,7 +1204,7 @@
   });
   dash.draw("exp_note", (el) => {
     if (!ready(el, ["expiredprices", "expired_view"])) return;
-    el.textContent = rowsOf("expired_view").length ? "Items with at least 3 units that vanished from the about-to-expire bucket, probably unsold. Expired vs sold above 0% means they were listed higher than what the item sold for."
+    el.textContent = rowsOf("expired_view").length ? ""
       : "Nothing to show yet. An item needs at least 3 expired units in the last 7 days.";
   });
   dash.draw("chart_gap", (el) => {
@@ -1212,7 +1219,7 @@
   });
   dash.draw("sell_note", (el) => {
     if (D("sellthru_view").status !== "ok") { el.textContent = ""; return; }
-    el.textContent = D("sellthru_view").data.length ? "Estimated from auctions that disappeared between snapshots. Turnover per day is units sold per day times the lowest buyout; a rough guide to where the money moves."
+    el.textContent = D("sellthru_view").data.length ? ""
       : "No sales estimates yet.";
   });
   dash.draw("ch_sell", (el) => {
@@ -1232,7 +1239,7 @@
     const d = D("recipe_margins");
     if (d.status !== "ok") { el.textContent = ""; return; }
     el.textContent = !d.data.length ? "No recipe data yet."
-      : marRows().length ? "Press a row for the item's graphs." + (WOW.mcan && !haveSkills() ? " No profession levels from the game yet, so nothing counts as craftable. Connect your game file at the top of the page." : "") : "No recipes match these filters.";
+      : marRows().length ? (WOW.mcan && !haveSkills() ? "No profession levels from the game yet." : "") : "No recipes match these filters.";
   });
   dash.draw("ch_margins", (el) => {
     if (!ready(el, ["recipe_margins"])) return;
@@ -1350,31 +1357,31 @@
   });
 
   // ---------- profit history ----------
+  // Profit over time: each day adds what you received from sales and subtracts what you paid for purchases
   function salesSeries() {
-    const L = rowsOf("ledger_all"), acq = new Map();
-    for (const r of L) { if (r.how === "sold") continue; const g = acq.get(r.id) || { q: 0, c: 0 }; g.q += r.qty; g.c += r.how === "collected" ? 0 : r.qty * Number(r.unit || 0); acq.set(r.id, g); }
     const byDay = new Map(); let any = false;
-    for (const r of L) {
-      if (r.how !== "sold") continue;
-      const g = acq.get(r.id), avg = g && g.q ? g.c / g.q : 0, p = r.qty * (Number(r.unit) - avg);
-      byDay.set(r.date, (byDay.get(r.date) || 0) + p); any = true;
+    for (const r of rowsOf("ledger_all")) {
+      if (r.how === "collected") continue;
+      const v = r.qty * Number(r.unit || 0) * (r.how === "sold" ? 1 : -1);
+      byDay.set(r.date, (byDay.get(r.date) || 0) + v); any = true;
     }
     if (!any) return [];
     const days = [...byDay].sort((x, y) => (x[0] < y[0] ? -1 : 1));
     let cum = 0; const pts = [{ t: dayT(days[0][0]) - 86400e3, v: 0 }];
     for (const [d, p] of days) { cum += p; pts.push({ t: dayT(d), v: Math.round(cum) }); }
+    if (pts[pts.length - 1].t < Date.now()) pts.push({ t: Date.now(), v: Math.round(cum) });   // the line runs to now
     return pts;
   }
   dash.draw("ch_profit", (el) => {
     if (!ready(el, ["ledger_all", "ledger_pl"])) return;
     const pts = salesSeries();
-    if (!pts.length) return U.empty(el, "No sales recorded yet. Sales arrive from the game by themselves.");
-    U.lineChart(el, [{ label: "Profit from sales so far", color: U.pal[2 % U.pal.length], pts: pts }], [], { yfmt: signedShort, tipfmt: (v) => U.coin(v, { signed: true, tone: true, trim: false }), aria: "Profit from your recorded sales, adding up over time" });
+    if (!pts.length) return U.empty(el, "No purchases or sales yet.");
+    U.lineChart(el, [{ label: "Profit", color: U.pal[2 % U.pal.length], pts: pts }], [], { yfmt: signedShort, tipfmt: (v) => U.coin(v, { signed: true, tone: true, trim: false }), aria: "Profit over time: sales received minus purchases paid" });
   });
   dash.draw("ch_realized", (el) => {
     if (!ready(el, ["ledger_pl"])) return;
-    const rows = rowsOf("ledger_pl").filter((r) => r.sold > 0).sort((x, y) => y.realized - x.realized);
-    U.hbar(el, rows.map((r) => ({ id: r.id, label: r.item, v: r.realized, tip: [el$("div", "", r.item), (() => { const d = el$("div", "", "Profit from sales: "); d.append(U.coin(r.realized, { signed: true, tone: true, trim: false })); return d; })()] })),
+    const rows = rowsOf("ledger_pl").filter((r) => r.sold > 0 || r.paid > 0).sort((x, y) => y.realized - x.realized);
+    U.hbar(el, rows.map((r) => ({ id: r.id, label: r.item, v: r.realized, tip: [el$("div", "", r.item), (() => { const d = el$("div", "", "Profit (sales − paid): "); d.append(U.coin(r.realized, { signed: true, tone: true, trim: false })); return d; })()] })),
       { onPick: (r) => select(r.id, true), fmt: signedShort, signed: true, aria: "Profit or loss from sales per item", empty: "Profit per item shows here once you record a sale." });
   });
 
@@ -1396,7 +1403,7 @@
   };
   dash.draw("lv_note", (el) => {
     if (D("recipe_margins").status !== "ok") { el.textContent = ""; return; }
-    el.textContent = !lvProf() ? "No profession levels from the game yet. Connect your game file at the top of the page." : lvRows().length ? "The ten cheapest recipes to level with. Press a row for the item." : "No priced recipes with a known required level in your range. Recipes taught by trainers are not included.";
+    el.textContent = !lvProf() ? "No profession levels from the game yet. Connect your game file at the top of the page." : lvRows().length ? "" : "No priced recipes with a known required level in your range. Recipes taught by trainers are not included.";
   });
   dash.draw("lv_rows", (tb) => {
     if (!ready(tb, ["recipe_margins"])) return;

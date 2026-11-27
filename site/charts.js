@@ -44,7 +44,19 @@
     return m < 60 ? m + " min ago" : m < 2880 ? Math.floor(m / 60) + " h " + (m % 60) + " min ago" : Math.floor(m / 1440) + " days ago";
   };
   // 24-hour clock: HH:MM, with the date at midnight (or the date only on long ranges)
-  const tickFmt = (span) => (d) => (span >= 4 * 24 * H ? fmtDay(d) : d.getHours() === 0 && d.getMinutes() === 0 ? fmtDay(d) : fmtHM(d));
+  // Every time chart shares one time range (set by the page's range buttons) and the same 5 ticks, written YYYY-MM-DD over HH:MM,
+  // so the same moment sits at the same place on every chart.
+  const TIME = { domain: null };
+  const timeDomain = (pts) => (TIME.domain ? TIME.domain() : [d3.min(pts, (p) => p.t), d3.max(pts, (p) => p.t)]);
+  function timeAxis(g, x, t0, t1) {
+    const ticks = d3.range(5).map((i) => new Date(t0 + ((t1 - t0) * i) / 4));
+    g.call(d3.axisBottom(x).tickValues(ticks).tickFormat(() => "").tickSizeOuter(0)).call((a) => a.selectAll("line,path").style("stroke", "var(--cds-chart-axis)"));
+    g.selectAll(".tick text").each(function (d, i) {
+      const t = d3.select(this).text(null).attr("text-anchor", i === 0 ? "start" : i === 4 ? "end" : "middle");
+      t.append("tspan").attr("x", 0).attr("dy", "0.71em").text(fmtDay(d));
+      t.append("tspan").attr("x", 0).attr("dy", "1.15em").text(fmtHM(d));
+    });
+  }
 
   function empty(el, text) { el.replaceChildren(el$("p", "note", text)); }
 
@@ -77,19 +89,21 @@
 
   // series: [{label,color,pts:[{t,v}]}], ref: [{label,v}], opts: {yfmt, tipfmt, height, zero, empty, aria}
   function lineChart(el, series, ref, o) {
-    const all = series.flatMap((s) => s.pts);
-    if (!all.length) return empty(el, o.empty || "No data yet.");
-    const W = Math.max(280, availW(el)), Hh = o.height || 240;
-    let t0 = d3.min(all, (p) => p.t), t1 = d3.max(all, (p) => p.t);
+    if (!series.flatMap((s) => s.pts).length) return empty(el, o.empty || "No data yet.");
+    let [t0, t1] = timeDomain(series.flatMap((s) => s.pts));
     if (t0 === t1) { t0 -= 12 * H; t1 += 12 * H; }
+    series = series.map((s) => Object.assign({}, s, { pts: s.pts.filter((p) => p.t >= t0 && p.t <= t1) }));
+    const all = series.flatMap((s) => s.pts);
+    if (!all.length) return empty(el, "No data in this time range.");
+    const W = Math.max(280, availW(el)), Hh = (o.height || 240) + 14;
     const vals = all.map((p) => p.v).concat((ref || []).map((r) => r.v));
     let lo = o.zero ? 0 : d3.min(vals), hi = d3.max(vals);
     const pad = (hi - lo) * 0.12 || hi * 0.15 || 1;
-    if (!o.zero) lo = Math.max(0, lo - pad);
+    if (!o.zero) lo = lo < 0 ? lo - pad : Math.max(0, lo - pad);   // losses go below zero
     hi += pad;
     const probe = d3.scaleLinear([lo, hi], [Hh - 28, 8]).nice(5);
     const maxLab = d3.max(probe.ticks(5), (v) => o.yfmt(v).length) || 4;
-    const m = { l: Math.round(maxLab * 6.8 + 14), r: 16, t: 8, b: 28 };
+    const m = { l: Math.max(72, Math.round(maxLab * 6.8 + 14)), r: 40, t: 8, b: 42 };   // same edges on every chart, so times line up
     const x = d3.scaleTime([new Date(t0), new Date(t1)], [m.l, W - m.r]);
     const y = d3.scaleLinear([lo, hi], [Hh - m.b, m.t]).nice(5);
 
@@ -100,9 +114,7 @@
     (ref || []).forEach((r) => { const sp = el$("span"); const sw = el$("i", "sw ref"); if (r.color) sw.style.borderColor = r.color; sp.append(sw, r.label); legend.append(sp); });
 
     const svg = d3.create("svg").attr("class", "wow-chart").attr("width", W).attr("height", Hh).attr("viewBox", [0, 0, W, Hh]).attr("role", "img").attr("aria-label", o.aria || "Line chart");
-    svg.append("g").attr("transform", "translate(0," + (Hh - m.b) + ")")
-      .call(d3.axisBottom(x).ticks(Math.max(2, Math.floor(W / 90))).tickFormat(tickFmt(t1 - t0)).tickSizeOuter(0))
-      .call((g) => g.selectAll("line,path").style("stroke", "var(--cds-chart-axis)"));
+    timeAxis(svg.append("g").attr("transform", "translate(0," + (Hh - m.b) + ")"), x, t0, t1);
     svg.append("g").attr("transform", "translate(" + m.l + ",0)")
       .call(d3.axisLeft(y).ticks(5).tickFormat(o.yfmt).tickSize(-(W - m.l - m.r)))
       .call((g) => g.select(".domain").remove())
@@ -238,14 +250,14 @@
   // runs: [{t,result,run,snap_t,note}] -> dots on a time axis
   function timeline(el, runs, o) {
     if (!runs.length) return empty(el, "No runs recorded yet.");
-    const W = Math.max(280, availW(el)), Hh = 110, m = { l: 16, r: 16, t: 14, b: 30 };
-    let t0 = d3.min(runs, (r) => r.t), t1 = Math.max(d3.max(runs, (r) => r.t), Date.now());
-    if (t1 - t0 < 6 * H) t0 = t1 - 6 * H;
+    const W = Math.max(280, availW(el)), Hh = 124, m = { l: 72, r: 40, t: 14, b: 42 };
+    const [t0, t1] = TIME.domain ? TIME.domain() : [d3.min(runs, (r) => r.t), Math.max(d3.max(runs, (r) => r.t), Date.now())];
+    runs = runs.filter((r) => r.t >= t0 && r.t <= t1);
     const x = d3.scaleTime([new Date(t0), new Date(t1)], [m.l, W - m.r]);
     const color = { new_snapshot: "var(--color-ok)", no_change: "var(--cds-chart-muted)", failed: "var(--color-bad)", legacy: "var(--cds-chart-muted)" };
     const label = { new_snapshot: "New prices saved", no_change: "Ran, prices unchanged", failed: "Failed", legacy: "Earlier snapshot (time of file)" };
     const svg = d3.create("svg").attr("class", "wow-chart").attr("width", W).attr("height", Hh).attr("viewBox", [0, 0, W, Hh]).attr("role", "img").attr("aria-label", "Timeline of collector runs");
-    svg.append("g").attr("transform", "translate(0," + (Hh - m.b) + ")").call(d3.axisBottom(x).ticks(Math.max(2, Math.floor(W / 90))).tickFormat(tickFmt(t1 - t0)).tickSizeOuter(0)).call((g) => g.selectAll("line,path").style("stroke", "var(--cds-chart-axis)"));
+    timeAxis(svg.append("g").attr("transform", "translate(0," + (Hh - m.b) + ")"), x, t0, t1);
     svg.selectAll("circle.run").data(runs).join("circle").attr("class", "run").attr("cx", (r) => x(new Date(r.t))).attr("cy", 40).attr("r", 6)
       .style("fill", (r) => color[r.result] || "var(--cds-chart-muted)").style("fill-opacity", (r) => (r.result === "no_change" || r.result === "legacy" ? 0.55 : 1));
     svg.append("line").attr("x1", x(new Date(t1))).attr("x2", x(new Date(t1))).attr("y1", 20).attr("y2", Hh - m.b).style("stroke", "var(--cds-chart-reference)").attr("stroke-dasharray", "3 3");
@@ -257,5 +269,5 @@
     glow(svg.selectAll("circle.run")).on("mousemove", (ev, r) => tip.show(ev, r)).on("mouseleave", tip.hide);
   }
 
-  window.WOWUI = { setIcons: (f) => { ICON.of = f; }, pal, el$, tone, coin, coinText, short, pct, num, when, ago, empty, lineChart, hbar, scatter, timeline, pie };
+  window.WOWUI = { setIcons: (f) => { ICON.of = f; }, setTimeDomain: (f) => { TIME.domain = f; }, pal, el$, tone, coin, coinText, short, pct, num, when, ago, empty, lineChart, hbar, scatter, timeline, pie };
 })();
