@@ -33,7 +33,7 @@
   <!-- ============ TODAY ============ -->
   <section id="today" class="tabpanel" data-panel="today" aria-labelledby="h-today">
     <h2 id="h-today">Today</h2>
-    <details class="about"><summary>About this</summary><p class="note">This is your starting page. The note is my latest summary. The first two tiles show your Net Worth (what you hold, at today's lowest prices) and your profit: what your sales have made, 0 until you sell. Under it is what you would make if you also sold everything you hold today, after the 5% auction cut. The four lists below are the five best items from other tabs: flips to buy and resell, items priced under what a vendor pays, crafts that make money at your skill levels, and items you hold that look worth selling. Press See all to open the full list.</p></details>
+    <details class="about"><summary>About this</summary><p class="note">This is your starting page. The note is my latest summary. The first two tiles show your Net Worth (what you hold, at today's lowest prices) and your profit: what your sales have made, 0 until you sell. Under it is what you would make if you also sold everything you hold today, after the 5% auction cut. The three lists below are the five best items from other tabs: flips to buy and resell, crafts that make money at your skill levels, and items you hold that look worth selling. Press See all to open the full list.</p></details>
     <div class="card note-card"><span class="lbl">Claude's note</span><p data-draw="daily_note">—</p></div>
     <div class="tiles hero">
       <button type="button" class="tile" data-goto="portfolio" title="Open the portfolio"><span class="lbl">Net Worth</span><b class="big dash-skeleton" data-draw="t_worth" data-source="portfolio">—</b></button>
@@ -48,9 +48,6 @@
     <section class="panel mini"><div class="mhead"><h3>Best flips</h3><button type="button" class="btn sm" data-goto="opps">See all</button></div>
       <details class="about"><summary>About this</summary><p class="note">Items where the cheapest listing is well below the next one, so you could buy it and resell it for more. Profit and return are after the 5% auction cut. The list follows the rarity setting in the Flip scanner on Opportunities.</p></details>
       <div class="scroll"><table class="tbl" data-source="flip_view ladder_gap" data-row-key="id"><thead><tr><th>Item</th><th>Lowest now</th><th>Profit each</th><th>Return</th></tr></thead><tbody data-draw="today_flip"></tbody></table></div></section>
-    <section class="panel mini"><div class="mhead"><h3>Floor plays</h3><button type="button" class="btn sm" data-goto="opps">See all</button></div>
-      <details class="about"><summary>About this</summary><p class="note">Items listed at or below what an NPC vendor pays. You can buy them and sell them to a vendor without losing money, which makes them the safest kind of profit.</p></details>
-      <div class="scroll"><table class="tbl" data-source="scanner" data-row-key="id"><thead><tr><th>Item</th><th>Lowest now</th><th>Profit per unit</th></tr></thead><tbody data-draw="today_floor"></tbody></table></div></section>
     <section class="panel mini"><div class="mhead"><h3>Profitable crafts</h3><button type="button" class="btn sm" data-goto="margins">See all</button></div>
       <details class="about"><summary>About this</summary><p class="note">Crafts that earn more from the finished item than the ingredients cost, with ingredients and the product priced from the auction house. Only crafts you can make at your profession levels (read from the game) are shown.</p></details>
       <div class="scroll"><table class="tbl" data-source="recipe_margins skills_saved" data-row-key="id"><thead><tr><th>Recipe</th><th>Profession</th><th>Profit / craft</th></tr></thead><tbody data-draw="today_craft"></tbody></table></div></section>
@@ -184,7 +181,7 @@
   <!-- ============ OPPORTUNITIES ============ -->
   <section id="opps" class="tabpanel" data-panel="opps" aria-labelledby="h-opps" hidden>
     <h2 id="h-opps">Opportunities</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-buywatch">Buy watch</button><button type="button" class="chip" data-jump="h-floor">Floor plays</button><button type="button" class="chip" data-jump="h-flip">Flips</button><button type="button" class="chip" data-jump="h-opp">Map</button></nav>
+    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-buywatch">Buy watch</button><button type="button" class="chip" data-jump="h-flip">Flips</button><button type="button" class="chip" data-jump="h-opp">Map</button></nav>
     <details class="fold" id="h-buywatch" open><summary>Buy watch</summary>
     <details class="about"><summary>About this</summary><p class="note">Items whose price is at least 8% below their average price and that have at least 10 listings, so they are cheap compared with normal and easy to resell. Lowest now is today's cheapest price, Normal price is the average lowest price over up to 7 days, vs normal is the gap, 24 h is the change over a day, Supply 24 h is how the number of units changed, and Sold / day is the estimated sales. It needs about 12 hours of data before it can show anything.</p></details>
     <div class="tbar"><input class="tfilter" data-tv="buy" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_buy"></span><button type="button" class="btn sm morebtn" data-morecols="buy" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
@@ -192,14 +189,6 @@
       <thead><tr><th data-field="name">Item</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="avg7" title="The average lowest price over the last 7 days at most">Normal price</th><th data-field="dev7">vs normal</th><th data-field="chg24">24 h</th><th data-field="supply24">Supply 24 h</th><th data-field="sold_day">Sold / day</th></tr></thead>
       <tbody data-draw="buywatch_rows"></tbody></table></div>
     <p class="note" data-draw="buywatch_note"></p>
-    </details>
-    <details class="fold" id="h-floor" open><summary>Floor plays: at or below vendor value</summary>
-    <details class="about"><summary>About this</summary><p class="note">Items listed at or below what an NPC vendor pays. Buy them and sell them to a vendor for a guaranteed profit per unit. Profit per unit is the vendor price minus the lowest listing. Units below vendor counts every unit listed under the vendor price, and Profit buying them is the total profit of buying them all (from the price ladder, so at least means there may be more). Units for sale is the total stock.</p></details>
-    <p class="note" data-draw="floor_note"></p>
-    <div class="tbar"><input class="tfilter" data-tv="floor" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_floor"></span><button type="button" class="btn sm morebtn" data-morecols="floor" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
-    <div class="scroll"><table class="tbl hidex" data-tv="floor" data-source="scanner" data-row-key="id">
-      <thead><tr><th data-field="name">Item</th><th data-field="min" title="The cheapest listing per unit right now">Lowest now</th><th data-field="vendor" title="What an NPC vendor pays per unit">Vendor value</th><th data-field="floor_profit">Profit per unit</th><th data-field="under_units">Units below vendor</th><th data-field="under_profit">Profit buying them</th><th data-field="n">Listings</th><th data-field="qty">Units for sale</th></tr></thead>
-      <tbody data-draw="floor_rows"></tbody></table></div>
     </details>
     <details class="fold" id="h-flip" open><summary>Flip scanner</summary>
     <details class="about"><summary>About this</summary><p class="note">A flip is buying the cheapest listing and reselling for more. Lowest now is the cheapest listing, which you buy. Resell near is the price just below the next listing. Profit each and Return are after the 5% cut. Units at lowest is how many units are available at the cheapest price, and Profit on those multiplies it. Sold / day shows how fast the item sells: a flip on something nobody buys never pays. Use the three filters to hide items with few listings, items that sell slowly, and grey junk, whose prices are often unreal. All three also apply to Best flips on the Today tab; rarity and fewest listings also apply to the Opportunity map.</p></details>
@@ -387,7 +376,7 @@
         <dt>Prices (g, s, c)</dt><dd>Amounts are shown as g (gold), s (silver) and c (copper): 100c = 1s and 100s = 1g. Hover an amount to see it written out.</dd>
         <dt>Lowest now (lowest buyout)</dt><dd>The cheapest single-unit price listed right now. It is what you would pay to buy one, and what the page uses to value what you hold.</dd>
         <dt>Median now</dt><dd>The quantity-weighted middle price: half of the listed units cost less, half cost more. It shows the typical price when the cheapest listing is an odd one.</dd>
-        <dt>Vendor value</dt><dd>What an NPC vendor pays per unit. It is a guaranteed floor you can always sell at, so items listed under it are floor plays.</dd>
+        <dt>Vendor value</dt><dd>What an NPC vendor pays per unit. It is a guaranteed floor you can always sell at.</dd>
         <dt>Your avg buy price</dt><dd>What you paid per unit on average for the units you bought. Units you collected for free are not counted in it.</dd>
         <dt>Paid total</dt><dd>What you paid in total for the units you still hold.</dd>
         <dt>After 5% cut (total)</dt><dd>What all your units would bring in if sold at the lowest price now, after the auction house keeps 5%.</dd>
@@ -400,7 +389,6 @@
         <dt>Units for sale</dt><dd>The total number of items across all listings of that item. One listing can hold many units.</dd>
         <dt>Next listing</dt><dd>The second-cheapest price level. The flip scanner resells just below it.</dd>
         <dt>Price ladder</dt><dd>The cheapest few price levels of an item with how many units sit at each. It shows how much a big purchase pushes the price up.</dd>
-        <dt>Floor play</dt><dd>An item listed at or below its vendor value, so buying and vendoring cannot lose money.</dd>
         <dt>Normal price (average) / vs normal</dt><dd>The mean lowest buyout over the snapshots from the last 7 days (shorter while data builds up; it needs at least 4 snapshots spanning 12 hours). "vs normal" is how far today's price is from it.</dd>
         <dt>24 h</dt><dd>The change since the snapshot about 24 hours earlier.</dd>
         <dt>Sold / day</dt><dd>An estimate of units sold per day, taken from auctions that disappeared between snapshots without having been about to expire. Rough.</dd>
