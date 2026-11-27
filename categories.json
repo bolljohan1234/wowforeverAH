@@ -23048,6 +23048,15 @@ null,
 "Binds when equipped",
 0
 ],
+"15989": [
+"Armor",
+"Miscellaneous",
+65,
+60,
+"Held In Off-hand",
+"Binds when equipped",
+0
+],
 "15990": [
 "Armor",
 "Shield",
@@ -28034,6 +28043,15 @@ null,
 null,
 0
 ],
+"20553": [
+"Recipe",
+"Blacksmithing",
+63,
+0,
+"Non-equippable",
+null,
+0
+],
 "20554": [
 "Recipe",
 "Blacksmithing",
@@ -29382,6 +29400,15 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"2235": [
+"Weapon",
+"Dagger",
+19,
+14,
+"One-Hand",
+"Binds when equipped",
 0
 ],
 "2236": [
@@ -33170,6 +33197,15 @@ null,
 25,
 0,
 "Non-equippable",
+null,
+0
+],
+"2528": [
+"Weapon",
+"Sword",
+46,
+41,
+"Main Hand",
 null,
 0
 ],
@@ -42965,6 +43001,15 @@ null,
 null,
 0
 ],
+"3593": [
+"Armor",
+"Cloth",
+37,
+32,
+"Waist",
+null,
+0
+],
 "3595": [
 "Armor",
 "Cloth",
@@ -44501,6 +44546,15 @@ null,
 43,
 38,
 "Chest",
+null,
+0
+],
+"3944": [
+"Armor",
+"Cloth",
+53,
+48,
+"Waist",
 null,
 0
 ],
@@ -49977,6 +50031,15 @@ null,
 0
 ],
 "5433": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
+"5435": [
 "Miscellaneous",
 "Junk",
 1,
