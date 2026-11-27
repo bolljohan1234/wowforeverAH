@@ -15650,6 +15650,15 @@ null,
 "Binds when equipped",
 0
 ],
+"14815": [
+"Armor",
+"Mail",
+62,
+57,
+"Hands",
+"Binds when equipped",
+0
+],
 "14816": [
 "Armor",
 "Mail",
@@ -23631,6 +23640,15 @@ null,
 39,
 "Two-Hand",
 "Binds when equipped",
+0
+],
+"16168": [
+"Consumable",
+"Food & Drink",
+45,
+35,
+"Non-equippable",
+null,
 0
 ],
 "16202": [
@@ -33062,6 +33080,15 @@ null,
 15,
 5,
 "Non-equippable",
+null,
+0
+],
+"2523": [
+"Weapon",
+"Axe",
+35,
+30,
+"Two-Hand",
 null,
 0
 ],
