@@ -13499,6 +13499,15 @@ null,
 "Binds when equipped",
 0
 ],
+"14461": [
+"Armor",
+"Cloth",
+62,
+57,
+"Hands",
+"Binds when equipped",
+0
+],
 "14462": [
 "Armor",
 "Cloth",
@@ -14729,6 +14738,15 @@ null,
 60,
 55,
 "Waist",
+"Binds when equipped",
+0
+],
+"14685": [
+"Armor",
+"Leather",
+62,
+57,
+"Hands",
 "Binds when equipped",
 0
 ],
