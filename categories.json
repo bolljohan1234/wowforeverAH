@@ -30176,6 +30176,15 @@ null,
 null,
 0
 ],
+"2362": [
+"Armor",
+"Shield",
+1,
+1,
+"Off Hand",
+null,
+0
+],
 "2364": [
 "Armor",
 "Cloth",
@@ -30281,6 +30290,15 @@ null,
 10,
 5,
 "Off Hand",
+null,
+0
+],
+"2379": [
+"Armor",
+"Mail",
+5,
+1,
+"Chest",
 null,
 0
 ],
@@ -43361,6 +43379,15 @@ null,
 null,
 0
 ],
+"3591": [
+"Armor",
+"Cloth",
+27,
+22,
+"Waist",
+null,
+0
+],
 "3592": [
 "Armor",
 "Cloth",
@@ -48353,6 +48380,15 @@ null,
 35,
 0,
 "Non-equippable",
+null,
+0
+],
+"4658": [
+"Armor",
+"Cloth",
+8,
+3,
+"Back",
 null,
 0
 ],
@@ -53428,6 +53464,15 @@ null,
 "Leather",
 17,
 12,
+"Chest",
+null,
+0
+],
+"6524": [
+"Armor",
+"Leather",
+22,
+17,
 "Chest",
 null,
 0
