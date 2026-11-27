@@ -10205,6 +10205,15 @@ null,
 null,
 0
 ],
+"13916": [
+"Miscellaneous",
+"Junk",
+55,
+0,
+"Held In Off-hand",
+null,
+0
+],
 "13917": [
 "Miscellaneous",
 "Junk",
@@ -28196,6 +28205,15 @@ null,
 null,
 0
 ],
+"20526": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "20528": [
 "Quest",
 "Quest",
@@ -29491,6 +29509,15 @@ null,
 "One-Hand",
 "Binds when equipped",
 1
+],
+"2203": [
+"Weapon",
+"Axe",
+19,
+14,
+"Two-Hand",
+"Binds when equipped",
+0
 ],
 "2204": [
 "Weapon",
@@ -58901,6 +58928,15 @@ null,
 47,
 42,
 "Feet",
+"Binds when equipped",
+0
+],
+"821": [
+"Armor",
+"Leather",
+13,
+8,
+"Chest",
 "Binds when equipped",
 0
 ],
