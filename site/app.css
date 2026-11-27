@@ -138,8 +138,7 @@ html::after, body::after, #dash-root::after, #dash-root::before { box-shadow: no
 .wow .salecell { border-bottom: 1px dotted #8b95a7; cursor: help; }
 .wow .why { border-bottom: 1px dotted currentColor; cursor: help; }
 /* columns behind "More columns" */
-.wow table.hidex[data-tv="scan"] th:nth-child(8),.wow table.hidex[data-tv="scan"] td:nth-child(8),.wow table.hidex[data-tv="scan"] th:nth-child(9),.wow table.hidex[data-tv="scan"] td:nth-child(9),.wow table.hidex[data-tv="scan"] th:nth-child(11),.wow table.hidex[data-tv="scan"] td:nth-child(11) { display: none; }
-.wow table.hidex[data-tv="flip"] th:nth-child(6),.wow table.hidex[data-tv="flip"] td:nth-child(6),.wow table.hidex[data-tv="flip"] th:nth-child(7),.wow table.hidex[data-tv="flip"] td:nth-child(7) { display: none; }
+.wow table.hidex[data-tv="flip"] :is(th,td):is(:nth-child(2),:nth-child(5),:nth-child(9),:nth-child(11)) { display: none; }
 .wow table.hidex[data-tv="mar"] th:nth-child(3),.wow table.hidex[data-tv="mar"] td:nth-child(3),.wow table.hidex[data-tv="mar"] th:nth-child(8),.wow table.hidex[data-tv="mar"] td:nth-child(8) { display: none; }
 .wow table.hidex[data-tv="writ"] th:nth-child(3),.wow table.hidex[data-tv="writ"] td:nth-child(3),.wow table.hidex[data-tv="writ"] th:nth-child(7),.wow table.hidex[data-tv="writ"] td:nth-child(7) { display: none; }
 .wow table.hidex[data-tv="buy"] th:nth-child(6),.wow table.hidex[data-tv="buy"] td:nth-child(6) { display: none; }

@@ -43,8 +43,9 @@
     return rows.map((r) => { const f = F.get(r.id) || 0; return Object.assign({}, r, { qty: r.qty * f, value: r.value == null ? null : r.value * f }); }).filter((r) => r.qty > 0); };
   const rowsS = (id) => (id === "ledger_pl" ? scopedLP() : id === "portfolio" ? scopedPortfolio() : id === "pf_items" ? scopedPF() : rowsOf(id));
 
-  // ---------- group table rows by category (collapsible, with subtotals) ----------
-  WOW.group = true; WOW.grpState = new Map(); WOW.grpAll = null;   // grpState: key -> true when the user opened it, false when closed
+  // ---------- tables are flat lists; an item's category shows when you hover its name (grouping can be turned back on with WOW.group) ----------
+  const catText = (id) => { const c = catMap().get(id); return c ? c.cls + (c.sub ? " – " + c.sub : "") : "Not yet categorised"; };
+  WOW.group = false; WOW.grpState = new Map(); WOW.grpAll = null;   // grpState: key -> true when the user opened it, false when closed
   const NOCAT = "Not yet categorised";
   const RD = new WeakMap(), GSUM = {};            // RD: row element -> its data row; GSUM: table key -> (rows) => cells for every column
   const reg = (r, el) => { RD.set(el, r); return el; };
@@ -80,7 +81,7 @@
       }
       const kids = [...tb.children].filter((r) => !r.classList.contains("vrow"));
       const items = kids.filter((r) => r.dataset && r.dataset.item);
-      items.forEach((r) => { r.hidden = false; });
+      items.forEach((r) => { r.hidden = false; const c0 = r.children[0]; if (c0 && catMap().size && !c0.querySelector("[data-tip]")) c0.title = catText(+r.dataset.item); });
       const sorted = TV[key] && TV[key].col != null;   // sorted by a column: one flat list in that order, no category groups
       if (!WOW.group || items.length < 2 || !catMap().size || sorted) return;
       const cols = table.querySelectorAll("thead th").length || 1, by = new Map(), sumFn = GSUM[key];
@@ -156,18 +157,14 @@
     ss.onchange = () => { WOW.cat.sub = ss.value; catChanged(); };
     const clr = el$("button", "btn sm", "Clear"); clr.type = "button"; clr.disabled = !WOW.cat.cls; clr.onclick = () => { WOW.cat = { cls: "", sub: "" }; catChanged(); };
     const lab = el$("span", "lbl", "Category");
-    const ex = el$("button", "btn sm", "Expand all"), co = el$("button", "btn sm", "Collapse all"); ex.type = co.type = "button";
-    const regAll = () => { WOW.grpState.clear(); redrawGrouped(); dash.draw("pos_chips"); };
-    ex.onclick = () => { WOW.grpAll = "open"; regAll(); }; co.onclick = () => { WOW.grpAll = "closed"; regAll(); };
-    const info = el$("span", "sm", WOW.cat.cls ? "Filtering the Portfolio and every table." : "Narrows the Portfolio and every table to one kind of item. Items sold in several versions (for example different suffixes) have a ▸ variants button: press it to list each version with its own price.");
-    el.replaceChildren(lab, cs, ss, clr, ex, co, info);
+    const info = el$("span", "sm", WOW.cat.cls ? "Filtering the Portfolio and every table." : "Narrows the Portfolio and every table to one kind of item. Hover an item's name to see its category. Items sold in several versions (for example different suffixes) have a ▸ variants button: press it to list each version with its own price.");
+    el.replaceChildren(lab, cs, ss, clr, info);
   });
 
   // ---------- tabs ----------
   function openTab(name) {
     document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== name; });
     document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
-    document.querySelectorAll(".catbar").forEach((c) => { c.classList.toggle("off", name === "today"); });   // the category filter does nothing on Today; hidden by style so its data still loads with the page
     dash.setLink(name);
   }
   function openSub(name) {
@@ -297,9 +294,9 @@
   TVKEYS.forEach((k) => dash.draw("tv_" + k, (el) => {
     const s = TV[k] || {};
     const th = s.col == null ? null : document.querySelector('table[data-tv="' + k + '"] thead th:nth-child(' + (s.col + 1) + ')');
-    const txt = th ? "Sorted by " + th.textContent + (s.dir > 0 ? ", low to high" : ", high to low") + " (one list, categories hidden while sorted). " : "Grouped by category. Press a column heading to sort.";
+    const txt = th ? "Sorted by " + th.textContent + (s.dir > 0 ? ", low to high" : ", high to low") + ". " : "Press a column heading to sort. Hover an item's name for its category.";
     const kids = [document.createTextNode(txt)];
-    if (th) { const g = el$("button", "btn sm", "Group by category"); g.type = "button"; g.onclick = () => { s.col = null; TV[k] = s; redrawTable(k); }; kids.push(g, document.createTextNode(" ")); }
+    if (th) { const g = el$("button", "btn sm", "Default order"); g.type = "button"; g.onclick = () => { s.col = null; TV[k] = s; redrawTable(k); }; kids.push(g, document.createTextNode(" ")); }
     if (LIMIT[k] && s.total > LIMIT[k]) {
       const capped = s.shown < s.total && (s.all || s.q);
       kids.push(document.createTextNode(" Showing " + U.num(s.shown) + " of " + U.num(s.total) + (capped ? " (at most " + MAXROWS + " rows are drawn: search or filter to narrow it down)" : s.q && !s.all ? " (all matches while filtering)" : "") + ". "));
@@ -752,7 +749,7 @@
     if (!ready(el, ["ledger_pl"])) return;
     const rows = rowsS("ledger_pl");
     if (!rows.length) { el.replaceChildren(el$("span", "muted", "No positions yet.")); return; }
-    const chip = (r) => { const b = el$("button", "chip"); b.type = "button"; const ic = iconImg(r.id); if (ic) b.append(ic, " "); b.append(document.createTextNode(r.item)); b.dataset.id = r.id; if (r.id === WOW.id) b.setAttribute("aria-pressed", "true"); return b; };
+    const chip = (r) => { const b = el$("button", "chip"); b.type = "button"; const ic = iconImg(r.id); if (ic) b.append(ic, " "); b.append(document.createTextNode(r.item)); b.dataset.id = r.id; if (catMap().size) b.title = catText(r.id); if (r.id === WOW.id) b.setAttribute("aria-pressed", "true"); return b; };
     if (!WOW.group || !catMap().size) { el.replaceChildren(...rows.map(chip)); el.onclick = (e) => { const b = e.target.closest("button[data-id]"); if (b) select(+b.dataset.id, false); }; return; }
     const by = new Map();   // class -> type -> positions
     for (const r of rows) { const c = catMap().get(r.id), cls = c ? c.cls : NOCAT, sub = c ? c.sub || "Other" : ""; if (!by.has(cls)) by.set(cls, new Map()); const m = by.get(cls); if (!m.has(sub)) m.set(sub, []); m.get(sub).push(r); }
@@ -850,7 +847,7 @@
     if (rows.length) tb.append(totRow(GSUM.floor(rows)));
   });
   GSUM.floor = (rows) => ["Total", "", "", "", U.num(sumOf(rows, (r) => r.under_units)), goldS(sumOf(rows, (r) => r.under_profit)), U.num(sumOf(rows, (r) => r.n)), U.num(sumOf(rows, (r) => r.qty))];
-  GSUM.flip = (rows) => ["Total", "", "", "", "", U.num(sumOf(rows, (r) => r.units)), goldS(sumOf(rows, (r) => r.total)), "", ""];
+  GSUM.flip = (rows) => ["Total", "", "", "", "", "", U.num(sumOf(rows, (r) => r.units)), goldS(sumOf(rows, (r) => r.total)), "", "", ""];
   dash.draw("floor_note", (el) => {
     if (D("scanner").status !== "ok") { el.textContent = ""; return; }
     const hasV = rowsOf("scanner").some((r) => r.vendor != null);
@@ -995,6 +992,7 @@
     const profsLoaded = D("profs").status === "ok" && D("profs").data.length > 0;
     const tt = el$("b", "ttitle"); const tic = iconImg(t.id); if (tic) tt.append(tic, " "); tt.append(document.createTextNode(nm));
     const kids = [tt];
+    if (catMap().size) kids.push(row("Category:", catText(t.id)));
     if (I && I.uses) kids.push(row("Used in:", I.uses));
     if (I && I.makes) kids.push(row("Made by:", I.makes));
     if (!(I && (I.uses || I.makes))) kids.push(row("Professions:", profsLoaded ? "none use or make this item" : "profession data not loaded yet"));
@@ -1011,28 +1009,24 @@
 
 
   // ---------- flip scanner and writ tracker ----------
-  WOW.minq = 1; WOW.minlist = 5; WOW.minsold = 0;
-  // the Flip scanner filters: rarity, fewest listings and fewest sold per day (also used by Today's best flips; rarity and listings by the Opportunity map)
+  WOW.minq = 1; WOW.minlist = 5; WOW.minsold = 1;
+  // the Flip scanner filters: rarity, fewest listings and fewest sold per day (rarity and listings also apply to the Opportunity map)
   const flipOk = (r) => (r.q == null || r.q >= WOW.minq) && (r.n == null || r.n >= WOW.minlist) && (!WOW.minsold || (r.sold_day != null && r.sold_day >= WOW.minsold));
-  const flipRedraw = () => ["flip_rows", "flip_note", "today_flip", "ch_opp", "opp_note"].forEach((n) => dash.draw(n));
+  const flipRedraw = () => ["flip_rows", "flip_note", "ch_opp", "opp_note"].forEach((n) => dash.draw(n));
   [["#f-minq", "minq"], ["#f-minlist", "minlist"], ["#f-minsold", "minsold"]].forEach(([sel, k]) => { const s = document.querySelector(sel); if (!s) return; WOW[k] = +s.value; s.addEventListener("change", () => { WOW[k] = +s.value; flipRedraw(); }); });
-  let GAP = new Map();
-  const gapCell = (id) => { const g = GAP.get(id); if (!g || g.held == null) return "—"; const sp = el$("span", "", U.pct(g.held)); sp.title = "Share of saved ladder times (" + g.n + ") when the cheapest price was at least 10% below the next price level"; return sp; };
   dash.draw("flip_rows", (tb) => {
-    if (!ready(tb, ["flip_view", "ladder_gap"])) return;
-    GAP = new Map(rowsOf("ladder_gap").map((g) => [g.id, g]));
-    const rows = tv("flip", rowsOf("flip_view").filter(flipOk), [(r) => r.name, (r) => r.min, (r) => r.ref, (r) => r.profit, (r) => r.roi, (r) => r.units, (r) => r.total, (r) => r.sold_day, (r) => (GAP.get(r.id) || {}).held], (r) => r.name);
-    tb.replaceChildren(...rows.map((r) => reg(r, tr(r.id, [nameCell(r.name, r.id), U.coin(r.min), U.coin(r.ref), U.coin(r.profit, { signed: true, tone: true }), pctNode(r.roi), r.units == null ? "—" : U.num(r.units),
-      r.total == null ? "—" : U.coin(r.total, { signed: true, tone: true }), soldCell(r.sold_day, r.id), gapCell(r.id)], r.id))));
+    if (!ready(tb, ["flip_view"])) return;
+    const rows = tv("flip", rowsOf("flip_view").filter(flipOk), [(r) => r.name, (r) => r.wall, (r) => r.cost, (r) => r.ref, (r) => r.profit, (r) => r.roi, (r) => r.units, (r) => r.total, (r) => r.share, (r) => r.sold_day, (r) => r.min], (r) => r.name);
+    tb.replaceChildren(...rows.map((r) => reg(r, tr(r.id, [nameCell(r.name, r.id), U.coin(r.wall), U.coin(r.cost), U.coin(r.ref), U.coin(r.profit, { signed: true, tone: true }), pctNode(r.roi), U.num(r.units),
+      U.coin(r.total, { signed: true, tone: true }), U.pct(r.share), soldCell(r.sold_day, r.id), U.coin(r.min)], r.id))));
     if (rows.length) tb.append(totRow(GSUM.flip(rows)));
   });
   dash.draw("flip_note", (el) => {
     const d = D("flip_view");
     if (d.status !== "ok") { el.textContent = ""; return; }
-    const ladders = d.data.some((r) => r.basis === "next listing"), hasQ = rowsOf("names").some((r) => r.q != null);
-    const hidden = d.data.length - d.data.filter(flipOk).length;
-    el.textContent = (hasQ ? (hidden ? hidden + " item(s) are hidden by the filters above. " : "") : "No rarity in the data, so grey junk is not filtered. ") + (ladders ? "Buy the cheapest listing and resell just below the next one. " : "No price ladders in the data, so the resale price is the median. ")
-      + "Return is after the 5% cut. Only items with a 10%+ return that pass the filters above. The cheapest listing is often a single unit, so look at 'Units at lowest', and a low 'Sold / day' means a slow resale.";
+    const hidden = d.data.length - d.data.filter(flipOk).length, scan = d.data.some((r) => r.src === "scan");
+    el.textContent = (hidden ? hidden + " item(s) are hidden by the filters above. " : "") + (scan ? "Prices from your own AH scan where it is newer than the hourly data. " : "Prices from the hourly data: cheap units may already be bought. Scan the AH in game for fresh flips. ")
+      + "Sorted by Profit on those (all cheap units bought and resold, after the 5% cut). Press a heading to sort by another column.";
   });
   dash.draw("writ_rows", (tb) => {
     if (!ready(tb, ["writ_view"])) return;

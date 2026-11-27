@@ -24,7 +24,7 @@
         const base = { q: qm.has(r.id) ? qm.get(r.id) : null, id: r.id, name: nm.get(r.id) || "Item " + r.id, vendor: vd.has(r.id) ? vd.get(r.id) : null, sold: r.o[last], exp: r.x[last] };
         const s = S ? S.p.get(r.id) : null;
         if (s && s[0] > 0) {
-          out.push(Object.assign(base, { min: s[0], med: r.d[last] != null ? r.d[last] : s[0], qty: s[3], n: s[4], t: S.t, src: "scan" }));
+          out.push(Object.assign(base, { min: s[0], med: s[5] != null ? s[5] : r.d[last] != null ? r.d[last] : s[0], qty: s[3], n: s[4], t: S.t, src: "scan", scan: s }));
         } else {
           if (r.m[last] == null) continue;
           out.push(Object.assign(base, { min: r.m[last], med: r.d[last], qty: r.q[last], n: r.n[last], t: tNow, src: "api" }));
@@ -394,24 +394,40 @@
 
   dash.calc("flip_view", {
     title: "Flip scanner",
-    description: "Items where the cheapest listing sits well below the next one: buy at the lowest price, resell near the next listing (median if no ladder), after the 5% auction cut.",
-    inputs: ["latest", "trends", "ladder_view"],
-    fn: (latest, trends, ladders) => {
-      const Lm = new Map(ladders.map((r) => [r.id, r.lv])), T = new Map(trends.map((t) => [t.id, t]));
+    description: "A flip is a few units listed well below the price most units sit at. Most units at is the unit-weighted median listing price. Cheap units are those at 80% of it or less; they must be at most 30% of all units, the item must sell 1+ a day and the cheap units within about 7 days, and the cheap units must cost at most 90% of the normal price (the 7-day average lowest price), with a resale price at most 1.5x normal. Gear sold in several versions is left out, since its price gaps are between versions. Buy the cheap units, resell at the first price above them, after the 5% auction cut, 10%+ return. Uses your own AH scan when it is newer than the collector's snapshot (it sees every price level), otherwise the snapshot median and the saved price ladder.",
+    inputs: ["latest", "trends", "ladder_view", "variants"],
+    fn: (latest, trends, ladders, variants) => {
+      const CUT = 0.8, Lm = new Map(ladders.map((r) => [r.id, r.lv])), T = new Map(trends.map((t) => [t.id, t]));
+      const vc = new Map();   // gear sold in several versions: the price gaps are between versions, not bargains
+      for (const v of variants) { const id = Number(v.id); if (!vc.has(id)) vc.set(id, new Set()); vc.get(id).add(v.b); }
       const out = [];
       for (const L of latest) {
-        if (L.n < 3 || !(L.min > 0)) continue;
-        const lv = Lm.get(L.id);
-        let ref = null, units = null, basis = "median";
-        if (lv && lv.length >= 2) { ref = lv[1][0]; units = lv[0][1]; basis = "next listing"; }
-        else if (L.med > L.min) ref = L.med;
-        if (ref == null || ref <= L.min) continue;
-        const profit = Math.round(ref * 0.95 - L.min);
-        if (profit <= 0 || profit / L.min < 0.1) continue;
-        const t = T.get(L.id) || {};
-        out.push({ id: L.id, q: L.q, name: L.name, min: L.min, ref: ref, basis: basis, units: units, profit: profit, roi: profit / L.min, total: units == null ? null : profit * units, n: L.n, sold_day: t.sold_day == null ? null : t.sold_day });
+        if (!(L.min > 0) || !(L.qty > 0) || (vc.get(L.id) || new Set()).size >= 2) continue;
+        let wall, units = 0, cost = 0, after = null;
+        if (L.src === "scan") {
+          const s = L.scan;
+          if (!s || s[5] == null) continue;          // scans from before addon v0.4.3 lack the bulk price
+          wall = s[5]; units = s[6]; cost = s[7]; after = s[8];
+        } else {
+          const lv = Lm.get(L.id);
+          wall = L.med;
+          if (!lv || !(wall > 0)) continue;
+          for (const [p, q] of lv) { if (p <= wall * CUT) { units += q; cost += p * q; } else { after = p; break; } }
+          if (after == null) continue;               // the saved ladder (10 cheapest levels) ends before the cheap units do: the resale price is unknown
+        }
+        if (!(wall > 0) || !(units > 0) || units > L.qty * 0.3) continue;
+        const t = T.get(L.id) || {}, sold = t.sold_day;
+        if (sold == null || sold < 1 || units > sold * 7) continue;
+        const avg = cost / units, ref = Math.min(after, wall), normal = t.avg7;
+        // the cheap units must be cheap against the item's normal price too (if the lowest price is usually this low, it is the real price),
+        // and the resale price must not be a spike
+        if (!normal || avg > normal * 0.9 || ref > normal * 1.5) continue;
+        const profit = Math.round(ref * 0.95 - avg);
+        if (profit <= 0 || profit / avg < 0.1) continue;
+        out.push({ id: L.id, q: L.q, name: L.name, min: L.min, wall: wall, cost: Math.round(avg), ref: ref, units: units, profit: profit, roi: profit / avg, total: profit * units,
+          share: units / L.qty, normal: normal, n: L.n, sold_day: sold, src: L.src });
       }
-      return out.sort((a, b) => (b.total == null ? b.profit : b.total) - (a.total == null ? a.profit : a.total)).slice(0, 300);
+      return out.sort((a, b) => b.total - a.total).slice(0, 300);
     },
   });
 
