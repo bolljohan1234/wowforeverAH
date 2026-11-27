@@ -15452,6 +15452,15 @@ null,
 "Binds when equipped",
 0
 ],
+"148": [
+"Armor",
+"Miscellaneous",
+1,
+0,
+"Shirt",
+null,
+0
+],
 "14800": [
 "Armor",
 "Shield",
@@ -23273,6 +23282,15 @@ null,
 null,
 0
 ],
+"16008": [
+"Armor",
+"Cloth",
+58,
+0,
+"Head",
+"Binds when equipped",
+0
+],
 "1602": [
 "Weapon",
 "Axe",
@@ -24718,6 +24736,15 @@ null,
 "Shield",
 14,
 9,
+"Off Hand",
+null,
+0
+],
+"17188": [
+"Armor",
+"Shield",
+19,
+14,
 "Off Hand",
 null,
 0
@@ -27872,6 +27899,15 @@ null,
 "Binds when equipped",
 0
 ],
+"2024": [
+"Weapon",
+"Sword",
+21,
+16,
+"Two-Hand",
+null,
+0
+],
 "2025": [
 "Weapon",
 "Axe",
@@ -29267,12 +29303,39 @@ null,
 null,
 0
 ],
+"2156": [
+"Armor",
+"Cloth",
+27,
+22,
+"Feet",
+null,
+0
+],
 "2158": [
 "Armor",
 "Cloth",
 27,
 22,
 "Hands",
+null,
+0
+],
+"2159": [
+"Armor",
+"Cloth",
+27,
+22,
+"Legs",
+null,
+0
+],
+"2160": [
+"Armor",
+"Cloth",
+27,
+22,
+"Chest",
 null,
 0
 ],
@@ -30077,6 +30140,15 @@ null,
 null,
 0
 ],
+"237": [
+"Armor",
+"Leather",
+22,
+17,
+"Legs",
+null,
+0
+],
 "2370": [
 "Armor",
 "Leather",
@@ -30518,6 +30590,15 @@ null,
 null,
 0
 ],
+"2432": [
+"Armor",
+"Cloth",
+37,
+32,
+"Feet",
+null,
+0
+],
 "2434": [
 "Armor",
 "Cloth",
@@ -30533,6 +30614,15 @@ null,
 50,
 45,
 "Chest",
+null,
+0
+],
+"2446": [
+"Armor",
+"Shield",
+27,
+22,
+"Off Hand",
 null,
 0
 ],
@@ -30641,6 +30731,24 @@ null,
 37,
 32,
 "Waist",
+null,
+0
+],
+"2465": [
+"Armor",
+"Leather",
+37,
+32,
+"Legs",
+null,
+0
+],
+"2467": [
+"Armor",
+"Leather",
+37,
+32,
+"Feet",
 null,
 0
 ],
@@ -35680,6 +35788,15 @@ null,
 "Cloth",
 17,
 12,
+"Chest",
+null,
+0
+],
+"2615": [
+"Armor",
+"Cloth",
+29,
+24,
 "Chest",
 null,
 0
@@ -43168,6 +43285,15 @@ null,
 "Cloth",
 17,
 12,
+"Wrist",
+null,
+0
+],
+"3592": [
+"Armor",
+"Cloth",
+27,
+22,
 "Wrist",
 null,
 0
@@ -53234,6 +53360,15 @@ null,
 null,
 0
 ],
+"6526": [
+"Armor",
+"Leather",
+37,
+32,
+"Chest",
+null,
+0
+],
 "6527": [
 "Armor",
 "Cloth",
@@ -60659,6 +60794,15 @@ null,
 null,
 0
 ],
+"924": [
+"Weapon",
+"Mace",
+26,
+21,
+"Two-Hand",
+null,
+0
+],
 "9242": [
 "Miscellaneous",
 "Junk",
@@ -60728,6 +60872,15 @@ null,
 1,
 0,
 "Non-equippable",
+null,
+0
+],
+"926": [
+"Weapon",
+"Axe",
+25,
+20,
+"Two-Hand",
 null,
 0
 ],
