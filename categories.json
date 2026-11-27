@@ -10169,6 +10169,15 @@ null,
 null,
 0
 ],
+"13917": [
+"Miscellaneous",
+"Junk",
+55,
+0,
+"Held In Off-hand",
+null,
+0
+],
 "13926": [
 "Trade Goods",
 "Other",
@@ -16799,6 +16808,15 @@ null,
 60,
 55,
 "Waist",
+"Binds when equipped",
+0
+],
+"14978": [
+"Armor",
+"Plate",
+63,
+58,
+"Feet",
 "Binds when equipped",
 0
 ],
@@ -31517,6 +31535,15 @@ null,
 null,
 0
 ],
+"250078": [
+"Consumable",
+"Food & Drink",
+35,
+25,
+"Non-equippable",
+null,
+0
+],
 "250079": [
 "Consumable",
 "Food & Drink",
@@ -43154,6 +43181,15 @@ null,
 null,
 0
 ],
+"3603": [
+"Armor",
+"Cloth",
+10,
+5,
+"Wrist",
+null,
+0
+],
 "3606": [
 "Armor",
 "Cloth",
@@ -44897,6 +44933,15 @@ null,
 52,
 47,
 "Waist",
+null,
+0
+],
+"3993": [
+"Armor",
+"Mail",
+53,
+48,
+"Feet",
 null,
 0
 ],
