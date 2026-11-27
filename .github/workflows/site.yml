@@ -1,0 +1,74 @@
+name: Build and publish the AH Tracker site
+
+# Runs after every collector run that saved new prices, whenever the page code changes, or by hand.
+# It rebuilds site/data/*.json from the collected snapshots and publishes site/ to GitHub Pages.
+# Only public auction house data is published; your own holdings and trades are read in your browser from your PC.
+on:
+  workflow_run:
+    workflows: ["Collect auction prices"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths: ["site/**", "tools/build_dashboard_data.py", ".github/workflows/site.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Was there new price data?
+        id: check
+        run: |
+          last=$(tail -n 1 runs.csv | cut -d, -f2)
+          echo "Last collector result: $last"
+          if [ "${{ github.event_name }}" = "workflow_run" ] && [ "$last" != "new_snapshot" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.check.outputs.skip != 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Build the data files
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          mkdir -p site/data
+          python tools/build_dashboard_data.py . site/data
+          ls -la site/data
+
+      - uses: actions/configure-pages@v5
+        if: steps.check.outputs.skip != 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.check.outputs.skip != 'true'
+        with:
+          path: site
+
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.skip != 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

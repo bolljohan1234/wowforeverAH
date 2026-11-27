@@ -1,0 +1,11 @@
+/* What the Claude artifact type used to provide: base font, spacing scale and the loading shimmer. */
+:root {
+  --font-anthropic-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 20px;
+  --cds-pad-lg: 14px 16px; --cds-font-weight-medium: 600;
+}
+body { font-family: var(--font-anthropic-sans); }
+.dash-skeleton { color: transparent !important; border-radius: 4px; background: linear-gradient(90deg, #1c212c 0%, #262c39 50%, #1c212c 100%); background-size: 200% 100%; animation: dash-shimmer 1.4s linear infinite; min-width: 80px; display: inline-block; }
+@keyframes dash-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.wow .gamefile { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 2px; }
+.wow .gamefile .sm { max-width: 70ch; }
