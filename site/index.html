@@ -19,58 +19,34 @@
   <div class="strip" data-source="runs_summary snaps ladder" data-draw="status_strip"></div>
 
   <nav class="tabs" role="tablist" aria-label="Sections">
-    <button type="button" role="tab" data-tab="today" aria-selected="true">Today</button>
-    <button type="button" role="tab" data-tab="portfolio" aria-selected="false">Portfolio</button>
+    <button type="button" role="tab" data-tab="portfolio" aria-selected="true">Portfolio</button>
     <button type="button" role="tab" data-tab="opps" aria-selected="false">Opportunities</button>
-    <button type="button" role="tab" data-tab="scanner" aria-selected="false">Scanner</button>
     <button type="button" role="tab" data-tab="market" aria-selected="false">Market</button>
     <button type="button" role="tab" data-tab="margins" aria-selected="false">Crafting</button>
     <button type="button" role="tab" data-tab="explorer" aria-selected="false">Explorer</button>
     <button type="button" role="tab" data-tab="info" aria-selected="false">Info</button>
   </nav>
-  <div class="tbar catbar off" data-draw="catsel" data-source="cats variants"></div>
+  <div class="tbar catbar" data-draw="catsel" data-source="cats variants"></div>
 
-  <!-- ============ TODAY ============ -->
-  <section id="today" class="tabpanel" data-panel="today" aria-labelledby="h-today">
-    <h2 id="h-today">Today</h2>
-    <details class="about"><summary>About this</summary><p class="note">This is your starting page. The note is my latest summary. The first two tiles show your Net Worth (what you hold, at today's lowest prices) and your profit: what your sales have made, 0 until you sell. Under it is what you would make if you also sold everything you hold today, after the 5% auction cut. The three lists below are the five best items from other tabs: flips to buy and resell, crafts that make money at your skill levels, and items you hold that look worth selling. Press See all to open the full list.</p></details>
-    <div class="card note-card"><span class="lbl">Claude's note</span><p data-draw="daily_note">—</p></div>
+  <!-- ============ PORTFOLIO ============ -->
+  <section id="portfolio" class="tabpanel" data-panel="portfolio" aria-labelledby="h-portfolio">
+    <h2 id="h-portfolio">My investments</h2>
+    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-positions">Positions</button><button type="button" class="chip" data-jump="h-pie">Charts</button><button type="button" class="chip" data-jump="h-profit">Profit history</button></nav>
+    <details class="about"><summary>About this</summary><p class="note">Everything on this tab comes from the game: what your characters hold and your auction house purchases and sales, read from the WoW Forever Companion addon's file on your PC (see Info, Inputs). The Show buttons switch between Total, only the items you bought (Invested) and only the items you collected (Collected). Collected items cost nothing, so they count fully as profit. If you hold an item that you both bought and collected, the units you still hold are split in the same proportion as you acquired them. The gold tiles, Hold or sell and Profit history always show everything.</p><p class="note">Net Worth is what you hold at each item's cheapest current price. Profit is what your sales have made, so it stays 0 until you sell; under it, if sold today is what you would make if you also sold everything you hold at today's lowest prices after the 5% auction cut, minus what it cost. Press the Net Worth or Profit tile to pick which columns the positions table under the tiles shows.</p><p class="note">The second row of tiles: Gold now is the gold on all your characters, Gold + items adds what your items are worth, and Goal progress compares that with your goal. All three come from the game file; press one to see the inputs.</p></details>
+    <div class="chips" role="group" aria-label="What to include"><span class="lbl">Show</span><button type="button" class="chip" data-pfscope="total" aria-pressed="true" title="Everything you hold">Total</button><button type="button" class="chip" data-pfscope="invested" aria-pressed="false" title="Only items you bought, with what they cost you">Invested</button><button type="button" class="chip" data-pfscope="collected" aria-pressed="false" title="Only items you collected for free (farmed, looted, crafted)">Collected</button></div>
     <div class="tiles hero">
-      <button type="button" class="tile" data-goto="portfolio" title="Open the portfolio"><span class="lbl">Net Worth</span><b class="big dash-skeleton" data-draw="t_worth" data-source="portfolio">—</b></button>
-      <button type="button" class="tile" data-goto="portfolio" title="Open the portfolio"><span class="lbl">Profit</span><b class="big dash-skeleton" data-draw="t_profit" data-source="portfolio">—</b><span class="sm">if sold today: <b data-draw="t_iftoday" data-source="portfolio">—</b></span></button>
+      <button type="button" class="tile" data-tile="worth" aria-pressed="true" title="What everything you hold is worth at today's lowest buyout. Press to show the Net Worth columns in the table below."><span class="lbl">Net Worth</span><b class="big dash-skeleton" data-draw="s_value" data-source="portfolio" data-field="value" data-row="0">—</b></button>
+      <button type="button" class="tile" data-tile="after" aria-pressed="false" title="What your sales have made (0 until you sell). Underneath: what you would make if you also sold everything you hold today, after the 5% auction cut. Press to show the Profit columns in the table below."><span class="lbl">Profit</span><b class="big dash-skeleton" data-draw="s_profit" data-source="portfolio" data-field="realized" data-row="0">—</b><span class="sm">if sold today: <b class="dash-skeleton" data-draw="s_iftoday" data-source="portfolio" data-field="profit_today" data-row="0">—</b></span></button>
     </div>
     <div class="tiles hero">
       <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Gold now</span><b class="big" data-draw="g_now" data-source="gold_saved">—</b></button>
       <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Gold + items</span><b class="big" data-draw="g_net" data-source="gold_saved portfolio">—</b></button>
       <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Goal progress</span><b class="big" data-draw="g_goal" data-source="gold_saved goal_saved">—</b></button>
     </div>
-    <div class="cgrid">
-    <section class="panel mini"><div class="mhead"><h3>Best flips</h3><button type="button" class="btn sm" data-goto="opps">See all</button></div>
-      <details class="about"><summary>About this</summary><p class="note">Items where the cheapest listing is well below the next one, so you could buy it and resell it for more. Profit and return are after the 5% auction cut. The list follows the rarity setting in the Flip scanner on Opportunities.</p></details>
-      <div class="scroll"><table class="tbl" data-source="flip_view ladder_gap" data-row-key="id"><thead><tr><th>Item</th><th>Lowest now</th><th>Profit each</th><th>Return</th></tr></thead><tbody data-draw="today_flip"></tbody></table></div></section>
-    <section class="panel mini"><div class="mhead"><h3>Profitable crafts</h3><button type="button" class="btn sm" data-goto="margins">See all</button></div>
-      <details class="about"><summary>About this</summary><p class="note">Crafts that earn more from the finished item than the ingredients cost, with ingredients and the product priced from the auction house. Only crafts you can make at your profession levels (read from the game) are shown.</p></details>
-      <div class="scroll"><table class="tbl" data-source="recipe_margins skills_saved" data-row-key="id"><thead><tr><th>Recipe</th><th>Profession</th><th>Profit / craft</th></tr></thead><tbody data-draw="today_craft"></tbody></table></div></section>
-    <section class="panel mini"><div class="mhead"><h3>Consider selling</h3><button type="button" class="btn sm" data-goto="portfolio">See all</button></div>
-      <details class="about"><summary>About this</summary><p class="note">Items you hold that are at least 10% above their average price and above what you paid, so it may be a good time to sell. This needs a few days of data.</p></details>
-      <div class="scroll"><table class="tbl" data-source="advice" data-row-key="id"><thead><tr><th>Item</th><th>Your avg buy price</th><th>Lowest now</th><th>vs normal</th></tr></thead><tbody data-draw="today_sell"></tbody></table></div></section>
-    </div>
-  </section>
-
-  <!-- ============ PORTFOLIO ============ -->
-  <section id="portfolio" class="tabpanel" data-panel="portfolio" aria-labelledby="h-portfolio" hidden>
-    <h2 id="h-portfolio">My investments</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-positions">Positions</button><button type="button" class="chip" data-jump="h-pie">Charts</button><button type="button" class="chip" data-jump="h-profit">Profit history</button></nav>
-    <details class="about"><summary>About this</summary><p class="note">Everything on this tab comes from the game: what your characters hold and your auction house purchases and sales, read from the WoW Forever Companion addon's file on your PC (see Info, Inputs). The Show buttons switch between Total, only the items you bought (Invested) and only the items you collected (Collected). Collected items cost nothing, so they count fully as profit. If you hold an item that you both bought and collected, the units you still hold are split in the same proportion as you acquired them. The Today tab, Hold or sell and Profit history always show everything.</p><p class="note">Net Worth is what you hold at each item's cheapest current price. Profit is what your sales have made, so it stays 0 until you sell; under it, if sold today is what you would make if you also sold everything you hold at today's lowest prices after the 5% auction cut, minus what it cost. Press a tile to pick which columns the positions table under the tiles shows.</p></details>
-    <div class="chips" role="group" aria-label="What to include"><span class="lbl">Show</span><button type="button" class="chip" data-pfscope="total" aria-pressed="true" title="Everything you hold">Total</button><button type="button" class="chip" data-pfscope="invested" aria-pressed="false" title="Only items you bought, with what they cost you">Invested</button><button type="button" class="chip" data-pfscope="collected" aria-pressed="false" title="Only items you collected for free (farmed, looted, crafted)">Collected</button></div>
-    <div class="tiles hero">
-      <button type="button" class="tile" data-tile="worth" aria-pressed="true" title="What everything you hold is worth at today's lowest buyout. Press to show the Net Worth columns in the table below."><span class="lbl">Net Worth</span><b class="big dash-skeleton" data-draw="s_value" data-source="portfolio" data-field="value" data-row="0">—</b></button>
-      <button type="button" class="tile" data-tile="after" aria-pressed="false" title="What your sales have made (0 until you sell). Underneath: what you would make if you also sold everything you hold today, after the 5% auction cut. Press to show the Profit columns in the table below."><span class="lbl">Profit</span><b class="big dash-skeleton" data-draw="s_profit" data-source="portfolio" data-field="realized" data-row="0">—</b><span class="sm">if sold today: <b class="dash-skeleton" data-draw="s_iftoday" data-source="portfolio" data-field="profit_today" data-row="0">—</b></span></button>
-    </div>
     <section class="tiledetail" id="h-positions" aria-labelledby="h-pos">
     <h4 id="h-pos" data-draw="pos_title">—</h4>
     <p class="note" data-draw="pos_note" data-source="portfolio"></p>
-    <details class="about"><summary>About this</summary><p class="note">One table for everything you hold or have sold, one row per item, grouped by category. The tile you press picks the columns: Net Worth shows Qty held, Lowest now, Worth, Share and Hold or sell?; Profit shows Qty held, Paid total, Worth, After 5% cut, Vendor value (total), Profit and Profit if sold today. More columns shows all of them.</p><p class="note">Market values per unit: Lowest now is the cheapest listing, Median now the middle price, Vendor value (each) what an NPC pays. Your values: Your avg buy price is what you paid per unit (collected units left out), Paid total what you paid for what you still hold, Worth your units at the lowest price, Share its part of your Net Worth, After 5% cut what they would bring in after the auction house cut, Vendor value (total) what a vendor would pay for them. Profit is what sales of the item have made (empty until you sell); Profit if sold today adds what selling the rest today would make, and Profit % is that as a share of Paid total. Hold or sell? is a rule-of-thumb read from the price against its average and the last 24 hours; hover the word for the reason. It needs a few days of data and is not a prediction. List at is one copper under the cheapest listing, After cut each what you receive per unit, Realistic total that times your units (the vendor price when a vendor pays more), Days to sell your quantity against how many the whole market sells per day. Hover a column heading for its meaning. Press a heading to sort (one list while sorted), or a row to open the item.</p></details>
+    <details class="about"><summary>About this</summary><p class="note">One table for everything you hold or have sold, one row per item. Hover an item's name to see its category (for example Trade Goods – Cooking); the Category filter at the top narrows every table. The tile you press picks the columns: Net Worth shows Qty held, Lowest now, Worth, Share and Hold or sell?; Profit shows Qty held, Paid total, Worth, After 5% cut, Vendor value (total), Profit and Profit if sold today. More columns shows all of them.</p><p class="note">Market values per unit: Lowest now is the cheapest listing, Median now the middle price, Vendor value (each) what an NPC pays. Your values: Your avg buy price is what you paid per unit (collected units left out), Paid total what you paid for what you still hold, Worth your units at the lowest price, Share its part of your Net Worth, After 5% cut what they would bring in after the auction house cut, Vendor value (total) what a vendor would pay for them. Profit is what sales of the item have made (empty until you sell); Profit if sold today adds what selling the rest today would make, and Profit % is that as a share of Paid total. Hold or sell? is a rule-of-thumb read from the price against its average and the last 24 hours; hover the word for the reason. It needs a few days of data and is not a prediction. List at is one copper under the cheapest listing, After cut each what you receive per unit, Realistic total that times your units (the vendor price when a vendor pays more), Days to sell your quantity against how many the whole market sells per day. Hover a column heading for its meaning. Press a heading to sort, or a row to open the item.</p></details>
     <div class="tbar"><input class="tfilter" data-tv="pos" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_pos"></span><button type="button" class="btn sm morebtn" data-morecols="pos" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
     <div class="scroll">
       <table class="tbl hidex view-worth" data-tv="pos" data-source="ledger_pl portfolio" data-row-key="item">
@@ -157,27 +133,6 @@
     </details>
   </section>
 
-  <!-- ============ SCANNER ============ -->
-  <section id="scanner" class="tabpanel" data-panel="scanner" aria-labelledby="h-scanner" hidden>
-    <h2 id="h-scanner">Scanner</h2>
-    <details class="about"><summary>About this</summary><p class="note">Every tracked item in one table. Use the search box, the quick filters (Most listed, Below vendor value, Near vendor price, Falling, Rising, Best sellers) and the profession list to narrow it down.</p><p class="note">Lowest is the cheapest price. Vendor value is what an NPC pays. vs vendor compares the two. Units below vendor is how many units are listed at a price under the vendor value, and Profit buying them is what you would make buying all of them and selling to a vendor. It reads the price ladder, which holds the cheapest price levels, so a figure marked at least means even more may be listed. Listings is the number of auctions. 24 h is the price change over a day. vs normal compares with the average price. Sold / day is the estimated daily sales. Used in lists professions that use or make the item.</p><p class="note">Press a row to open its graphs in the Explorer; the arrow opens it on Wowhead.</p></details>
-    <label class="srch"><span class="lbl">Search by name</span><input id="q" type="search" placeholder="e.g. Plaguebloom" autocomplete="off"></label>
-    <div class="chips" id="presets">
-      <button type="button" class="chip" data-preset="listed" aria-pressed="true">Most listed</button>
-      <button type="button" class="chip" data-preset="below" aria-pressed="false">Below vendor value</button>
-      <button type="button" class="chip" data-preset="floor" aria-pressed="false">Near vendor price</button>
-      <button type="button" class="chip" data-preset="falling" aria-pressed="false">Falling</button>
-      <button type="button" class="chip" data-preset="rising" aria-pressed="false">Rising</button>
-      <button type="button" class="chip" data-preset="selling" aria-pressed="false">Best sellers</button>
-    </div>
-    <label class="srch"><span class="lbl">Show only items used or made by a profession, or Craftsman's Writ items</span><select id="tag" data-draw="tagsel"></select></label>
-    <p class="note" data-draw="scanner_note"></p>
-    <div class="tbar"><span class="sm" data-draw="tv_scan"></span><button type="button" class="btn sm morebtn" data-morecols="scan" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
-    <div class="scroll"><table class="tbl hidex" data-tv="scan" data-source="scanner" data-row-key="id">
-      <thead><tr><th data-field="name">Item</th><th data-field="min" title="The cheapest listing per unit right now">Lowest now</th><th data-field="vendor" title="What an NPC vendor pays per unit">Vendor value</th><th data-field="vs_vendor">vs vendor</th><th data-field="under_units">Units below vendor</th><th data-field="under_profit">Profit buying them</th><th data-field="n">Listings</th><th data-field="chg24">24 h</th><th data-field="dev7">vs normal</th><th data-field="sold_day">Sold / day</th><th data-field="uses">Used in</th></tr></thead>
-      <tbody data-draw="scanner_rows"></tbody></table></div>
-  </section>
-
   <!-- ============ OPPORTUNITIES ============ -->
   <section id="opps" class="tabpanel" data-panel="opps" aria-labelledby="h-opps" hidden>
     <h2 id="h-opps">Opportunities</h2>
@@ -191,14 +146,14 @@
     <p class="note" data-draw="buywatch_note"></p>
     </details>
     <details class="fold" id="h-flip" open><summary>Flip scanner</summary>
-    <details class="about"><summary>About this</summary><p class="note">A flip is buying the cheapest listing and reselling for more. Lowest now is the cheapest listing, which you buy. Resell near is the price just below the next listing. Profit each and Return are after the 5% cut. Units at lowest is how many units are available at the cheapest price, and Profit on those multiplies it. Sold / day shows how fast the item sells: a flip on something nobody buys never pays. Use the three filters to hide items with few listings, items that sell slowly, and grey junk, whose prices are often unreal. All three also apply to Best flips on the Today tab; rarity and fewest listings also apply to the Opportunity map.</p></details>
+    <details class="about"><summary>About this</summary><p class="note">A flip is buying a few units that are listed well below the price most sellers ask, and reselling them at that price. Most units at is the price that half of all units for sale are at or below (the bulk of the market). Only units listed at 80% of that or less count as cheap, and only when they are at most 30% of all units, so an item where nearly everything sits at the low price is never a flip. The cheap units must also cost at most 90% of the item's normal price (its average lowest price over 7 days): if the lowest price is usually that low, it is simply the real price. Buy at is the average price of those cheap units, Resell at is the first price above them, and Return and Profit are after the 5% cut. The item must also sell: at least 1 a day, and the cheap units must sell within about a week. Prices come from your own AH scan when it is newer than the hourly data, so scan in game for flips that are still there.</p><p class="note">Use the filters to hide items with few listings, items that sell slowly, and grey junk. Rarity and fewest listings also apply to the Opportunity map.</p></details>
     <label class="srch"><span class="lbl">Fewest listings</span><select id="f-minlist"><option value="3">3</option><option value="5" selected>5 (default)</option><option value="10">10</option><option value="20">20</option></select></label>
-    <label class="srch"><span class="lbl">Fewest sold per day</span><select id="f-minsold"><option value="0" selected>Any</option><option value="1">At least 1</option><option value="3">At least 3</option><option value="10">At least 10</option></select></label>
+    <label class="srch"><span class="lbl">Fewest sold per day</span><select id="f-minsold"><option value="1" selected>At least 1 (default)</option><option value="3">At least 3</option><option value="10">At least 10</option></select></label>
     <label class="srch"><span class="lbl">Lowest rarity to show</span><select id="f-minq"><option value="0">Any (including grey)</option><option value="1" selected>Common and up (hide grey)</option><option value="2">Uncommon (green) and up</option><option value="3">Rare (blue) and up</option></select></label>
     <p class="note" data-draw="flip_note"></p>
     <div class="tbar"><input class="tfilter" data-tv="flip" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_flip"></span><button type="button" class="btn sm morebtn" data-morecols="flip" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
     <div class="scroll"><table class="tbl hidex" data-tv="flip" data-source="flip_view" data-row-key="id">
-      <thead><tr><th data-field="name">Item</th><th data-field="min" title="The cheapest listing per unit right now: what you buy at">Lowest now</th><th data-field="ref">Resell near</th><th data-field="profit">Profit each</th><th data-field="roi">Return</th><th data-field="units">Units at lowest</th><th data-field="total">Profit on those</th><th data-field="sold_day">Sold / day</th><th data-field="held" title="How often the cheapest price was at least 10% below the next price level">Gap held</th></tr></thead>
+      <thead><tr><th data-field="name">Item</th><th data-field="wall" title="Half of all units for sale are at or below this price">Most units at</th><th data-field="cost" title="Average price of the cheap units (80% of Most units at or less)">Buy at (avg)</th><th data-field="ref" title="The first price above the cheap units">Resell at</th><th data-field="profit">Profit each</th><th data-field="roi">Return</th><th data-field="units" title="Cheap units to buy">Units</th><th data-field="total">Profit on those</th><th data-field="share" title="Cheap units as a share of all units for sale">Share cheap</th><th data-field="sold_day">Sold / day</th><th data-field="min" title="The cheapest listing per unit right now">Lowest now</th></tr></thead>
       <tbody data-draw="flip_rows"></tbody></table></div>
     </details>
     <details class="fold" id="h-opp" open><summary>Opportunity map</summary>
@@ -323,17 +278,17 @@
     </div>
     </details>
     <details class="fold" id="h-skills" open><summary>My skills</summary>
-    <details class="about"><summary>About this</summary><p class="note">Your highest level in each profession across all your characters, read from the game by the addon. Professions not listed count as ones you do not have. Used by the Only what I can craft filter, the levelling planner and the Today list.</p></details>
+    <details class="about"><summary>About this</summary><p class="note">Your highest level in each profession across all your characters, read from the game by the addon. Professions not listed count as ones you do not have. Used by the Only what I can craft filter, and the levelling planner.</p></details>
     <div class="skills" data-source="recipe_margins skills_saved" data-draw="skills_panel"></div>
     <p class="note" data-draw="skills_msg"></p>
     </details>
     <details class="fold" id="h-goldlog" open><summary>Your gold</summary>
-    <details class="about"><summary>About this</summary><p class="note">The gold of all your characters added together, one entry per day, from the game. The latest entry counts as your gold now (the Gold now, Gold + items and Goal progress tiles on Today use it).</p></details>
+    <details class="about"><summary>About this</summary><p class="note">The gold of all your characters added together, one entry per day, from the game. The latest entry counts as your gold now (the Gold now, Gold + items and Goal progress tiles on Portfolio use it).</p></details>
     <p class="note" data-draw="gd_msg"></p>
     <div class="scroll"><table class="tbl" data-source="gold_saved" data-row-key="id"><thead><tr><th>Date</th><th>Amount</th><th>Change since previous</th><th></th></tr></thead><tbody data-draw="gold_rows"></tbody></table></div>
     </details>
     <details class="fold" id="h-goalset" open><summary>Goal</summary>
-    <details class="about"><summary>About this</summary><p class="note">Your gold goal and its deadline. The Goal progress tile on Today shows how far along you are. To change the goal, tell Claude.</p></details>
+    <details class="about"><summary>About this</summary><p class="note">Your gold goal and its deadline. The Goal progress tile on Portfolio shows how far along you are. To change the goal, tell Claude.</p></details>
     <div class="istats" data-source="goal_saved" data-draw="goal_now"></div>
     </details>
     </div>
@@ -380,21 +335,21 @@
         <dt>Your avg buy price</dt><dd>What you paid per unit on average for the units you bought. Units you collected for free are not counted in it.</dd>
         <dt>Paid total</dt><dd>What you paid in total for the units you still hold.</dd>
         <dt>After 5% cut (total)</dt><dd>What all your units would bring in if sold at the lowest price now, after the auction house keeps 5%.</dd>
-        <dt>Net Worth (Worth)</dt><dd>Your units times the lowest price, before the 5% cut. It is higher than what you would really receive. Gold + items on Today adds your gold to it.</dd>
+        <dt>Net Worth (Worth)</dt><dd>Your units times the lowest price, before the 5% cut. It is higher than what you would really receive. Gold + items on Portfolio adds your gold to it.</dd>
         <dt>Break-even sell price</dt><dd>The lowest price you must sell at to get back what you paid after the 5% cut: your price divided by 0.95.</dd>
       </dl>
       <h3 id="h-gl2">Other terms</h3>
       <dl class="gloss">
         <dt>Listing</dt><dd>One auction on the house: a seller offering a stack at a price. Ten listings of the same item means ten sellers or stacks.</dd>
         <dt>Units for sale</dt><dd>The total number of items across all listings of that item. One listing can hold many units.</dd>
-        <dt>Next listing</dt><dd>The second-cheapest price level. The flip scanner resells just below it.</dd>
+        <dt>Most units at</dt><dd>The price that half of all units for sale are at or below: where the bulk of the market sits. The flip scanner resells near it.</dd>
         <dt>Price ladder</dt><dd>The cheapest few price levels of an item with how many units sit at each. It shows how much a big purchase pushes the price up.</dd>
         <dt>Normal price (average) / vs normal</dt><dd>The mean lowest buyout over the snapshots from the last 7 days (shorter while data builds up; it needs at least 4 snapshots spanning 12 hours). "vs normal" is how far today's price is from it.</dd>
         <dt>24 h</dt><dd>The change since the snapshot about 24 hours earlier.</dd>
         <dt>Sold / day</dt><dd>An estimate of units sold per day, taken from auctions that disappeared between snapshots without having been about to expire. Rough.</dd>
         <dt>Days of supply</dt><dd>Units for sale divided by units sold per day: how long today's stock would take to sell.</dd>
         <dt>Expired share</dt><dd>The share of vanished auctions that expired instead of selling. High means sellers struggle to sell.</dd>
-        <dt>Flip</dt><dd>Buying the cheapest listing and reselling for more, after the auction house cut.</dd>
+        <dt>Flip</dt><dd>Buying a few units listed well below where most units sit and reselling them at that price, after the auction house cut.</dd>
         <dt>Auction cut</dt><dd>The fee the house keeps when something sells. It is 5% of the sale price.</dd>
         <dt>Avg cost per unit (collected = free)</dt><dd>Everything you paid for an item divided by all the units you got, bought and collected. Profit from sales is worked out with it. It is not your avg buy price, which leaves collected units out.</dd>
         <dt>Profit (profit from sales)</dt><dd>Realised profit: what you received minus the avg cost per unit (collected = free) of the units sold. It is 0 until you sell something.</dd>
