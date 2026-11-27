@@ -5093,6 +5093,15 @@ null,
 null,
 0
 ],
+"11943": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "11944": [
 "Miscellaneous",
 "Junk",
@@ -26216,6 +26225,15 @@ null,
 null,
 0
 ],
+"1844": [
+"Armor",
+"Leather",
+17,
+12,
+"Wrist",
+null,
+0
+],
 "1845": [
 "Armor",
 "Mail",
@@ -27859,6 +27877,15 @@ null,
 "Sword",
 19,
 14,
+"One-Hand",
+null,
+0
+],
+"2028": [
+"Weapon",
+"Mace",
+21,
+16,
 "One-Hand",
 null,
 0
@@ -46148,6 +46175,15 @@ null,
 35,
 0,
 "Non-equippable",
+null,
+0
+],
+"43": [
+"Armor",
+"Cloth",
+1,
+0,
+"Feet",
 null,
 0
 ],
