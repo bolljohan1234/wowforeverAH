@@ -26162,6 +26162,15 @@ null,
 null,
 0
 ],
+"1839": [
+"Armor",
+"Leather",
+10,
+5,
+"Waist",
+null,
+0
+],
 "1840": [
 "Armor",
 "Leather",
@@ -49112,6 +49121,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4826": [
+"Weapon",
+"Axe",
+26,
+21,
+"Main Hand",
+"Binds when equipped",
+0
+],
 "4827": [
 "Armor",
 "Cloth",
@@ -57353,6 +57371,15 @@ null,
 43,
 0,
 "Non-equippable",
+null,
+0
+],
+"797": [
+"Armor",
+"Leather",
+10,
+5,
+"Hands",
 null,
 0
 ],
