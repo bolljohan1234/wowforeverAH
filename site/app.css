@@ -65,6 +65,9 @@ html::after, body::after, #dash-root::after, #dash-root::before { box-shadow: no
 .wow .jump .lbl { margin-right: 4px; }
 .wow .catbar { margin: 6px 0 10px; }
 .wow .catbar.off { display: none; }
+.wow .timebar { margin: -4px 0 10px; }
+.wow .timebar.off { display: none; }
+.wow p.note:empty { display: none; }
 .wow .catbar select { min-width: 190px; }
 .wow ul.checklist { list-style: none; padding: 0; margin: 6px 0 14px; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-text); color: var(--color-fg-muted); }
 

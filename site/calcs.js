@@ -34,10 +34,32 @@
     },
   });
 
+  // Soulbound items can never be sold on the auction house, so they are left out everywhere: anything equipped (worn gear is bound),
+  // items Blizzard's data marks as Binds when picked up, Binds to Account or Quest, and bound units the addon reports per character (c.bound, if present).
+  dash.calc("holdings_tradeable", {
+    title: "What you hold that can be sold",
+    description: "The game file's holdings without soulbound items: equipped gear, items that bind when picked up or to the account, quest items, and units the addon reports as bound.",
+    inputs: ["holdings_saved", "cats"],
+    fn: (saved, cats) => {
+      const BOUND = new Set(cats.filter((c) => c.bind === "Binds when picked up" || c.bind === "Binds to Account" || c.cls === "Quest").map((c) => c.id));
+      return saved.map((c) => {
+        const items = typeof c.items === "string" ? JSON.parse(c.items) : c.items || {}, bound = c.bound || {}, out = {};
+        for (const [k, v] of Object.entries(items)) {
+          if (BOUND.has(Number(k))) continue;
+          const a = v.slice(); a[4] = 0;                                    // equipped
+          let b = Number(bound[k]) || 0;
+          for (let i = 0; i < 4 && b > 0; i++) { const t = Math.min(a[i], b); a[i] -= t; b -= t; }
+          if (a.some(Boolean)) out[k] = a;
+        }
+        return Object.assign({}, c, { items: out });
+      });
+    },
+  });
+
   dash.calc("hold_totals", {
     title: "Units in the game, per item",
-    description: "Total units of each item across all characters (bags, bank, mail, auctions, equipped). Empty until the game file is read.",
-    inputs: ["holdings_saved"],
+    description: "Total units of each item across all characters (bags, bank, mail, auctions), soulbound items left out. Empty until the game file is read.",
+    inputs: ["holdings_tradeable"],
     fn: (saved) => {
       const m = new Map();
       for (const c of saved) { const items = typeof c.items === "string" ? JSON.parse(c.items) : c.items || {}; for (const [k, v] of Object.entries(items)) m.set(Number(k), (m.get(Number(k)) || 0) + v.reduce((a, b) => a + b, 0)); }
@@ -93,14 +115,15 @@
         const after = value == null ? null : Math.round(price * 0.95) * held;
         const after_pl = after == null ? null : after - costHeld;
         const vend = n && n.vendor != null && n.vendor > 0 ? n.vendor : null;
-        const realized = g.sq ? g.revenue - Math.min(g.sq, acquired) * unitCost : 0;
+        // Profit = everything received from sales (after the 5% cut) minus everything paid for purchases, so it starts negative and rises as you sell
+        const realized = g.revenue - g.cost;
         // split into the part that was bought and the part that was collected (assumes sales and holdings mix in proportion)
         const fb = acquired ? g.bq / acquired : 0, held_b = Math.round(held * fb), sold_b = Math.round(g.sq * fb);
-        const revenue_b = g.revenue * fb, realized_b = g.sq ? revenue_b - Math.min(g.sq, acquired) * unitCost : 0;
+        const revenue_b = g.revenue * fb, realized_b = revenue_b - g.cost;
         return {
           held_b: held_b, held_c: held - held_b, sold_b: sold_b, sold_c: g.sq - sold_b, fb: fb, bought: g.bq,
           revenue_b: revenue_b, revenue_c: g.revenue - revenue_b, realized_b: realized_b, realized_c: realized - realized_b,
-          item: g.item, id: g.id, qty: held, log_qty: logHeld, collected: g.cq, auto: g.auto || 0, sold: g.sq, revenue: g.revenue, realized: realized,
+          item: g.item, id: g.id, paid: g.cost, qty: held, log_qty: logHeld, collected: g.cq, auto: g.auto || 0, sold: g.sq, revenue: g.revenue, realized: realized,
           cost: costHeld, avg: g.bq ? Math.round(g.cost / g.bq) : null, avg_sale: g.sq ? Math.round(g.revenue / g.sq) : null,
           vendor: vend, vendor_value: vend == null || !held ? null : vend * held, price: price, value: value, pl: pl, pct: pl == null || !costHeld ? null : pl / costHeld, med: n ? n.med : null, after: after, after_pl: after_pl, after_pct: after_pl == null || !costHeld ? null : after_pl / costHeld,
         };
@@ -110,19 +133,19 @@
 
   dash.calc("portfolio", {
     title: "Portfolio summary",
-    description: "Totals over what you still hold (that has a current price). profit_today = profit from sales already made + what you hold sold at today's lowest buyout after the 5% cut, minus what it cost.",
+    description: "Totals. realized (Profit) = everything received from sales after the 5% cut minus everything paid for purchases. profit_today = Profit + everything you hold (bought and collected) at today's lowest buyout after the 5% cut.",
     inputs: ["ledger_pl", "snaps"],
     fn: (pl, snaps) => {
       const held = pl.filter((r) => r.qty > 0);
       const priced = held.filter((r) => r.value != null);
       const invested = priced.reduce((a, r) => a + r.cost, 0);
       const value = priced.reduce((a, r) => a + r.value, 0);
-      const realized = pl.reduce((a, r) => a + r.realized, 0);
+      const realized = pl.reduce((a, r) => a + r.realized, 0), paid = pl.reduce((a, r) => a + r.paid, 0);
       return [{
-        invested: invested, value: value, pl: value - invested,
+        invested: invested, value: value, pl: value - invested, paid: paid,
         pct: invested ? (value - invested) / invested : null,
         after_cut: Math.round(value * 0.95) - invested,
-        profit_today: realized + Math.round(value * 0.95) - invested,
+        profit_today: realized + Math.round(value * 0.95),
         realized: realized, total: realized + value - invested, total_pct: invested ? (realized + value - invested) / invested : null, revenue: pl.reduce((a, r) => a + r.revenue, 0),
         snapshots: snaps.length, latest: snaps.length ? snaps[snaps.length - 1].t : null,
         unpriced: held.length - priced.length,
@@ -356,7 +379,7 @@
   dash.calc("holdings_view", {
     title: "Everything you own, all characters",
     description: "Item counts per character from the game file (bags, bank, mail, auctions, equipped), joined with the lowest price now and what your log says you hold.",
-    inputs: ["holdings_saved", "ledger_pl", "latest", "names"],
+    inputs: ["holdings_tradeable", "ledger_pl", "latest", "names"],
     fn: (saved, pl, latest, names) => {
       const L = new Map(latest.map((r) => [r.id, r])), N = new Map(names.map((r) => [r.id, r])), P = new Map(pl.map((r) => [r.id, r.log_qty]));
       const by = new Map();
@@ -380,7 +403,7 @@
   dash.calc("holdings_chars", {
     title: "Characters",
     description: "Per character from the game file: gold, number of items and what they are worth at today's lowest prices.",
-    inputs: ["holdings_saved", "latest"],
+    inputs: ["holdings_tradeable", "latest"],
     fn: (saved, latest) => {
       const L = new Map(latest.map((r) => [r.id, r]));
       return saved.map((c) => {
