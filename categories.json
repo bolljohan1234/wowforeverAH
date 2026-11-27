@@ -8981,6 +8981,15 @@ null,
 "Binds when used",
 0
 ],
+"13362": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "13364": [
 "Miscellaneous",
 "Junk",
@@ -9990,6 +9999,15 @@ null,
 0
 ],
 "13886": [
+"Miscellaneous",
+"Junk",
+45,
+0,
+"Held In Off-hand",
+null,
+0
+],
+"13887": [
 "Miscellaneous",
 "Junk",
 45,
@@ -22085,6 +22103,15 @@ null,
 "Binds when equipped",
 0
 ],
+"15678": [
+"Armor",
+"Mail",
+63,
+58,
+"Feet",
+"Binds when equipped",
+0
+],
 "15679": [
 "Armor",
 "Mail",
@@ -32112,6 +32139,15 @@ null,
 0
 ],
 "250382": [
+"Recipe",
+"Alchemy",
+1,
+1,
+"Non-equippable",
+null,
+0
+],
+"250385": [
 "Recipe",
 "Alchemy",
 1,
@@ -43323,6 +43359,15 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"3563": [
+"Armor",
+"Cloth",
+20,
+15,
+"Legs",
+"Binds when equipped",
 0
 ],
 "3569": [
