@@ -3779,6 +3779,15 @@ null,
 null,
 0
 ],
+"1077": [
+"Armor",
+"Miscellaneous",
+26,
+21,
+"Finger",
+"Binds when equipped",
+1
+],
 "1080": [
 "Trade Goods",
 "Cooking",
@@ -30830,6 +30839,33 @@ null,
 50,
 45,
 "Chest",
+null,
+0
+],
+"2437": [
+"Armor",
+"Cloth",
+50,
+45,
+"Legs",
+null,
+0
+],
+"2438": [
+"Armor",
+"Cloth",
+50,
+45,
+"Feet",
+null,
+0
+],
+"2440": [
+"Armor",
+"Cloth",
+50,
+45,
+"Hands",
 null,
 0
 ],
@@ -58191,6 +58227,24 @@ null,
 45,
 "Main Hand",
 "Binds when equipped",
+0
+],
+"8093": [
+"Armor",
+"Plate",
+50,
+45,
+"Legs",
+null,
+0
+],
+"8094": [
+"Armor",
+"Plate",
+50,
+45,
+"Chest",
+null,
 0
 ],
 "810": [
