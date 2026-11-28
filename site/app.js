@@ -133,7 +133,7 @@
   document.querySelectorAll("table[data-tv] tbody[data-draw]").forEach((tb) => { GROBS.observe(tb, { childList: true }); grpClick(tb, tb.closest("table").dataset.tv || tb.dataset.draw); });
 
   // ---------- category filter bar ----------
-  const CAT_REDRAW = ["s_value", "s_profit", "s_iftoday", "pos_note", "ledger_rows", "sales_rows", "ch_pie", "ch_pl", "ch_pfseries", "pfchips", "pos_chips", "catsel", "itemlist", "ch_movers", "ch_supply", "ch_sell", "ch_opp"];
+  const CAT_REDRAW = ["s_value", "s_profit", "s_iftoday", "pos_note", "ledger_rows", "sales_rows", "purch_rows", "ch_pie", "ch_pl", "ch_pfseries", "pfchips", "pos_chips", "catsel", "itemlist", "ch_movers", "ch_supply", "ch_sell", "ch_opp"];
   function catChanged() { CAT_REDRAW.forEach((n) => dash.draw(n)); TVKEYS.forEach((k) => redrawTable(k)); }
   dash.draw("catsel", (el) => {
     // the variants list is read here, inside a drawing, so it loads once with the page; when it arrives the tables add their variant buttons
@@ -161,12 +161,22 @@
     el.replaceChildren(lab, cs, ss, clr, info);
   });
 
+  // ---------- "More" sections: redraw what is inside when opened (charts need their real width) ----------
+  document.addEventListener("toggle", (e) => {
+    const d = e.target;
+    if (!(d instanceof HTMLDetailsElement) || !d.open) return;
+    d.querySelectorAll("[data-draw]").forEach((x) => dash.draw(x.dataset.draw));
+  }, true);
+
   // ---------- tabs ----------
   function openTab(name) {
     document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== name; });
     document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
     const tb = document.querySelector(".timebar"); if (tb) tb.classList.toggle("off", !["portfolio", "explorer", "info"].includes(name));   // only tabs with time charts
     dash.setLink(name);
+    // charts drawn while their tab was hidden got the minimum width: draw the visible ones again at their real width
+    const pn = document.querySelector('[data-panel="' + name + '"]');
+    if (pn) pn.querySelectorAll(".chartbox[data-draw]").forEach((x) => { if (x.offsetWidth && x.dataset.w != x.offsetWidth) { x.dataset.w = x.offsetWidth; dash.draw(x.dataset.draw); } });
   }
   function openSub(name) {
     document.querySelectorAll("[data-subpanel]").forEach((p) => { p.hidden = p.dataset.subpanel !== name; });
@@ -259,7 +269,7 @@
 
   // ---------- sortable, filterable tables ----------
   const TV = {};
-  const TVKEYS = ["pos", "log", "buy", "floor", "mup", "mdn", "sup", "sell", "scan", "mar", "sales", "flip", "writ", "exp"];
+  const TVKEYS = ["pos", "log", "buy", "floor", "mup", "mdn", "sup", "sell", "scan", "mar", "sales", "purch", "flip", "writ", "exp"];
   const MAXROWS = 500;
   const LIMIT = { log: 25, sales: 25, buy: 10, floor: 10, flip: 10, writ: 10, mup: 10, mdn: 10, sup: 10, sell: 10, exp: 10, scan: 25, mar: 15 };
   function tv(key, rows, cols, text) {
@@ -338,10 +348,6 @@
     const SC = D("scan_saved"), sc = SC.status === "ok" && SC.data[0] ? SC.data[0] : null;
     if (sc) kids.push(pill((sc.t > (last || 0) ? "Using your AH scan from " : "Your AH scan (older, not used) from ") + U.when(sc.t) + " (" + U.ago(sc.t) + ")", sc.t > (last || 0) ? "up" : "",
       "Prices from the Scan AH button in the addon. The newer of your scan and Blizzard's prices is used for every Lowest now; history, averages and sales estimates always come from Blizzard's snapshots."));
-    const m = readyList(), n = m.filter((x) => x[1]).length;
-    const p2 = pill(n === m.length ? "✓ All data parts ready" : "Data building: " + n + " of " + m.length + " ready", n === m.length ? "up" : "", m.map(([t, ok]) => (ok ? "✓ " : "… ") + t).join("\n") + "\nPress for details (Info, Runs & snapshots).");
-    p2.style.cursor = "pointer"; p2.addEventListener("click", () => { openTab("info"); openSub("runs"); const h = document.getElementById("h-ready"); if (h && h.scrollIntoView) h.scrollIntoView({ block: "start" }); });
-    kids.push(p2);
     el.replaceChildren(...kids);
   });
   // the parts of the page that need data collected over time: [name, ready, what it needs]
@@ -400,7 +406,7 @@
   document.querySelectorAll("[data-pfscope]").forEach((b) => b.addEventListener("click", () => {
     WOW.pfScope = b.dataset.pfscope;
     document.querySelectorAll("[data-pfscope]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    ["s_value", "s_profit", "s_iftoday", "pos_note", "ledger_rows", "sales_rows", "ch_pie", "ch_pl", "ch_pfseries", "pfchips", "pos_chips"].forEach((n) => dash.draw(n));
+    ["s_value", "s_profit", "s_iftoday", "pos_note", "ledger_rows", "sales_rows", "purch_rows", "ch_pie", "ch_pl", "ch_pfseries", "pfchips", "pos_chips"].forEach((n) => dash.draw(n));
   }));
   const share = (v, tot) => (tot > 0 ? U.pct(v / tot) : "—");
   dash.draw("pos_title", (el) => { el.textContent = WOW.tile === "after" ? "Profit" : "Net Worth"; });
@@ -456,6 +462,15 @@
     const rows = tv("sales", rowsS("ledger_pl").filter((r) => r.sold > 0), [(r) => r.item, (r) => r.sold, (r) => r.avg_sale, (r) => r.revenue, (r) => r.realized, (r) => r.qty], (r) => r.item);
     tb.replaceChildren(...rows.map((r) => reg(r, tr(r.item, [nameCell(r.item, r.id), U.num(r.sold), U.coin(r.avg_sale), U.coin(r.revenue), U.coin(r.realized, { signed: true, tone: true }), U.num(r.qty)], r.id))));
     if (rows.length) tb.append(totRow(GSUM.sales(rows)));
+  });
+  GSUM.purch = (rows) => ["Total", U.num(sumOf(rows, (r) => r.bought)), "", gold(sumOf(rows, (r) => r.paid)), "", U.num(sumOf(rows, (r) => r.qty))];
+  dash.draw("purch_rows", (tb) => {
+    if (!ready(tb, ["ledger_pl", "ledger_all"])) return;
+    const last = new Map();
+    for (const l of rowsOf("ledger_all")) if (l.how !== "sold" && l.how !== "collected" && (!last.has(l.id) || l.date > last.get(l.id))) last.set(l.id, l.date);
+    const rows = tv("purch", rowsS("ledger_pl").filter((r) => r.bought > 0).map((r) => Object.assign({}, r, { last: last.get(r.id) || "" })), [(r) => r.item, (r) => r.bought, (r) => r.avg, (r) => r.paid, (r) => r.last, (r) => r.qty], (r) => r.item);
+    tb.replaceChildren(...rows.map((r) => reg(r, tr(r.item, [nameCell(r.item, r.id), U.num(r.bought), U.coin(r.avg), U.coin(r.paid), r.last || "—", U.num(r.qty)], r.id))));
+    if (rows.length) tb.append(totRow(GSUM.purch(rows)));
   });
   dash.draw("sales_note", (el) => {
     const d = D("ledger_pl");
@@ -1165,6 +1180,7 @@
 
   // ---------- market ----------
   const moversRow = (r) => tr(r.id, [nameCell(r.name, r.id), U.coin(r.prev), U.coin(r.now), pctNode(r.pct), U.num(r.n)], r.id);
+  dash.draw("movers_all", (tb) => { if (!ready(tb, ["movers"])) return; tb.replaceChildren(...tv("mup", rowsOf("movers").slice().sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct)), [(r) => r.name, (r) => r.prev, (r) => r.now, (r) => r.pct, (r) => r.n], (r) => r.name).map(moversRow)); });
   ["up", "down"].forEach((dir) => dash.draw("movers_" + dir, (tb) => { if (!ready(tb, ["movers"])) return; tb.replaceChildren(...tv(dir === "up" ? "mup" : "mdn", rowsOf("movers").filter((r) => r.dir === dir), [(r) => r.name, (r) => r.prev, (r) => r.now, (r) => r.pct, (r) => r.n], (r) => r.name).map(moversRow)); }));
   dash.draw("movers_note", (el) => {
     if (D("movers").status !== "ok") { el.textContent = ""; return; }

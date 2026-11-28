@@ -32,15 +32,10 @@
   <!-- ============ PORTFOLIO ============ -->
   <section id="portfolio" class="tabpanel" data-panel="portfolio" aria-labelledby="h-portfolio">
     <h2 id="h-portfolio">My investments</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-positions">Positions</button><button type="button" class="chip" data-jump="h-pie">Charts</button><button type="button" class="chip" data-jump="h-profit">Profit history</button></nav>
-    <div class="chips" role="group" aria-label="What to include"><span class="lbl">Show</span><button type="button" class="chip" data-pfscope="total" aria-pressed="true" title="Everything you hold">Total</button><button type="button" class="chip" data-pfscope="invested" aria-pressed="false" title="Only items you bought, with what they cost you">Invested</button><button type="button" class="chip" data-pfscope="collected" aria-pressed="false" title="Only items you collected for free (farmed, looted, crafted)">Collected</button></div>
     <div class="tiles hero">
       <button type="button" class="tile" data-tile="worth" aria-pressed="true" title="Everything you hold (soulbound left out) at today's lowest buyout"><span class="lbl">Net Worth</span><b class="big dash-skeleton" data-draw="s_value" data-source="portfolio" data-field="value" data-row="0">—</b></button>
       <button type="button" class="tile" data-tile="after" aria-pressed="false" title="Everything received from sales (after the 5% cut) minus everything paid for purchases. Underneath: plus everything you hold, sold today after the cut."><span class="lbl">Profit</span><b class="big dash-skeleton" data-draw="s_profit" data-source="portfolio" data-field="realized" data-row="0">—</b><span class="sm">if sold today: <b class="dash-skeleton" data-draw="s_iftoday" data-source="portfolio" data-field="profit_today" data-row="0">—</b></span></button>
-    </div>
-    <div class="tiles hero">
-      <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Gold now</span><b class="big" data-draw="g_now" data-source="gold_saved">—</b></button>
-      <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Gold + items</span><b class="big" data-draw="g_net" data-source="gold_saved portfolio">—</b></button>
+      <button type="button" class="tile" data-goto="info:inputs" title="Gold on all characters. Underneath: gold plus Net Worth"><span class="lbl">Gold now</span><b class="big" data-draw="g_now" data-source="gold_saved">—</b><span class="sm">with items: <b data-draw="g_net" data-source="gold_saved portfolio">—</b></span></button>
       <button type="button" class="tile" data-goto="info:inputs" title="Your gold comes from the game file (Info, Inputs)"><span class="lbl">Goal progress</span><b class="big" data-draw="g_goal" data-source="gold_saved goal_saved">—</b></button>
     </div>
     <section class="tiledetail" id="h-positions" aria-labelledby="h-pos">
@@ -58,13 +53,17 @@
     <div class="cgrid">
       <section class="panel" aria-labelledby="h-pie"><h3 id="h-pie">Share of portfolio</h3>
         <div class="chips" role="group" aria-label="Share by"><button type="button" class="chip" data-piemode="money" aria-pressed="true">Money invested</button><button type="button" class="chip" data-piemode="units" aria-pressed="false">Number of items</button><button type="button" class="chip" data-piemode="cat" aria-pressed="false">Money by category</button></div><div class="chartbox" data-source="ledger_pl" data-draw="ch_pie"></div></section>
-      <section class="panel" aria-labelledby="h-plbar"><h3 id="h-plbar">Profit if sold today, per item</h3><div class="chartbox" data-source="ledger_pl" data-draw="ch_pl"></div></section>
-      <section class="panel wide" aria-labelledby="h-pfseries"><h3 id="h-pfseries">Value over time</h3>
+      <section class="panel" aria-labelledby="h-pfseries"><h3 id="h-pfseries">Value over time</h3>
         <div class="chips" data-draw="pfchips"></div>
         <div class="chartbox" data-source="pf_items ledger_pl" data-draw="ch_pfseries"></div></section>
     </div>
 
-    <details class="fold" id="h-profit" open><summary>Profit history</summary>
+
+    <details class="fold more"><summary>More</summary>
+    <div class="cgrid">
+      <section class="panel wide" aria-labelledby="h-plbar"><h3 id="h-plbar">Profit if sold today, per item</h3><div class="chartbox" data-source="ledger_pl" data-draw="ch_pl"></div></section>
+    </div>
+    <h4 id="h-profit">Profit history</h4>
     <div class="chartbox" data-source="ledger_all ledger_pl" data-draw="ch_profit"></div>
     <div class="chartbox" data-source="ledger_pl" data-draw="ch_realized"></div>
     <h4 id="h-sales">Sales per item</h4>
@@ -73,6 +72,11 @@
     <div class="scroll"><table class="tbl" data-tv="sales" data-source="ledger_pl" data-row-key="item">
       <thead><tr><th data-field="item">Item</th><th data-field="sold">Units sold</th><th data-field="avg_sale" title="What you received per unit on average, after the cut">Avg sale price</th><th data-field="revenue">Received</th><th data-field="realized">Profit / loss</th><th data-field="qty">Still held</th></tr></thead>
       <tbody data-draw="sales_rows"></tbody></table></div>
+    <h4 id="h-purch">Purchases per item</h4>
+    <div class="tbar"><input class="tfilter" data-tv="purch" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_purch"></span></div>
+    <div class="scroll"><table class="tbl" data-tv="purch" data-source="ledger_pl ledger_all" data-row-key="item">
+      <thead><tr><th data-field="item">Item</th><th data-field="bought" title="Units bought (collected units not counted)">Units bought</th><th data-field="avg" title="What you paid per unit on average">Avg buy price</th><th data-field="paid" title="Everything you paid for this item">Paid total</th><th data-field="last" title="Date of the newest purchase">Last bought</th><th data-field="qty" title="Units of this item you still hold">Still held</th></tr></thead>
+      <tbody data-draw="purch_rows"></tbody></table></div>
     </details>
     <p class="tbar"><button type="button" class="btn" data-goto="info:inputs">See what was read from the game</button></p>
   </section>
@@ -80,7 +84,6 @@
   <!-- ============ EXPLORER ============ -->
   <section id="explorer" class="tabpanel" data-panel="explorer" aria-labelledby="h-explorer" hidden>
     <h2 id="h-explorer">Price explorer</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-ex-price">Price</button><button type="button" class="chip" data-jump="h-ex-supply">Supply</button><button type="button" class="chip" data-jump="h-ex-sold">Sold</button><button type="button" class="chip" data-jump="h-ex-gap">Price gap</button><button type="button" class="chip" data-jump="h-ex-hour">Time of day</button><button type="button" class="chip" data-jump="h-ex-stack">Stack check</button><button type="button" class="chip" data-jump="h-ex-calc">Calculator</button></nav>
     <div class="picker">
       <label class="srch"><span class="lbl">Pick any item</span><input id="pick" list="itemlist" placeholder="Start typing an item name" autocomplete="off"></label>
       <div><span class="lbl">My positions</span><div class="chips" data-draw="pos_chips"></div></div>
@@ -92,6 +95,8 @@
     <details class="fold" id="h-ex-supply" open><summary>Units for sale</summary>
     <div class="chartbox" data-source="hist" data-draw="chart_supply"></div>
     </details>
+
+    <details class="fold more"><summary>More</summary>
     <details class="fold" id="h-ex-sold" open><summary>Estimated units sold per snapshot interval</summary>
     <div class="chartbox" data-source="hist" data-draw="chart_sold"></div>
 
@@ -116,19 +121,12 @@
     </div>
     <div class="istats" data-source="latest trends ledger_pl" data-draw="calc_panel"></div>
     </details>
+    </details>
   </section>
 
   <!-- ============ OPPORTUNITIES ============ -->
   <section id="opps" class="tabpanel" data-panel="opps" aria-labelledby="h-opps" hidden>
     <h2 id="h-opps">Opportunities</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-buywatch">Buy watch</button><button type="button" class="chip" data-jump="h-flip">Flips</button><button type="button" class="chip" data-jump="h-opp">Map</button></nav>
-    <details class="fold" id="h-buywatch" open><summary>Buy watch</summary>
-    <div class="tbar"><input class="tfilter" data-tv="buy" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_buy"></span><button type="button" class="btn sm morebtn" data-morecols="buy" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
-    <div class="scroll"><table class="tbl hidex" data-tv="buy" data-source="buywatch" data-row-key="id">
-      <thead><tr><th data-field="name">Item</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="avg7" title="The average lowest price over the last 7 days at most">Normal price</th><th data-field="dev7">vs normal</th><th data-field="chg24">24 h</th><th data-field="supply24">Supply 24 h</th><th data-field="sold_day">Sold / day</th></tr></thead>
-      <tbody data-draw="buywatch_rows"></tbody></table></div>
-    <p class="note" data-draw="buywatch_note"></p>
-    </details>
     <details class="fold" id="h-flip" open><summary>Flip scanner</summary>
     <label class="srch"><span class="lbl">Fewest listings</span><select id="f-minlist"><option value="3">3</option><option value="5" selected>5 (default)</option><option value="10">10</option><option value="20">20</option></select></label>
     <label class="srch"><span class="lbl">Fewest sold per day</span><select id="f-minsold"><option value="1" selected>At least 1 (default)</option><option value="3">At least 3</option><option value="10">At least 10</option></select></label>
@@ -144,25 +142,30 @@
     <p class="note" data-draw="opp_note"></p>
     <div class="chartbox" data-source="opportunity latest" data-draw="ch_opp"></div>
     </details>
+
+    <details class="fold more"><summary>More</summary>
+    <details class="fold" id="h-buywatch" open><summary>Buy watch</summary>
+    <div class="tbar"><input class="tfilter" data-tv="buy" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_buy"></span><button type="button" class="btn sm morebtn" data-morecols="buy" aria-pressed="false"><span class="off">More columns</span><span class="on">Fewer columns</span></button></div>
+    <div class="scroll"><table class="tbl hidex" data-tv="buy" data-source="buywatch" data-row-key="id">
+      <thead><tr><th data-field="name">Item</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="avg7" title="The average lowest price over the last 7 days at most">Normal price</th><th data-field="dev7">vs normal</th><th data-field="chg24">24 h</th><th data-field="supply24">Supply 24 h</th><th data-field="sold_day">Sold / day</th></tr></thead>
+      <tbody data-draw="buywatch_rows"></tbody></table></div>
+    <p class="note" data-draw="buywatch_note"></p>
+    </details>
+    </details>
   </section>
 
   <!-- ============ MARKET ============ -->
   <section id="market" class="tabpanel" data-panel="market" aria-labelledby="h-market" hidden>
     <h2 id="h-market">Market</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-movers">Movers</button><button type="button" class="chip" data-jump="h-supply">Supply</button><button type="button" class="chip" data-jump="h-sell">Sell-through</button><button type="button" class="chip" data-jump="h-expired">Never sold</button></nav>
     <details class="fold" id="h-movers" open><summary>Price movers since the previous snapshot</summary>
     <p class="note" data-draw="movers_note"></p>
     <div class="chartbox" data-source="movers" data-draw="ch_movers"></div>
-    <div class="two">
-      <div><h4 id="h-up">Biggest rises</h4><div class="tbar"><input class="tfilter" data-tv="mup" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_mup"></span></div>
+    <div class="tbar"><input class="tfilter" data-tv="mup" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_mup"></span></div>
     <div class="scroll"><table class="tbl" data-tv="mup" data-source="movers" data-row-key="id">
-        <thead><tr><th data-field="name">Item</th><th data-field="prev">Before</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="pct" title="Change in the lowest price since the previous snapshot">Change since previous</th><th data-field="n">Listings</th></tr></thead><tbody data-draw="movers_up"></tbody></table></div></div>
-      <div><h4 id="h-down">Biggest drops</h4><div class="tbar"><input class="tfilter" data-tv="mdn" type="search" placeholder="Filter by name" aria-label="Filter this table" autocomplete="off"><span class="sm" data-draw="tv_mdn"></span></div>
-    <div class="scroll"><table class="tbl" data-tv="mdn" data-source="movers" data-row-key="id">
-        <thead><tr><th data-field="name">Item</th><th data-field="prev">Before</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="pct" title="Change in the lowest price since the previous snapshot">Change since previous</th><th data-field="n">Listings</th></tr></thead><tbody data-draw="movers_down"></tbody></table></div></div>
-    </div>
-
+        <thead><tr><th data-field="name">Item</th><th data-field="prev">Before</th><th data-field="now" title="The cheapest listing per unit right now">Lowest now</th><th data-field="pct" title="Change in the lowest price since the previous snapshot">Change since previous</th><th data-field="n">Listings</th></tr></thead><tbody data-draw="movers_all"></tbody></table></div>
     </details>
+
+    <details class="fold more"><summary>More</summary>
     <details class="fold" id="h-supply" open><summary>Supply tracking</summary>
     <p class="note" data-draw="supply_note"></p>
     <div class="chartbox" data-source="supply_view" data-draw="ch_supply"></div>
@@ -185,12 +188,12 @@
       <thead><tr><th data-field="name">Item</th><th data-field="exp_units">Expired units</th><th data-field="exp_avg">Avg expired price</th><th data-field="sold_units">Probably sold</th><th data-field="sold_avg">Avg sold price</th><th data-field="over_sold">Expired vs sold</th><th data-field="over_now">Expired vs lowest now</th><th data-field="now">Lowest now</th></tr></thead>
       <tbody data-draw="exp_rows"></tbody></table></div>
     </details>
+    </details>
   </section>
 
   <!-- ============ MARGINS ============ -->
   <section id="margins" class="tabpanel" data-panel="margins" aria-labelledby="h-margins" hidden>
     <h2 id="h-margins">Crafting</h2>
-    <nav class="jump" aria-label="Jump to a section"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-mchart">Margins</button><button type="button" class="chip" data-jump="h-lvl">Levelling</button><button type="button" class="chip" data-jump="h-writ">Writ tracker</button></nav>
     <div class="form">
       <label><span class="lbl">Profession</span><select id="m-prof" data-draw="msel_prof"></select></label>
       <label><span class="lbl">Category</span><select id="m-cat" data-draw="msel_cat"></select></label>
@@ -205,6 +208,8 @@
       <thead><tr><th data-field="name">Recipe</th><th data-field="p">Profession</th><th data-field="cat">Category</th><th data-field="lvl">Req. skill</th><th data-field="cost">Reagent cost</th><th data-field="price">Sells for</th><th data-field="profit">Profit / craft</th><th data-field="margin">Margin</th><th data-field="sold_day">Sold / day</th></tr></thead>
       <tbody data-draw="margin_rows"></tbody></table></div>
     </details>
+
+    <details class="fold more"><summary>More</summary>
     <details class="fold" id="h-lvl" open><summary>Levelling planner</summary>
     <label class="srch"><span class="lbl">Profession</span><select id="lv-prof" data-draw="lv_sel" data-source="recipe_margins skills_saved"></select></label>
     <p class="note" data-draw="lv_note"></p>
@@ -217,6 +222,7 @@
       <thead><tr><th data-field="name">Item</th><th data-field="price" title="The cheapest listing of the item right now">Item lowest now</th><th data-field="n">Item listings</th><th data-field="writ_price" title="The cheapest listing of the writ right now">Writ lowest now</th><th data-field="writ_n">Writ listings</th><th data-field="craft_cost">Cheapest craft cost</th><th data-field="sold_day">Item sold / day</th><th data-field="writ_sold">Writ sold / day</th></tr></thead>
       <tbody data-draw="writ_rows"></tbody></table></div>
     </details>
+    </details>
   </section>
 
   <!-- ============ INFO ============ -->
@@ -225,12 +231,9 @@
     <nav class="tabs sub" role="tablist" aria-label="Info sections">
       <button type="button" role="tab" data-subtab="inputs" aria-selected="true">Inputs</button>
       <button type="button" role="tab" data-subtab="runs" aria-selected="false">Runs &amp; snapshots</button>
-      <button type="button" role="tab" data-subtab="guide" aria-selected="false">How it works</button>
-      <button type="button" role="tab" data-subtab="gloss" aria-selected="false">Glossary</button>
     </nav>
 
     <div id="sub-inputs" data-subpanel="inputs">
-    <nav class="jump" aria-label="Jump to an input"><span class="lbl">Jump to</span><button type="button" class="chip" data-jump="h-import">From the game</button><button type="button" class="chip" data-jump="h-log">Purchase log</button><button type="button" class="chip" data-jump="h-skills">My skills</button><button type="button" class="chip" data-jump="h-goldlog">Your gold</button><button type="button" class="chip" data-jump="h-goalset">Goal</button></nav>
     <details class="fold" id="h-import" open><summary>From the game</summary>
     <p class="note" data-draw="hd_msg"></p>
     <p class="note" data-draw="hold_note" data-source="holdings_saved hold_totals ledger_pl holdings_view"></p>
@@ -276,50 +279,6 @@
         <tbody data-draw="unnamed_rows"></tbody></table></div>
     </div>
 
-    <div id="sub-guide" data-subpanel="guide" hidden>
-      <h3 id="h-g1">Where the numbers come from</h3>
-      <p>A collector on GitHub reads Blizzard's auction house data for the Horde house of the EU PvP ruleset every hour and saves a snapshot whenever the prices have changed. This page is rebuilt by itself after every new snapshot. Your own holdings, gold and trades are read from the addon's file on your PC and never leave it.</p>
-      <h3 id="h-g3">Estimated sales</h3>
-      <p>Each snapshot, the collector compares the auctions with the previous one. An auction that disappeared counts as expired if it was in the shortest time bucket before, and as sold otherwise. Cancelled auctions look like sales, and items listed and sold between two snapshots are invisible, so treat sold per day as a rough lower-quality estimate.</p>
-      <h3 id="h-g4">The rules behind the suggestions</h3>
-      <p><b>Buy watch:</b> at least 8% below the average price and at least 10 listings. <b>Consider selling:</b> at least 10% above the average price and above your average buy price. <b>Hold, don't add yet:</b> at least 10% below normal and still falling over 24 hours. <b>Could add more:</b> at least 8% below normal and not falling. These are simple signals, not predictions.</p>
-      <h3 id="h-g5">Limits</h3>
-      <p>Items with very few listings are not tracked here. Valuing at the lowest buyout is optimistic for large stacks. The auction house keeps a 5% cut of every sale.</p>
-    </div>
-    <div id="sub-gloss" data-subpanel="gloss" hidden>
-      <h3 id="h-gl">Glossary</h3>
-      <h3 id="h-gl0">Your price terms</h3>
-      <dl class="gloss">
-        <dt>Prices (g, s, c)</dt><dd>Amounts are shown as g (gold), s (silver) and c (copper): 100c = 1s and 100s = 1g. Hover an amount to see it written out.</dd>
-        <dt>Lowest now (lowest buyout)</dt><dd>The cheapest single-unit price listed right now. It is what you would pay to buy one, and what the page uses to value what you hold.</dd>
-        <dt>Median now</dt><dd>The quantity-weighted middle price: half of the listed units cost less, half cost more. It shows the typical price when the cheapest listing is an odd one.</dd>
-        <dt>Vendor value</dt><dd>What an NPC vendor pays per unit. It is a guaranteed floor you can always sell at.</dd>
-        <dt>Your avg buy price</dt><dd>What you paid per unit on average for the units you bought. Units you collected for free are not counted in it.</dd>
-        <dt>Paid total</dt><dd>What you paid in total for the units you still hold.</dd>
-        <dt>After 5% cut (total)</dt><dd>What all your units would bring in if sold at the lowest price now, after the auction house keeps 5%.</dd>
-        <dt>Net Worth (Worth)</dt><dd>Your units times the lowest price, before the 5% cut. It is higher than what you would really receive. Gold + items on Portfolio adds your gold to it.</dd>
-        <dt>Break-even sell price</dt><dd>The lowest price you must sell at to get back what you paid after the 5% cut: your price divided by 0.95.</dd>
-      </dl>
-      <h3 id="h-gl2">Other terms</h3>
-      <dl class="gloss">
-        <dt>Listing</dt><dd>One auction on the house: a seller offering a stack at a price. Ten listings of the same item means ten sellers or stacks.</dd>
-        <dt>Units for sale</dt><dd>The total number of items across all listings of that item. One listing can hold many units.</dd>
-        <dt>Most units at</dt><dd>The price that half of all units for sale are at or below: where the bulk of the market sits. The flip scanner resells near it.</dd>
-        <dt>Price ladder</dt><dd>The cheapest few price levels of an item with how many units sit at each. It shows how much a big purchase pushes the price up.</dd>
-        <dt>Normal price (average) / vs normal</dt><dd>The mean lowest buyout over the snapshots from the last 7 days (shorter while data builds up; it needs at least 4 snapshots spanning 12 hours). "vs normal" is how far today's price is from it.</dd>
-        <dt>24 h</dt><dd>The change since the snapshot about 24 hours earlier.</dd>
-        <dt>Sold / day</dt><dd>An estimate of units sold per day, taken from auctions that disappeared between snapshots without having been about to expire. Rough.</dd>
-        <dt>Days of supply</dt><dd>Units for sale divided by units sold per day: how long today's stock would take to sell.</dd>
-        <dt>Expired share</dt><dd>The share of vanished auctions that expired instead of selling. High means sellers struggle to sell.</dd>
-        <dt>Flip</dt><dd>Buying a few units listed well below where most units sit and reselling them at that price, after the auction house cut.</dd>
-        <dt>Auction cut</dt><dd>The fee the house keeps when something sells. It is 5% of the sale price.</dd>
-        <dt>Avg cost per unit (collected = free)</dt><dd>Everything you paid for an item divided by all the units you got, bought and collected. Profit from sales is worked out with it. It is not your avg buy price, which leaves collected units out.</dd>
-        <dt>Profit (profit from sales)</dt><dd>Realised profit: what you received minus the avg cost per unit (collected = free) of the units sold. It is 0 until you sell something.</dd>
-        <dt>Profit if sold today</dt><dd>Profit from sales plus what you would make selling everything you hold at today's lowest prices, after the 5% cut, minus what it cost you.</dd>
-        <dt>Margin</dt><dd>Profit per craft as a share of the reagent cost, after the auction cut on the product.</dd>
-        <dt>Writ</dt><dd>Craftsman's Writ: an item traded on the auction house and linked to a craftable item. It is tracked next to that item.</dd>
-      </dl>
-    </div>
   </section>
   <div class="itip" data-source="iteminfo scanner recipe_margins salesprices" data-draw="itip" role="tooltip"></div>
 </div>
