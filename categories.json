@@ -52541,6 +52541,15 @@ null,
 "Binds when equipped",
 0
 ],
+"6316": [
+"Consumable",
+"Food & Drink",
+15,
+5,
+"Non-equippable",
+null,
+0
+],
 "6317": [
 "Trade Goods",
 "Cooking",
