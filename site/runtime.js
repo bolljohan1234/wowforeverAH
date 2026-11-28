@@ -164,7 +164,7 @@
     del: async (k) => { const d = await IDB.open(); return new Promise((res) => { const t = d.transaction("kv", "readwrite"); t.objectStore("kv").delete(k); t.oncomplete = () => res(); }); },
   };
   const canPick = "showOpenFilePicker" in window;
-  const S = { handle: null, mtime: 0, loadedAt: 0, name: "", state: "none", msg: "" };
+  const S = { handle: null, live: false, mtime: 0, loadedAt: 0, name: "", state: "none", msg: "" };   // live: the last read came straight from your PC (not the kept copy)
   window.GAMEFILE = { loaded: () => S.state === "ok" };
 
   async function readFile(file) {
@@ -179,13 +179,22 @@
     changed();
     paint();
   }
-  async function readHandle(ask) {
+  // Read the connected file. WoW replaces the file when it saves (logout or /reload), so a read can fail for a moment:
+  // then the page keeps what it showed and tries again a few seconds later instead of giving up.
+  let retry = null;
+  async function readHandle(ask, tries) {
     if (!S.handle) return;
     let p = await S.handle.queryPermission({ mode: "read" });
     if (p !== "granted" && ask) p = await S.handle.requestPermission({ mode: "read" });
-    if (p !== "granted") { S.state = "ask"; paint(); return; }
-    try { await readFile(await S.handle.getFile()); }
-    catch (e) { S.state = "error"; S.msg = e && e.message ? e.message : String(e); paint(); }
+    if (p !== "granted") { S.live = false; if (S.state !== "ok") S.state = "ask"; S.needAllow = true; paint(); return; }
+    S.needAllow = false;
+    try { await readFile(await S.handle.getFile()); S.live = true; S.checkedAt = Date.now(); paint(); }
+    catch (e) {
+      S.live = false;
+      if ((tries || 0) < 5) { clearTimeout(retry); retry = setTimeout(() => readHandle(false, (tries || 0) + 1), 3000); return; }
+      if (S.state !== "ok") S.state = "error";
+      S.msg = e && e.message ? e.message : String(e); paint();
+    }
   }
   async function pick() {
     try {
@@ -207,12 +216,14 @@
     const span = (cls, t) => { const s = document.createElement("span"); s.className = cls; s.textContent = t; return s; };
     const kids = [span("lbl", "Your game file")];
     const hm = (t) => { const d = new Date(t); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0") + " " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
-    const once = () => btn(S.state === "ok" ? "Pick the file again" : "Pick the file (any folder)", () => input.click());
+    const once = () => btn(S.state === "ok" ? "Pick the file again" : "Pick the file (any folder)", () => (canPick && S.state === "ok" ? pick() : input.click()));
     if (S.state === "ok") {
-      const live = !!S.handle;
+      const live = S.live;
       const s = span("pill", "✓ " + S.name + ", saved by the game " + hm(S.mtime) + (live ? "" : " (copy kept in this browser)")); s.dataset.tone = "up";
-      s.title = live ? "Read from your PC. It is read again every time you open this page or come back to it." : "The last file you picked, kept in this browser on your PC. Pick the file again after playing to update it.";
+      s.title = live ? "Read from your PC. Checked again every 20 seconds and whenever you come back to this page." : "The last file read, kept in this browser on your PC.";
+      if (!live) s.dataset.tone = "";
       kids.push(s);
+      if (S.needAllow) kids.push(btn("Allow reading the file again", () => readHandle(true)));
       if (live) kids.push(btn("Read again", () => readHandle(true)));
       else kids.push(once());
       kids.push(btn("Forget this file", forget));
@@ -233,14 +244,16 @@
   async function boot() {
     paint();
     if (canPick) { try { S.handle = (await IDB.get("gamefile")) || null; } catch (e) { S.handle = null; } }
-    if (S.handle) await readHandle(false);
+    if (S.handle) { await readHandle(false); if (!S.live && !S.needAllow) await new Promise((r) => setTimeout(r, 1500)).then(() => readHandle(false)); }
     if (S.state !== "ok") {   // no connected file (or not allowed yet): show the last copy kept in this browser
       try { const c = await IDB.get("lastfile"); if (c && c.text) await readFile({ text: async () => c.text, name: c.name, lastModified: c.mtime }); } catch (e) { /* ignore */ }
     }
     paint();
   }
-  const again = () => { if (document.visibilityState === "visible" && S.handle && S.state === "ok") readHandle(false); };
+  // read again when you come back to the page, and every 20 seconds while it is open (cheap: only re-parsed when WoW saved a newer file)
+  const again = () => { if (document.visibilityState === "visible" && S.handle) readHandle(false); };
   window.addEventListener("focus", again);
   document.addEventListener("visibilitychange", again);
+  setInterval(again, 20000);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
