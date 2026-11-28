@@ -78,6 +78,8 @@ html::after, body::after, #dash-root::after, #dash-root::before { box-shadow: no
 .wow details.fold > summary::-webkit-details-marker { display: none; }
 .wow details.fold > summary::after { content: "▾"; float: right; color: #7f8aa0; }
 .wow details.fold:not([open]) > summary::after { content: "▸"; }
+.wow details.fold.more { margin-top: 26px; }
+.wow details.fold.more > summary { color: var(--color-fg-muted, #9aa4b5); border-left-color: #3a4456; }
 .wow details.about { margin: 4px 0 8px; }
 .wow details.about > summary { cursor: pointer; font-size: var(--fs-small); color: #8b97ad; list-style: none; display: inline-block; padding: 2px 8px; border: 1px solid #2c3446; border-radius: 999px; }
 .wow details.about > summary::-webkit-details-marker { display: none; }
