@@ -27485,6 +27485,15 @@ null,
 null,
 0
 ],
+"1928": [
+"Weapon",
+"Staff",
+16,
+11,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "19280": [
 "Quest",
 "Quest",
@@ -42371,6 +42380,15 @@ null,
 null,
 0
 ],
+"3224": [
+"Armor",
+"Cloth",
+12,
+7,
+"Wrist",
+"Binds when equipped",
+0
+],
 "3233": [
 "Container",
 "Bag",
@@ -43673,6 +43691,24 @@ null,
 30,
 0,
 "Non-equippable",
+null,
+0
+],
+"3587": [
+"Armor",
+"Cloth",
+50,
+45,
+"Waist",
+null,
+0
+],
+"3588": [
+"Armor",
+"Cloth",
+50,
+45,
+"Wrist",
 null,
 0
 ],
