@@ -2294,6 +2294,15 @@ null,
 "Binds when equipped",
 0
 ],
+"10271": [
+"Armor",
+"Shield",
+65,
+60,
+"Off Hand",
+"Binds when equipped",
+0
+],
 "10272": [
 "Armor",
 "Mail",
@@ -6027,6 +6036,15 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"1219": [
+"Weapon",
+"Sword",
+16,
+11,
+"Main Hand",
+"Binds when equipped",
 0
 ],
 "12190": [
@@ -17627,6 +17645,15 @@ null,
 60,
 55,
 "Legs",
+"Binds when equipped",
+0
+],
+"15096": [
+"Armor",
+"Leather",
+62,
+57,
+"Shoulder",
 "Binds when equipped",
 0
 ],
@@ -47967,6 +47994,15 @@ null,
 0,
 "Non-equippable",
 null,
+0
+],
+"4462": [
+"Armor",
+"Cloth",
+31,
+26,
+"Back",
+"Binds when equipped",
 0
 ],
 "4463": [
