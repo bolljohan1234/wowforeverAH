@@ -27620,6 +27620,15 @@ null,
 "Binds when equipped",
 0
 ],
+"1938": [
+"Weapon",
+"Mace",
+22,
+17,
+"Main Hand",
+"Binds when equipped",
+0
+],
 "194": [
 "Armor",
 "Cloth",
@@ -28048,6 +28057,15 @@ null,
 "Sword",
 29,
 24,
+"Two-Hand",
+"Binds when equipped",
+0
+],
+"2015": [
+"Weapon",
+"Axe",
+28,
+23,
 "Two-Hand",
 "Binds when equipped",
 0
@@ -43622,6 +43640,15 @@ null,
 "Binds when equipped",
 0
 ],
+"3571": [
+"Weapon",
+"Mace",
+21,
+16,
+"Two-Hand",
+"Binds when equipped",
+0
+],
 "3575": [
 "Trade Goods",
 "Metal & Stone",
@@ -49688,6 +49715,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4830": [
+"Armor",
+"Leather",
+28,
+23,
+"Legs",
+"Binds when equipped",
+0
+],
 "4831": [
 "Armor",
 "Leather",
@@ -52206,6 +52242,15 @@ null,
 31,
 "Non-equippable",
 null,
+0
+],
+"6195": [
+"Armor",
+"Mail",
+15,
+10,
+"Chest",
+"Binds when equipped",
 0
 ],
 "6197": [
@@ -62161,6 +62206,15 @@ null,
 "One-Hand",
 "Binds when equipped",
 1
+],
+"9480": [
+"Weapon",
+"Polearm",
+48,
+43,
+"Two-Hand",
+"Binds when equipped",
+0
 ],
 "9481": [
 "Weapon",
