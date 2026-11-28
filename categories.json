@@ -9026,6 +9026,15 @@ null,
 null,
 0
 ],
+"13363": [
+"Miscellaneous",
+"Junk",
+1,
+0,
+"Non-equippable",
+null,
+0
+],
 "13364": [
 "Miscellaneous",
 "Junk",
@@ -26800,6 +26809,15 @@ null,
 "Waist",
 "Binds when equipped",
 0
+],
+"18688": [
+"Quest",
+"Quest",
+1,
+0,
+"Non-equippable",
+null,
+1
 ],
 "18697": [
 "Armor",
@@ -47978,6 +47996,15 @@ null,
 "Binds when equipped",
 0
 ],
+"4447": [
+"Armor",
+"Cloth",
+26,
+21,
+"Back",
+"Binds when equipped",
+0
+],
 "4448": [
 "Armor",
 "Mail",
@@ -50802,6 +50829,15 @@ null,
 3,
 "Thrown",
 null,
+0
+],
+"5426": [
+"Weapon",
+"Axe",
+20,
+15,
+"One-Hand",
+"Binds when equipped",
 0
 ],
 "5427": [
